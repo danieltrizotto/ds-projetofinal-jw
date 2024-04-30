@@ -4,15 +4,28 @@
 
 <html>
     <head>
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Loja Home</title>
+        <title>Login</title>
         <script src="https://kit.fontawesome.com/0444e3e789.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="./styles/index.css"/>
     </head>
 
     <body>
     <main>
-        
+         <div class="login">
+            <form name="formLogin" method="get" action="logar">
+                <h2>LOGIN</h2>
+                <input type="text" name="usuario" placeholder="Usuario..." />
+                <br><br>
+                <input type="password" name="senha" placeholder="Senha..." />
+                <br><br>
+                <button type="submit" name="entrar" value="Entrar">Entrar</button>
+                <p class="errorMessage">${requestScope.errorMessage}</p> 
+                <a href="./cadastro">fazer cadastro</a>
+            </form>
+        </div>
     </main>
     </body>
 

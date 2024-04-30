@@ -16,13 +16,49 @@
         <servlet-name>loginController</servlet-name>
         <servlet-class>controller.loginController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>cadastroController</servlet-name>
+        <servlet-class>controller.cadastroController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>voltarloginController</servlet-name>
+        <servlet-class>controller.voltarloginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>homeController</servlet-name>
+        <servlet-class>controller.homeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>inseriController</servlet-name>
+        <servlet-class>controller.inseriController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>loginController</servlet-name>
-        <url-pattern>/loginController</url-pattern>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loginController</servlet-name>
+        <url-pattern>/logar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cadastroController</servlet-name>
+        <url-pattern>/cadastro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>voltarloginController</servlet-name>
+        <url-pattern>/voltarlogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>homeController</servlet-name>
+        <url-pattern>/telaInicial</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>inseriController</servlet-name>
+        <url-pattern>/inseriController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
