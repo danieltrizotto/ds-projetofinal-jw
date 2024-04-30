@@ -1,0 +1,153 @@
+
+
+header {
+    background-color: rgb(251, 255, 3);
+    width: 100vw;
+    padding: 2px;
+    box-shadow: 0px 5px 4px rgb(65, 64, 66);
+}
+
+#pesquisa {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+#pesquisa1 {
+    display: flex;
+    align-items: center;
+    align-content: space-around;
+    flex-direction: row;
+}
+
+#pesquisa1 .fa-solid .fa-guitar {
+    height: 33px;
+}
+
+#pesquisa2 {
+    display: flex;
+}
+
+#pesquisa img {
+    width: 50px;
+    height: 50px;
+}
+.categorias nav div{
+    background-color: rgb(38, 77, 0);
+}
+
+header h1 {
+font-family:"jersey-15-regular";
+    color: rgb(0, 0, 0);
+}
+
+#pesquisa input {
+    width: 50vh;
+    background-color: rgb(241, 241, 243);
+}
+
+#pesquisa button {
+    height: 28px;
+    background-color: rgb(5, 75, 28);
+}
+
+.categorias {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: space-between;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.login a {
+    color: aliceblue
+}
+ 
+
+.categorias a {
+    color: rgb(0, 79, 148);
+}
+
+main img {
+    height: 200px;
+}
+
+main {
+    height: 1000px;
+}
+body{
+    height: 100px;
+}
+.carrosel img{
+    height: 20vh;
+    width: 100%;
+}
+.produtos {
+    display: flex;
+}
+
+h1{
+    text-align: center;
+}
+.produtos {
+    display: grid;
+    grid-template-columns: 300px 300px 300px 300px;
+    gap: 20px;
+    justify-content: center;
+    height: auto;
+    padding: 30px 0;
+    justify-items: start;
+}
+
+.produtos .item:hover {
+    box-shadow: 0 7px 10px 0 #ff00c8;
+}
+
+.produtos .item {
+    display: grid;
+    grid-template-columns: 250px;
+    grid-template-rows: 250px 50px 30px 75px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+    padding: 15px;
+    background-color: transparent;
+    transition: all 300ms ease-in-out 0s;
+    border: 1px solid #b1b1b1;
+    border-radius: 15px;
+    box-shadow: 0 7px 10px 0 #fc2ccf;
+}
+
+.produtos .item img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+}
+
+span {
+    font-size: 26px;
+    font-weight: 700;
+    color: orange;
+}
+
+.preço {
+    font-size: 18px;
+    font-weight: 700;
+    color: green;
+}
+
+.produtos button {
+    background-color: rgb(223, 32, 230);
+    color: white;
+    border-radius: 15px;
+    border: transparent;
+}
+
+footer {
+    text-align: center;
+    height: 100%;
+    background-color: rgb(255, 31, 225);
+}
