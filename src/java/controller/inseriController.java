@@ -6,6 +6,7 @@
  */
 package controller;
 //victor
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-
+import model.bean.Produtos;
+import model.dao.ProdutosDAO;
 
 @WebServlet(urlPatterns = "/insert")
 @MultipartConfig
@@ -30,7 +32,7 @@ public class inseriController extends HttpServlet {
             throws ServletException, IOException {
         ///victor
         String action = request.getServletPath();
-        
+
         if (action.equals("/insert")) {
             product(request, response);
         }
@@ -42,20 +44,21 @@ public class inseriController extends HttpServlet {
         ///victor
         Part filePart = request.getPart("imagem");
         InputStream inputStream = filePart.getInputStream();
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        byte[] buffer = new byte[4096];
+        ByteArrayOutputStream byteA = new ByteArrayOutputStream();
+        byte[] img = new byte[4096];
         int bytesRead = -1;
-        
-        while ((bytesRead = inputStream.read(buffer)) != -1) {
-            outputStream.write(buffer, 0, bytesRead);
+        while ((bytesRead = inputStream.read(img)) != -1) {
+            byteA.write(img, 0, bytesRead);
         }
-        byte[] imageBytes = outputStream.toByteArray();
+        byte[] imageBytes = byteA.toByteArray();
 
+        objProduto.setFk_categoria(Integer.parseInt(request.getParameter("categoria")));
         objProduto.setNome(request.getParameter("nome"));
-        objProduto.setCategoriaId(Integer.parseInt(request.getParameter("categoria")));
-        objProduto.setValor(Float.parseFloat(request.getParameter("valor")));
+        objProduto.setDescriçao(request.getParameter("descri"));
         objProduto.setImgBlob(imageBytes);
+        objProduto.setPreço(Float.parseFloat(request.getParameter("valor")));
         objProdutoDao.insertProduto(objProduto);
+         response.sendRedirect("./telaInicial");
         /////
     }
 

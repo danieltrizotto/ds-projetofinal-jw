@@ -15,7 +15,7 @@
     <body>
     <main>
          <div class="login">
-            <form name="formLogin" method="get" action="logar">
+            <form name="formLogin" method="post" action="logar">
                 <h2>LOGIN</h2>
                 <input type="text" name="usuario" placeholder="Usuario..." />
                 <br><br>

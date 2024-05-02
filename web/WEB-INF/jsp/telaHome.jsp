@@ -52,6 +52,24 @@
           </nav>
         </div>
       </header>
+      <main>
+        <h1>Produtos</h1>
+        <hr>
+        <div class="produtos">
+          <%-- Use JSP para iterar sobre a lista de livros e exibi-los na tabela --%>
+            <c:forEach items="${produtos}" var="prod">
+              <section class="produtos">
+                <div class="item">
+                  <img src="data:image/jpg;base64,${prod.imgBlob}" alt="Imagem do Produto">
+                  <h5 class="titulo">Nome:${prod.nome}</h5>
+                  <span class="preço">R$:${prod.valor}</span>
+                  <span>categorias:${prod.categoriaId}</span>
+                  <button class="comprar">COMPRAR</button>
+                </div>
+              </section>
+            </c:forEach>
+        </div>
+      </main>
   </body>
 
   </html>

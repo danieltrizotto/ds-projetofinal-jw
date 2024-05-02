@@ -32,6 +32,10 @@
         <servlet-name>inseriController</servlet-name>
         <servlet-class>controller.inseriController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>admController</servlet-name>
+        <servlet-class>controller.admController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -59,6 +63,10 @@
     <servlet-mapping>
         <servlet-name>inseriController</servlet-name>
         <url-pattern>/inseriController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>admController</servlet-name>
+        <url-pattern>/telaADM</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

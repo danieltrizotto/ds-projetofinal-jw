@@ -18,6 +18,7 @@ public class Usuarios {
     private String telefone;
     private String cpf;
     private String tipo;
+    
 
     public Usuarios(int id_usuario, String nome, String senha, String usuario, String telefone, String cpf, String tipo) {
         this.id_usuario = id_usuario;

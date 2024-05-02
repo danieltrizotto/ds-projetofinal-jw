@@ -19,7 +19,8 @@ import model.bean.Usuarios;
  * @author Senai
  */
 public class UsuariosDAO {
-     public List<Usuarios> read() {
+
+    public List<Usuarios> read() {
         List<Usuarios> dao = new ArrayList();
 
         try {
@@ -52,8 +53,9 @@ public class UsuariosDAO {
         }
         return dao;
     }
-     
-      public Usuarios validaUser(Usuarios user) {
+
+   
+    public Usuarios validaUser(Usuarios user) {
         Usuarios usuarioValido = new Usuarios();
         try {
             Connection con = Conexao.conectar();
@@ -81,20 +83,20 @@ public class UsuariosDAO {
         }
         return usuarioValido;
     }
-     public void inserirUsuario (Usuarios user) {
+
+    public void inserirUsuario(Usuarios user) {
         try {
             Connection con = Conexao.conectar();
             PreparedStatement stmt = null;
-            
+
             stmt = con.prepareStatement("INSERT INTO usuarios "
-                    + "(nome, senha, usuario, telefone, cpf, tipo)"
-                    + "VALUES (?, ?, ?, ?, ?, ?)");
+                    + "(nome, senha, usuario, telefone, cpf)"
+                    + "VALUES (?, ?, ?, ?, ?)");
             stmt.setString(1, user.getNome());
             stmt.setString(2, user.getSenha());
             stmt.setString(3, user.getUsuario());
             stmt.setString(4, user.getTelefone());
             stmt.setString(5, user.getCpf());
-            stmt.setString(6, user.getTipo());
             stmt.executeUpdate();
             stmt.close();
             con.close();
