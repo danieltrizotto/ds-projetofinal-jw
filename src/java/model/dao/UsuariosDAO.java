@@ -70,6 +70,7 @@ public class UsuariosDAO {
             if(rs.next()) {
                 usuarioValido.setId_usuario(rs.getInt("id_usuario"));
                 usuarioValido.setNome(rs.getString("nome"));
+                usuarioValido.setTipo(rs.getString("tipo"));
                 usuarioValido.setUsuario(rs.getString("usuario"));
                 usuarioValido.setSenha(rs.getString("senha"));
             }

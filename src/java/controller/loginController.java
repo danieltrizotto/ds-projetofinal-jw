@@ -78,11 +78,17 @@ public class loginController extends HttpServlet {
                         System.out.println("passou do try");
                         System.out.println("user:" + userAutenticado.getUsuario());
                         System.out.println("senha:" + userAutenticado.getSenha());
-                        if (userAutenticado != null && !userAutenticado.getNome().isEmpty()) {
-                            System.out.println(" passou do if");
+                        System.out.println("tipo" + userAutenticado.getTipo());
+                        if (userAutenticado != null && !userAutenticado.getNome().isEmpty() && userAutenticado.getTipo().equals("admin")) {
+                            System.out.println(" passou do if admin");
                             System.out.println(homePage);
                             response.sendRedirect("./telaADM");
-                        } else {
+                        } else if(userAutenticado != null && !userAutenticado.getNome().isEmpty() && userAutenticado.getTipo().equals("cliente")){
+                             System.out.println(" passou do if cliente");
+                            System.out.println(homePage);
+                            response.sendRedirect("./telaInicial");
+                        }
+                        else {
                             request.setAttribute("errorMessage", "Usuário ou senha inválidos");
                             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
                             dispatcher.forward(request, response);
