@@ -13,24 +13,38 @@
 
     <body>
         <main>
-            <div class="areaCadastro">
-                <form name="formCadastro" method="post" action="cadastro">
-                    <h2>Cadastro</h2>
-                    <input type="text" placeholder="nome..." class="nomeInput" name="nome">
-                    <br><br>
-                    <input type="text" placeholder="usuario..." class="usuarioInput" name="usuario">
-                    <br><br>
-                    <input type="text" placeholder="Senha..." class="senhaInput" name="senha">
-                    <br><br>
-                    <input type="text" placeholder="telefone..." class="telInput" name="telefone">
-                    <br><br>
-                    <input type="text" class="cpfInput" name="cpf" placeholder="cpf...">
-                    <br><br>
-                    <button type="submit" name="entrar" value="Entrar" id="cadastro">cadastrar</button>
-                    <a href="./voltarlogin">Ir a tela de login</a>
-                </form>
-
+           <div class="container">
+        <h2>Cadastro de Produto</h2>
+        <form action="cadastrarProduto" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
             </div>
+            <div class="form-group">
+                <label for="categoria">Categoria:</label>
+                <select class="form-control" id="categoria" name="categoria">
+                    <option value="1">Jaquetas</option>
+                    <option value="2">Processadores</option>
+                    <option value="3">Memórias RAM</option>
+                    <option value="4">Placas de Vídeo</option>
+                    <option value="5">Fontes de Alimentação</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="valor">Valor:</label>
+                <input type="number" step="0.01" class="form-control" id="valor" name="valor" required>
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="imagem">Imagem do Produto:</label>
+                <input type="file" class="form-control-file" id="imagem" name="imagem">
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+    </div>
         </main>
     </body>
 

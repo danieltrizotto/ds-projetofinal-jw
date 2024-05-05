@@ -74,19 +74,19 @@ public class loginController extends HttpServlet {
                     user.setSenha(request.getParameter("senha"));
         
                     try {
-                        Usuarios userAutenticado = valida.validaUser(user);
+                         Usuarios userAutenticado = valida.validaUser(user);
                         System.out.println("passou do try");
                         System.out.println("user:" + userAutenticado.getUsuario());
                         System.out.println("senha:" + userAutenticado.getSenha());
-                        System.out.println("tipo" + userAutenticado.getTipo());
+                        System.out.println("tipo " + userAutenticado.getTipo());
                         if (userAutenticado != null && !userAutenticado.getNome().isEmpty() && userAutenticado.getTipo().equals("admin")) {
                             System.out.println(" passou do if admin");
-                            System.out.println(homePage);
-                            response.sendRedirect("./telaADM");
+                            System.out.println(admPage);
+                            response.sendRedirect("./cadastrar-produto");
                         } else if(userAutenticado != null && !userAutenticado.getNome().isEmpty() && userAutenticado.getTipo().equals("cliente")){
                              System.out.println(" passou do if cliente");
                             System.out.println(homePage);
-                            response.sendRedirect("./telaInicial");
+                            response.sendRedirect("./home");
                         }
                         else {
                             request.setAttribute("errorMessage", "Usuário ou senha inválidos");
