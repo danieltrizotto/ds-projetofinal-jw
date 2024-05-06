@@ -93,7 +93,7 @@ public class ProdutosDAO {
             ResultSet rs = null;
 
             
-            stmt = conexao.prepareStatement("SELECT * FROM produtos WHERE categoria = ?");
+            stmt = conexao.prepareStatement("SELECT * FROM produtos WHERE fk_categoria = ?");
             stmt.setInt(1, categoria);
             
             rs = stmt.executeQuery();
@@ -102,8 +102,8 @@ public class ProdutosDAO {
                 Produtos prod = new Produtos();
                 prod.setId_Produto(rs.getInt("id_produto"));
                 prod.setNome(rs.getString("nome"));
-                prod.setFk_categoria(rs.getInt("categoria"));
-                prod.setDescriçao(rs.getString("descricao"));
+                prod.setFk_categoria(rs.getInt("fk_categoria"));
+                prod.setDescriçao(rs.getString("descriçao"));
                 prod.setPreço(rs.getFloat("preço"));
                 prod.setImgBlob(rs.getBytes("imagem"));
                 
@@ -118,26 +118,24 @@ public class ProdutosDAO {
 
     }
 
-    public void insertProduto(Produtos objProduto) {
-        //victor
-        String sql = "INSERT INTO produtos(fk_categoria,nome,descriçao,imagem,preço)values(?,?,?,?,?)";
+    public void insertProduto(Produtos p) {
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
-
-            stmt = conexao.prepareStatement(sql);
-            stmt.setInt(1, objProduto.getFk_categoria());
-            stmt.setString(2, objProduto.getNome());
-            stmt.setString(3, objProduto.getDescriçao());
-            stmt.setBytes(4, objProduto.getImgBlob());
-            stmt.setFloat(5, objProduto.getPreço());
-
+            
+            stmt = conexao.prepareStatement("INSERT INTO produtos (fk_categoria, nome, preço, descriçao, imagem) VALUES (?, ?, ?, ?, ?)");
+            stmt.setInt(1, p.getFk_categoria());
+            stmt.setString(2, p.getNome());
+            stmt.setFloat(3, p.getPreço());
+            stmt.setString(4, p.getDescriçao());
+            stmt.setBytes(5, p.getImgBlob());
+            System.out.println("feito");
+            
             stmt.executeUpdate();
             stmt.close();
             conexao.close();
-        } catch (SQLException e) {
-            System.out.println(" cadastro de produto: " + e);
+        } catch(SQLException e) {
+            e.printStackTrace();
         }
-        ////
     }
 }

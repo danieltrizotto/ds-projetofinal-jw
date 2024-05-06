@@ -44,14 +44,14 @@
         <hr>
         <div class="produtos">
             <%-- Use JSP para iterar sobre a lista de livros e exibi-los na tabela --%>
-            <c:forEach items="${produtos}" var="produtos">
+            <c:forEach items="${produtos}" var="prod">
                 <section class="produtos">
                     <div class="item">
-                        <img src="data:image/jpg;base64,${produtos.imgBlob}" alt="Imagem do Produto">
-                        <h5 class="titulo">Nome:${produtos.nome}</h5>
-                        <span class="descriçao">${produtos.descriçao}</span>
-                        <span class="preço">R$:${produtos.preço}</span>
-                        <span>categorias:${produtos.fk_categoria}</span>
+                        <img src="data:image/jpg;base64,${prod.imgBlob}" alt="Imagem do Produto">
+                        <h5 class="titulo">Nome:${prod.nome}</h5>
+                        <span class="descriçao">${prod.descriçao}</span>
+                        <span class="preço">R$:${prod.preço}</span>
+                        <span>categorias:${prod.fk_categoria}</span>
                         <button class="comprar">COMPRAR</button>
                     </div>
                 </section>
