@@ -28,5 +28,5 @@
         </div>
     </main>
     </body>
-
+    <script src="./js/avisos.js"></script>
 </html>

@@ -26,13 +26,13 @@ CREATE TABLE `produtos` (
   `id_produto` int(11) NOT NULL AUTO_INCREMENT,
   `fk_categoria` int(11) DEFAULT NULL,
   `nome` varchar(255) DEFAULT NULL,
-  `descriço` varchar(100) DEFAULT NULL,
+  `descriçao` varchar(100) DEFAULT NULL,
   `imagem` longblob DEFAULT NULL,
   `preço` float(8,2) DEFAULT NULL,
   PRIMARY KEY (`id_produto`),
   KEY `fk_categoria` (`fk_categoria`),
   CONSTRAINT `produtos_ibfk_1` FOREIGN KEY (`fk_categoria`) REFERENCES `categorias` (`id_categoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `produtos` (
 
 LOCK TABLES `produtos` WRITE;
 /*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
+INSERT INTO `produtos` VALUES (1,2,'dfd','fghf',NULL,33.00),(4,3,'hdfg','hjhf',NULL,33.00),(5,1,'fdgf','gff',NULL,33.00);
 /*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-30 17:17:13
+-- Dump completed on 2024-05-06 17:29:30

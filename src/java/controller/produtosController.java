@@ -69,7 +69,16 @@ public class produtosController extends HttpServlet {
             String nextPage = "/WEB-INF/jsp/busca.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
+        }else if(url.equals("/ver-produto")){
+             System.out.println(url);
+            List<Produtos> produtos = produtosDAO.leitura();
+            request.setAttribute("produtos", produtos);
+            String nextPage = "/WEB-INF/jsp/telaProduto.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+            dispatcher.forward(request, response);
         }
+            
+        
         
     }
 
@@ -102,7 +111,7 @@ public class produtosController extends HttpServlet {
         Produtos newProduto = new Produtos();
         newProduto.setNome(request.getParameter("nome"));
         newProduto.setFk_categoria(Integer.parseInt(request.getParameter("categoria")));
-        newProduto.setDescriçao(request.getParameter("descri"));
+        newProduto.setDescriçao(request.getParameter("descriçao"));
         newProduto.setPreço(Float.parseFloat(request.getParameter("valor")));
         Part filePart = request.getPart("imagem");
         InputStream istream = filePart.getInputStream();

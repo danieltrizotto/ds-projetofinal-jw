@@ -72,6 +72,10 @@
         <servlet-name>produtosController</servlet-name>
         <url-pattern>/buscar-produtos</url-pattern>
     </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>produtosController</servlet-name>
+        <url-pattern>/ver-produto</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

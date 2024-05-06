@@ -22,12 +22,12 @@
                     <div class="form-group">
                         <label for="categoria">Categoria:</label>
                         <select class="form-control" id="categoria" name="categoria">
-                            <option value="1">Jaquetas</option>
-                            <option value="2">calças</option>
-                            <option value="3">brusas</option>
-                            <option value="4">capacetes</option>
-                            <option value="5">tenis</option>
-                            <option value="6">acessorios</option>
+                            <option value="1">1.Jaquetas</option>
+                            <option value="2">2.calças</option>
+                            <option value="3">3.brusas</option>
+                            <option value="4">4.capacetes</option>
+                            <option value="5">5.tenis</option>
+                            <option value="6">6.acessorios</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="descricao">Descrição:</label>
-                        <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+                        <textarea class="form-control" id="descricao" name="descriçao" rows="3"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="imagem">Imagem do Produto:</label>

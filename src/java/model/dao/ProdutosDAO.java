@@ -58,7 +58,7 @@ public class ProdutosDAO {
             PreparedStatement stmt = null;
             ResultSet rs = null;
 
-            stmt = conexao.prepareStatement("SELCT * FROM produtos WHERE nome LIKE ? OR descriçao LIKE ?");
+            stmt = conexao.prepareStatement("SELECT * FROM produtos WHERE nome LIKE ? OR descriçao LIKE ?");
             stmt.setString(1, busca);
             stmt.setString(2, busca);
             rs = stmt.executeQuery();
