@@ -21,14 +21,7 @@
                     </div>
                     <div class="form-group">
                         <label for="categoria">Categoria:</label>
-                        <select class="form-control" id="categoria" name="categoria">
-                            <option value="1">1.Jaquetas</option>
-                            <option value="2">2.calças</option>
-                            <option value="3">3.brusas</option>
-                            <option value="4">4.capacetes</option>
-                            <option value="5">5.tenis</option>
-                            <option value="6">6.acessorios</option>
-                        </select>
+                        <input type="number" name="categoria">
                     </div>
                     <div class="form-group">
                         <label for="valor">Valor:</label>
@@ -46,6 +39,15 @@
                 </form>
             </div>
         </main>
+        
+        <footer>
+            <c:forEach items="${categorias}" var="categoria">
+                <div class="categoria">
+                    <a href="./buscar-produtos?cat=${categoria.idCategoria}&busca=">${categoria.nome}</a>
+                </div>
+            </c:forEach>
+            <p>Daniel trizotto@2024</p>
+        </footer>
 
     </body>
 

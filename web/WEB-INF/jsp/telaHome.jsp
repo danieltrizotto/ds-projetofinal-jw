@@ -21,26 +21,27 @@
                         <a class="navbar-brand" href="./home"><i class="fa-solid fa-house"></i></a>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <div class="busca-pc">
-                                <form class="d-flex" action="buscar-produtos" method="get">
-                                    <input class="form-control me-2" name="busca" type="search" placeholder="Search"
+                                <form class="pesquisa" action="buscar-produtos" method="get">
+                                    <input  name="busca" type="search" placeholder="pesquisar.."
                                         aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">
+                                    <button class="b-submit" type="submit">
                                         <i class="fa-solid fa-magnifying-glass"></i>
                                     </button>
-                                </form>
                             </div>
                         </div>
                         <div class="busca-mobile">
-                            <form class="d-flex" action="buscar-produtos" method="get">
-                                <input class="form-control me-2" name="busca" type="search" placeholder="Search"
+                            <form class="pesquisa" action="buscar-produtos" method="get">
+                                <input  name="busca" type="search" placeholder="pesquisar.."
                                     aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">
+                                <button class="b-submit" type="submit">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
                             </form>
                         </div>
                     </div>
-
+                    <h1>CyberMercado</h1>
+                    <br>
+                    <div></div>
                     <div class="container container-categorias">
                         <c:forEach items="${categorias}" var="categoria">
                             <div class="categoria">
@@ -51,55 +52,62 @@
 
 
                 </nav>
-<!--               <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="./assets/banner-3.jpg" alt="Primeiro Slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="./assets/roupas-masculinas.jpg" alt="Segundo Slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="./assets/roupas-femininas.jpg"
-                        alt="Terceiro Slide">
-                </div>
-               
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Anterior</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Próximo</span>
-            </a>-->
-        </div>
+
+            
             </header>
             <main>
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="./assets/banner-3.jpg" alt="Primeiro Slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="./assets/roupas-masculinas.jpg" alt="Segundo Slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="./assets/roupas-femininas.jpg" alt="Terceiro Slide">
+                        </div>
+
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Próximo</span>
+                    </a>
+                </div>
                 <h1>Produtos</h1>
                 <hr>
                 <div class="produtos">
                     <%-- Use JSP para iterar sobre a lista de livros e exibi-los na tabela --%>
                         <c:forEach items="${produtos}" var="produto">
-
-
                             <div class="item" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
+                                <img src="data:image/jpg;base64,${produto.img}" class="card-img-top"
+                                    alt="${produto.nome}">
+                                <br>
                                 <div class="card-body">
                                     <h5 class="card-title">${produto.nome}</h5>
-                                    <p class="card-text">${produto.descriçao}</p>
                                     <p class="card-text">${produto.preço}</p>
+                                    <p class="card-text">Descriçao:${produto.descriçao}</p>
                                     <p class="card-text">categoria:${produto.fk_categoria}</p>
-                                    <a href="#" class="btn btn-primary">Comprar</a>
+                                    <a href="./ver-produto?id=${produto.id_Produto}" class="btn btn-primary">Comprar</a>
                                 </div>
                             </div>
-
                         </c:forEach>
 
                 </div>
             </main>
 
-
+            <footer>
+                <c:forEach items="${categorias}" var="categoria">
+                    <div class="categoria">
+                        <a href="./buscar-produtos?cat=${categoria.idCategoria}&busca=">${categoria.nome}</a>
+                    </div>
+                </c:forEach>
+                <p>Daniel trizotto@2024</p>
+            </footer>
         </body>
         <script src="https://kit.fontawesome.com/ffe7fbbd06.js" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

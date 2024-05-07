@@ -31,6 +31,7 @@
                     </form>
                 </div>
             </div>
+            <h1>CyberMercado</h1>
             <div class="container container-categorias">
                 <c:forEach items="${categorias}" var="categoria" >
                     <div class="categoria">

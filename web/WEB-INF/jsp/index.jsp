@@ -23,7 +23,7 @@
                 <br><br>
                 <button type="submit" name="entrar" value="Entrar">Entrar</button>
                 <p class="errorMessage">${requestScope.errorMessage}</p> 
-                <a href="./cadastro">fazer cadastro</a>
+                <a href="./CadastroUsuario">fazer cadastro</a>
             </form>
         </div>
     </main>

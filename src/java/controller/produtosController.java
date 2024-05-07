@@ -9,9 +9,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +28,7 @@ import model.dao.ProdutosDAO;
  *
  * @author User
  */
+@MultipartConfig
 public class produtosController extends HttpServlet {
 
     /**
@@ -39,6 +43,7 @@ public class produtosController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        ProdutosDAO produtosDAO = new ProdutosDAO();
+       List<Produtos> produtos = new ArrayList();
         CategoriasDAO categoriasDAO = new CategoriasDAO();
         List<Categorias> categorias = categoriasDAO.listarCategorias();
         request.setAttribute("categorias", categorias);
@@ -49,8 +54,17 @@ public class produtosController extends HttpServlet {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
         } else if(url.equals("/home")){
-            System.out.println(url);
-            List<Produtos> produtos = produtosDAO.leitura();
+            produtos = produtosDAO.leitura();
+            for (int i = 0; i < produtos.size(); i++) {
+                    
+                    if (produtos.get(i).getImgBlob()!= null) {
+                        String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImgBlob());
+                        System.out.println("aqui");
+                        System.out.println(imagemBase64);
+                        produtos.get(i).setImg(imagemBase64);
+
+                    }
+                }
             request.setAttribute("produtos", produtos);
             String nextPage = "/WEB-INF/jsp/telaHome.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
@@ -59,20 +73,32 @@ public class produtosController extends HttpServlet {
             String busca = request.getParameter("busca") != null ? request.getParameter("busca") : "";
             if(busca.equals("")) {
                 String categoria = request.getParameter("cat");
-                List<Produtos> produtos = produtosDAO.buscaCategorias(Integer.parseInt(categoria));
+               produtos = produtosDAO.buscaCategorias(Integer.parseInt(categoria));
                 request.setAttribute("produtos", produtos);
             } else {
                 busca = "%"+busca+"%";
-                List<Produtos> produtos = produtosDAO.buscaProdutos(busca);
+              produtos = produtosDAO.buscaProdutos(busca);
                 request.setAttribute("produtos", produtos);
             }
             String nextPage = "/WEB-INF/jsp/busca.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
         }else if(url.equals("/ver-produto")){
+            int p = Integer.parseInt(request.getParameter("id"));
+            for (int i = 0; i < produtos.size(); i++) {
+                    
+                    if (produtos.get(i).getImgBlob()!= null) {
+                        String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImgBlob());
+                        System.out.println("aqui");
+                        System.out.println(imagemBase64);
+                        produtos.get(i).setImg(imagemBase64);
+
+                    }
+                }
+            Produtos pr = new Produtos();
              System.out.println(url);
-            List<Produtos> produtos = produtosDAO.leitura();
-            request.setAttribute("produtos", produtos);
+            pr = produtosDAO.mostrarProdutos(p);
+            request.setAttribute("produto", pr);
             String nextPage = "/WEB-INF/jsp/telaProduto.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
@@ -111,7 +137,8 @@ public class produtosController extends HttpServlet {
         Produtos newProduto = new Produtos();
         newProduto.setNome(request.getParameter("nome"));
         newProduto.setFk_categoria(Integer.parseInt(request.getParameter("categoria")));
-        newProduto.setDescriçao(request.getParameter("descriçao"));
+        
+        newProduto.setDescriçao(request.getParameter("descricao"));
         newProduto.setPreço(Float.parseFloat(request.getParameter("valor")));
         Part filePart = request.getPart("imagem");
         InputStream istream = filePart.getInputStream();

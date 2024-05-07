@@ -13,6 +13,7 @@
                     crossorigin="anonymous">
                 <title>tela Produto</title>
                 <script src="https://kit.fontawesome.com/0444e3e789.js" crossorigin="anonymous"></script>
+                <link rel="stylesheet" href="./styles/telaProduto.css">
             </head>
 
             <body>
@@ -22,26 +23,25 @@
                             <a class="navbar-brand" href="./home"><i class="fa-solid fa-house"></i></a>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <div class="busca-pc">
-                                    <form class="d-flex" action="buscar-produtos" method="get">
-                                        <input class="form-control me-2" name="busca" type="search" placeholder="Search"
-                                            aria-label="Search">
-                                        <button class="btn btn-outline-success" type="submit">
+                                    <form class="pesquisa" action="buscar-produtos" method="get">
+                                        <input name="busca" type="search" placeholder="pesquisar.." aria-label="Search">
+                                        <button class="b-submit" type="submit">
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </button>
-                                    </form>
                                 </div>
                             </div>
                             <div class="busca-mobile">
-                                <form class="d-flex" action="buscar-produtos" method="get">
-                                    <input class="form-control me-2" name="busca" type="search" placeholder="Search"
-                                        aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">
+                                <form class="pesquisa" action="buscar-produtos" method="get">
+                                    <input name="busca" type="search" placeholder="pesquisar.." aria-label="Search">
+                                    <button class="b-submit" type="submit">
                                         <i class="fa-solid fa-magnifying-glass"></i>
                                     </button>
                                 </form>
                             </div>
                         </div>
-
+                        <h1>CyberMercado</h1>
+                        <br>
+                        <div></div>
                         <div class="container container-categorias">
                             <c:forEach items="${categorias}" var="categoria">
                                 <div class="categoria">
@@ -55,22 +55,35 @@
                     </nav>
                 </header>
                 <main>
-                    <div items="${produtos}" var="produto">
-                        <div class="container text-center">
-                            <div class="row">
-                                <div class="col-sm-8">${produto.imgBlob}</div>
-                                <div class="col-sm-4">${produto.nome}</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm">${produto.descriçao}</div>
-                                <div class="col-sm">c${produto.preço}</div>
-                               
+
+                    <div class="mostrar">
+                        <div class="cabeça">
+                            <div class="img"><img src="" alt=""> <img src="data:image/jpg;base64,${produto.img}"
+                                    alt="${produto.nome}"></div>
+                            <div class=>
+                                <h2>${produto.nome}</h5>
                             </div>
                         </div>
-
+                        <br><br>
+                        <hr>
+                        <div class="corpo">
+                            <div>
+                                <p>${produto.preço}</p>
+                            </div>
+                            <div>
+                                <p>${produto.descriçao}</p>
+                            </div>
+                            <div>
+                                <p>${produto.fk_categoria}</p>
+                            </div>
+                        </div>
                     </div>
+
                 </main>
             </body>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                crossorigin="anonymous"></script>
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
                 crossorigin="anonymous"></script>

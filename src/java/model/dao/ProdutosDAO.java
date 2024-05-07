@@ -92,13 +92,12 @@ public class ProdutosDAO {
             PreparedStatement stmt = null;
             ResultSet rs = null;
 
-            
             stmt = conexao.prepareStatement("SELECT * FROM produtos WHERE fk_categoria = ?");
             stmt.setInt(1, categoria);
-            
+
             rs = stmt.executeQuery();
-            
-            while(rs.next()) {
+
+            while (rs.next()) {
                 Produtos prod = new Produtos();
                 prod.setId_Produto(rs.getInt("id_produto"));
                 prod.setNome(rs.getString("nome"));
@@ -106,7 +105,7 @@ public class ProdutosDAO {
                 prod.setDescriçao(rs.getString("descriçao"));
                 prod.setPreço(rs.getFloat("preço"));
                 prod.setImgBlob(rs.getBytes("imagem"));
-                
+
                 resultBusca.add(prod);
             }
 
@@ -118,11 +117,40 @@ public class ProdutosDAO {
 
     }
 
+    public Produtos mostrarProdutos(int p) {
+        Produtos prod = new Produtos();
+        try {
+            Connection conec = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+
+            stmt = conec.prepareStatement("SELECT * FROM produtos WHERE id_produto = ?");
+            stmt.setInt(1, p);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                prod.setId_Produto(rs.getInt("id_produto"));
+                prod.setFk_categoria(rs.getInt("fk_categoria"));
+                prod.setImgBlob(rs.getBytes("imagem"));
+                prod.setNome(rs.getString("nome"));
+                prod.setDescriçao(rs.getString("descriçao"));
+                prod.setPreço(rs.getFloat("preço"));
+            }
+
+            rs.close();
+            conec.close();
+            stmt.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return prod;
+    }
+
     public void insertProduto(Produtos p) {
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
-            
+
             stmt = conexao.prepareStatement("INSERT INTO produtos (fk_categoria, nome, preço, descriçao, imagem) VALUES (?, ?, ?, ?, ?)");
             stmt.setInt(1, p.getFk_categoria());
             stmt.setString(2, p.getNome());
@@ -130,11 +158,11 @@ public class ProdutosDAO {
             stmt.setString(4, p.getDescriçao());
             stmt.setBytes(5, p.getImgBlob());
             System.out.println("feito");
-            
+
             stmt.executeUpdate();
             stmt.close();
             conexao.close();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
