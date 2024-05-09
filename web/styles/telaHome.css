@@ -57,6 +57,7 @@
     body {
         height: 100px;
     }
+
     .carousel-inner {
         position: relative;
         width: 120vw;
@@ -71,11 +72,13 @@
     .produtos {
         display: flex;
     }
-    .pesquisa input{
+
+    .pesquisa input {
         border-radius: 10%;
         border: none;
         border-color: #0a015c;
     }
+
     h1 {
         text-align: center;
     }
@@ -114,7 +117,7 @@
         box-shadow: 0 7px 10px 0 #0368ff;
     }
 
- 
+
 
     span {
         font-size: 26px;
@@ -139,14 +142,14 @@
 
 @media only screen and (min-width:768px) {
     header {
-        background-color: rgb(251, 255, 3);
+        background-color: #7AB32B;
         width: 100vw;
         padding: 2px;
         box-shadow: 0px 5px 4px rgb(65, 64, 66);
     }
 
     .bg-light {
-        background-color: rgb(251, 255, 3) !important;
+        background-color: #30332B!important;
     }
 
     .busca-mobile {
@@ -202,15 +205,15 @@
         height: 1000px;
     }
 
-
-        .pesquisa input{
-            border-radius: 10%;
-            border: none;
-            border-color: #0a015c;
-        }
+    .pesquisa input {
+        border-radius: 10%;
+        border: none;
+        border-color: #0a015c;
+    }
 
     body {
         height: 100px;
+
     }
 
     .carrosel img {
