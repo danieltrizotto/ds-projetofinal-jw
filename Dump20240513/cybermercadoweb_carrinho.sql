@@ -16,33 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `produtos`
+-- Table structure for table `carrinho`
 --
 
-DROP TABLE IF EXISTS `produtos`;
+DROP TABLE IF EXISTS `carrinho`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `produtos` (
-  `id_produto` int(11) NOT NULL AUTO_INCREMENT,
-  `fk_categoria` int(11) DEFAULT NULL,
-  `nome` varchar(255) DEFAULT NULL,
-  `descriçao` varchar(100) DEFAULT NULL,
-  `imagem` longblob DEFAULT NULL,
-  `preço` float(8,2) DEFAULT NULL,
-  PRIMARY KEY (`id_produto`),
-  KEY `fk_categoria` (`fk_categoria`),
-  CONSTRAINT `produtos_ibfk_1` FOREIGN KEY (`fk_categoria`) REFERENCES `categorias` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `carrinho` (
+  `idCarrinho` int(11) NOT NULL AUTO_INCREMENT,
+  `fkUsuario` int(11) DEFAULT NULL,
+  `fkProduto` int(11) DEFAULT NULL,
+  `nome` varchar(45) DEFAULT NULL,
+  `quantidade` int(11) DEFAULT NULL,
+  `preçoUnitario` float(8,2) DEFAULT NULL,
+  `imgBlob` longblob DEFAULT NULL,
+  PRIMARY KEY (`idCarrinho`),
+  KEY `fkUsuario_idx` (`fkUsuario`),
+  KEY `fkProduto_idx` (`fkProduto`),
+  CONSTRAINT `fkProduto` FOREIGN KEY (`fkProduto`) REFERENCES `produtos` (`id_produto`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fkUsuario` FOREIGN KEY (`fkUsuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `produtos`
+-- Dumping data for table `carrinho`
 --
 
-LOCK TABLES `produtos` WRITE;
-/*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
-INSERT INTO `produtos` VALUES (1,2,'dfd','fghf',NULL,33.00),(4,3,'hdfg','hjhf',NULL,33.00),(5,1,'fdgf','gff',NULL,33.00);
-/*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
+LOCK TABLES `carrinho` WRITE;
+/*!40000 ALTER TABLE `carrinho` DISABLE KEYS */;
+/*!40000 ALTER TABLE `carrinho` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-06 17:29:30
+-- Dump completed on 2024-05-13 15:54:10

@@ -36,7 +36,7 @@ public class ProdutosDAO {
                 objProduto.setId_Produto(rs.getInt("id_produto"));
                 objProduto.setFk_categoria(rs.getInt("fk_categoria"));
                 objProduto.setNome(rs.getString("nome"));
-                objProduto.setDescriçao("descriçao");
+                objProduto.setDescriçao(rs.getString("descriçao"));
                 objProduto.setImgBlob(rs.getBytes("imagem"));
                 objProduto.setPreço(rs.getFloat("preço"));
                 produtos.add(objProduto);

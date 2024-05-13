@@ -32,6 +32,10 @@
         <servlet-name>produtosController</servlet-name>
         <servlet-class>controller.produtosController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>carrinhoController</servlet-name>
+        <servlet-class>controller.carrinhoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -72,9 +76,17 @@
         <servlet-name>produtosController</servlet-name>
         <url-pattern>/buscar-produtos</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>produtosController</servlet-name>
         <url-pattern>/ver-produto</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>produtosController</servlet-name>
+        <url-pattern>/enviar-carr</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>carrinhoController</servlet-name>
+        <url-pattern>/carrinho</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

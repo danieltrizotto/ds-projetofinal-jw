@@ -6,7 +6,6 @@
             <html>
 
             <head>
-              
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
                     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -30,47 +29,67 @@
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
                             </form>
-                           <a class="outro" href=""><i class="fa-solid fa-cart-shopping"></i></a>
-                                <a class="outro" href=""><i class="fa-solid fa-truck"></i></a>
-                         
-    
+                            <a class="outro" href=""><i class="fa-solid fa-cart-shopping"></i></a>
+                            <a class="outro" href=""><i class="fa-solid fa-truck"></i></a>
+
+
                         </div>
                         <div class="categorias">
                             <c:forEach items="${categorias}" var="categoria">
                                 <div class="categoria">
-                                    <a href="./buscar-produtos?cat=${categoria.idCategoria}&busca=">${categoria.nome}</a>
+                                    <a
+                                        href="./buscar-produtos?cat=${categoria.idCategoria}&busca=">${categoria.nome}</a>
                                 </div>
                             </c:forEach>
                         </div>
                         <br>
                     </div>
-                </header> 
+                </header>
                 <main>
+                    <div class="areaProduto">
+                        <div class="container text-center">
+                            <div class="row">
+                                <div class="col-sm-8"> <img src="data:image/jpg;base64,${produto.img}"
+                                        class="card-img-top" alt="${produto.nome}"></div>
+                                <div class="col-sm-4">
+                                    <h3>${produto.nome}</h3>
+                                    <h5>Preço:${produto.preço}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <p>${produto.descriçao}</p>
+                                </div>
+                                <div class="col-sm">
+                                    <p>Categoria:${produto.fk_categoria}</p>
+                                </div>
+                                <div class="col-sm">
 
-                    <div class="mostrar">
-                        <div class="cabeça">
-                            <div class="img"><img src="" alt=""> <img src="data:image/jpg;base64,${produto.img}"
-                                    alt="${produto.nome}"></div>
-                            <div class=>
-                                <h2>${produto.nome}</h5>
+                                    <input type="number" placeholder="Quantidade" class="form-control" id="quantidade"
+                                        name="quantidade">
+                                    <button class="comprar" type="submit" class="btn btn-comprar"
+                                        data-id="${produto.id_produto}" data-nome="${produto.nome}"
+                                        data-preço="${produto.preço}" data-imagem="${produto.img}"
+                                        data-quantidade=1></button>
+
+                                </div>
                             </div>
                         </div>
-                        <br><br>
-                        <hr>
-                        <div class="corpo">
-                            <div>
-                                <p>${produto.preço}</p>
-                            </div>
-                            <div>
-                                <p>${produto.descriçao}</p>
-                            </div>
-                            <div>
-                                <p>${produto.fk_categoria}</p>
-                            </div>
-                        </div>
+                        <form id="form-comprar" action="enviar-carr" method="post" enctype="multipart/form-data"
+                            style="display: none;">
+                            <input type="hidden" name="idProduto" id="idProduto">
+                            <input type="hidden" name="nome" id="nome">
+                            <input type="hidden" name="preço" id="preço">
+                            <input type="file" name="img" id="img">
+                            <input type="hidden" name="quantidade" id="quantidade">
+
+                        </form>
                     </div>
-
                 </main>
+                <footer>
+                    <h3>CYBER TREND</h3>
+                    <p>Daniel trizotto@2024</p>
+                </footer>
             </body>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

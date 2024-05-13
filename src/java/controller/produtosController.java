@@ -18,9 +18,13 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import model.bean.Carrinho;
+import model.bean.CarrinhoItem;
 import model.bean.Categorias;
 import model.bean.Produtos;
+import model.dao.CarrinhoDAO;
 import model.dao.CategoriasDAO;
 import model.dao.ProdutosDAO;
 
@@ -30,7 +34,8 @@ import model.dao.ProdutosDAO;
  */
 @MultipartConfig
 public class produtosController extends HttpServlet {
-
+ Carrinho objProduto = new Carrinho();
+    CarrinhoDAO objProdutoDao = new CarrinhoDAO();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -106,7 +111,9 @@ public class produtosController extends HttpServlet {
             dispatcher.forward(request, response);
         }else if(url.equals("/ver-produto")){
             int p = Integer.parseInt(request.getParameter("id"));
-            for (int i = 0; i < produtos.size(); i++) {
+           
+            Produtos pr = new Produtos();
+             for (int i = 0; i < produtos.size(); i++) {
                     
                     if (produtos.get(i).getImgBlob()!= null) {
                         String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImgBlob());
@@ -116,13 +123,37 @@ public class produtosController extends HttpServlet {
 
                     }
                 }
-            Produtos pr = new Produtos();
              System.out.println(url);
             pr = produtosDAO.mostrarProdutos(p);
             request.setAttribute("produto", pr);
             String nextPage = "/WEB-INF/jsp/telaProduto.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
+        }else if(url.equals("/enviar-carr")){
+            
+               PrintWriter out = response.getWriter();
+        Part filePart = request.getPart("img");
+        InputStream inputStream = filePart.getInputStream();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[4096];
+        int bytesRead = -1;
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, bytesRead);
+        }
+        byte[] imageBytes = outputStream.toByteArray();
+
+        objProduto.setNome(request.getParameter("nome"));
+        objProduto.setPreçoUnitario(Float.parseFloat(request.getParameter("preço")));
+        
+        objProduto.setImgBlob(imageBytes);
+        objProduto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
+        objProduto.setIdCarrinho(Integer.parseInt(request.getParameter("idProduto")));
+        objProdutoDao.inserir(objProduto);
+        out.println("<script type=\"text/javascript\">");
+        out.println("alert('Comprafeita com sucesso.');");
+        out.println("window.location.href = './pages/produto.jsp';");
+        out.println("</script>");
+        response.sendRedirect("./carrinho");
         }
             
         
@@ -159,7 +190,7 @@ public class produtosController extends HttpServlet {
         newProduto.setNome(request.getParameter("nome"));
         newProduto.setFk_categoria(Integer.parseInt(request.getParameter("categoria")));
         
-        newProduto.setDescriçao(request.getParameter("descricao"));
+        newProduto.setDescriçao(request.getParameter("descriçao"));
         newProduto.setPreço(Float.parseFloat(request.getParameter("valor")));
         Part filePart = request.getPart("imagem");
         InputStream istream = filePart.getInputStream();

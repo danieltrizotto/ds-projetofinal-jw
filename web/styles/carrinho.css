@@ -94,38 +94,9 @@ form button {
 
 body {
     height: 100px;
-
 }
 
-.produtos {
-    display: flex;
-}
-
-h1 {
-    text-align: center;
-}
-
-.areaProduto {
-    background-color: #ffffff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 120px;
-    border-radius: 5px;
-}
-
-.areaProduto input{
-    width: 170px;
-    height: 20%;
-}
-
-.areaProduto button{
-    background-color: #7AB32B;
-    color:#ffffff;
-}
-
-footer {
-    text-align: center;
-    background-color: #7AB32B;
+main {
+    height: 1000px;
+    background-color: #d5f5c8;
 }
