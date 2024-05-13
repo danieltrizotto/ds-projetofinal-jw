@@ -71,11 +71,32 @@ public class produtosController extends HttpServlet {
             dispatcher.forward(request, response);
         } else if (url.equals("/buscar-produtos")) {
             String busca = request.getParameter("busca") != null ? request.getParameter("busca") : "";
+           
             if(busca.equals("")) {
+                  for (int i = 0; i < produtos.size(); i++) {
+                    
+                    if (produtos.get(i).getImgBlob()!= null) {
+                        String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImgBlob());
+                        System.out.println("aqui");
+                        System.out.println(imagemBase64);
+                        produtos.get(i).setImg(imagemBase64);
+
+                    }
+                }
                 String categoria = request.getParameter("cat");
                produtos = produtosDAO.buscaCategorias(Integer.parseInt(categoria));
                 request.setAttribute("produtos", produtos);
             } else {
+                  for (int i = 0; i < produtos.size(); i++) {
+                    
+                    if (produtos.get(i).getImgBlob()!= null) {
+                        String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImgBlob());
+                        System.out.println("aqui");
+                        System.out.println(imagemBase64);
+                        produtos.get(i).setImg(imagemBase64);
+
+                    }
+                }
                 busca = "%"+busca+"%";
               produtos = produtosDAO.buscaProdutos(busca);
                 request.setAttribute("produtos", produtos);

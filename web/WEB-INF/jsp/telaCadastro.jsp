@@ -5,7 +5,7 @@
 <html>
 
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>cadastro</title>
         <link rel="stylesheet" href="./styles/cadastro.css">
@@ -27,7 +27,7 @@
                     <input type="text" class="cpfInput" name="cpf" placeholder="cpf...">
                     <br><br>
                     <button type="submit" name="entrar" value="Entrar" id="cadastro">cadastrar</button>
-                    <a href="./voltarlogin">Ir a tela de login</a>
+                    
                 </form>
 
             </div>

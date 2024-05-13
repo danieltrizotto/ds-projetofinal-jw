@@ -80,6 +80,7 @@ public class cadastroController extends HttpServlet {
 
        dao.inserirUsuario(bean); 
         System.out.println("feito");
+        response.sendRedirect("./voltarlogin");
     }
 
     /**

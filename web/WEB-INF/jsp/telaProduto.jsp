@@ -6,7 +6,7 @@
             <html>
 
             <head>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
                     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -18,42 +18,33 @@
 
             <body>
                 <header>
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <div class="container-fluid">
-                            <a class="navbar-brand" href="./home"><i class="fa-solid fa-house"></i></a>
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <div class="busca-pc">
-                                    <form class="pesquisa" action="buscar-produtos" method="get">
-                                        <input name="busca" type="search" placeholder="pesquisar.." aria-label="Search">
-                                        <button class="b-submit" type="submit">
-                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                        </button>
-                                </div>
+                    <div class="header">
+                        <div class="inicio">
+                            <div class="logo">
+                                <h1><a href="./home">CYBER TREND</a></h1>
                             </div>
-                            <div class="busca-mobile">
-                                <form class="pesquisa" action="buscar-produtos" method="get">
-                                    <input name="busca" type="search" placeholder="pesquisar.." aria-label="Search">
-                                    <button class="b-submit" type="submit">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </button>
-                                </form>
-                            </div>
+                            <form class="pesquisa" action="buscar-produtos" method="get">
+                                <input name="busca" class="busca" type="search" placeholder="pesquisar.."
+                                    aria-label="Search">
+                                <button class="b-submit" type="submit">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                            </form>
+                           <a class="outro" href=""><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a class="outro" href=""><i class="fa-solid fa-truck"></i></a>
+                         
+    
                         </div>
-                        <h1>CyberMercado</h1>
-                        <br>
-                        <div></div>
-                        <div class="container container-categorias">
+                        <div class="categorias">
                             <c:forEach items="${categorias}" var="categoria">
                                 <div class="categoria">
-                                    <a
-                                        href="./buscar-produtos?cat=${categoria.idCategoria}&busca=">${categoria.nome}</a>
+                                    <a href="./buscar-produtos?cat=${categoria.idCategoria}&busca=">${categoria.nome}</a>
                                 </div>
                             </c:forEach>
                         </div>
-
-
-                    </nav>
-                </header>
+                        <br>
+                    </div>
+                </header> 
                 <main>
 
                     <div class="mostrar">

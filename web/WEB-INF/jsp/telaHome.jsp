@@ -4,7 +4,7 @@
         <html>
 
         <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
                 integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -16,44 +16,32 @@
 
         <body>
             <header>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="./home"><i class="fa-solid fa-house"></i></a>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <div class="busca-pc">
-                                <form class="pesquisa" action="buscar-produtos" method="get">
-                                    <input  name="busca" type="search" placeholder="pesquisar.."
-                                        aria-label="Search">
-                                    <button class="b-submit" type="submit">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </button>
-                            </div>
+                <div class="header">
+                    <div class="inicio">
+                        <div class="logo">
+                            <h1><a href="./home">CYBER TREND</a></h1>
                         </div>
-                        <div class="busca-mobile">
-                            <form class="pesquisa" action="buscar-produtos" method="get">
-                                <input  name="busca" type="search" placeholder="pesquisar.."
-                                    aria-label="Search">
-                                <button class="b-submit" type="submit">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </button>
-                            </form>
-                        </div>
+                        <form class="pesquisa" action="buscar-produtos" method="get">
+                            <input name="busca" class="busca" type="search" placeholder="pesquisar.."
+                                aria-label="Search">
+                            <button class="b-submit" type="submit">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </form>
+                       <a class="outro" href=""><i class="fa-solid fa-cart-shopping"></i></a>
+                            <a class="outro" href=""><i class="fa-solid fa-truck"></i></a>
+                     
+
                     </div>
-                    <h1>CyberMercado</h1>
-                    <br>
-                    <div></div>
-                    <div class="container container-categorias">
+                    <div class="categorias">
                         <c:forEach items="${categorias}" var="categoria">
                             <div class="categoria">
                                 <a href="./buscar-produtos?cat=${categoria.idCategoria}&busca=">${categoria.nome}</a>
                             </div>
                         </c:forEach>
                     </div>
-
-
-                </nav>
-
-            
+                    <br>
+                </div>
             </header>
             <main>
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -78,34 +66,30 @@
                         <span class="sr-only">Próximo</span>
                     </a>
                 </div>
-                <h1>Produtos</h1>
+                <h2>Produtos</h2>
                 <hr>
                 <div class="produtos">
                     <%-- Use JSP para iterar sobre a lista de livros e exibi-los na tabela --%>
                         <c:forEach items="${produtos}" var="produto">
-                            <div class="item" style="width: 18rem;">
+                            <div class="card" style="width: 18rem;">
                                 <img src="data:image/jpg;base64,${produto.img}" class="card-img-top"
                                     alt="${produto.nome}">
                                 <br>
-                                <div class="card-body">
+                                <div class="card-text">
                                     <h5 class="card-title">${produto.nome}</h5>
-                                    <p class="card-text">${produto.preço}</p>
+                                    <p class="card-text">Valor:${produto.preço}</p>
                                     <p class="card-text">Descriçao:${produto.descriçao}</p>
                                     <p class="card-text">categoria:${produto.fk_categoria}</p>
                                     <a href="./ver-produto?id=${produto.id_Produto}" class="btn btn-primary">Comprar</a>
                                 </div>
+                                <br>
                             </div>
                         </c:forEach>
-
                 </div>
             </main>
 
             <footer>
-                <c:forEach items="${categorias}" var="categoria">
-                    <div class="categoria">
-                        <a href="./buscar-produtos?cat=${categoria.idCategoria}&busca=">${categoria.nome}</a>
-                    </div>
-                </c:forEach>
+                <h3>CYBER TREND</h3>
                 <p>Daniel trizotto@2024</p>
             </footer>
         </body>
