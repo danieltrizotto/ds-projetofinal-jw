@@ -1,5 +1,5 @@
 <%-- Document : telaADM Created on : 30/04/2024, 17:06:04 Author : Senai --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -8,9 +8,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>adm pag</title>
+          <link rel="stylesheet" href="./styles/telaADM.css" />
     </head>
 
     <body>
+        <header>
+            <div class="header">
+                <div class="inicio">
+                     <div class="admin">
+                        <h2>PAGINA DE ADMINISTRAÇAO</h2>
+                      
+                    <a class="outro" href="">Produtos</a>
+                    <a class="outro" href="">Pedidos</a>
+                    <a class="outro" href="">Financeiro</a>
+                    <a class="outro" href="">Usuarios</a>
+                    </div>
+                <br>
+            </div>
+        </header>
         <main>
             <div class="container">
                 <h2>Cadastro de Produto</h2>
@@ -28,8 +43,8 @@
                         <input type="number" step="0.01" class="form-control" id="valor" name="valor" required>
                     </div>
                     <div class="form-group">
-                        <label for="descricao">Descrição:</label>
-                        <input class="form-control" id="descriçao" name="descriçao" rows="3"></input>
+                        <label for="descriçao">Descrição:</label>
+                        <textarea  class="form-control"  name="descricao" rows="3"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="imagem">Imagem do Produto:</label>
@@ -39,13 +54,8 @@
                 </form>
             </div>
         </main>
-        
         <footer>
-            <c:forEach items="${categorias}" var="categoria">
-                <div class="categoria">
-                    <a href="./buscar-produtos?cat=${categoria.idCategoria}&busca=">${categoria.nome}</a>
-                </div>
-            </c:forEach>
+            <h3>CYBER TREND</h3>
             <p>Daniel trizotto@2024</p>
         </footer>
 

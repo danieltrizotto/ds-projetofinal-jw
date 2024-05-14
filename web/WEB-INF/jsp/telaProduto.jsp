@@ -56,9 +56,9 @@
                                     <h5>Preço:${produto.preço}</h5>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row1">
                                 <div class="col-sm">
-                                    <p>${produto.descriçao}</p>
+                                    <p>Descriçao:${produto.descriçao}</p>
                                 </div>
                                 <div class="col-sm">
                                     <p>Categoria:${produto.fk_categoria}</p>
@@ -68,9 +68,9 @@
                                     <input type="number" placeholder="Quantidade" class="form-control" id="quantidade"
                                         name="quantidade">
                                     <button class="comprar" type="submit" class="btn btn-comprar"
-                                        data-id="${produto.id_produto}" data-nome="${produto.nome}"
+                                        data-id="${produto.id_Produto}" data-nome="${produto.nome}"
                                         data-preço="${produto.preço}" data-imagem="${produto.img}"
-                                        data-quantidade=1></button>
+                                        data-quantidade=1>Comprar</button>
 
                                 </div>
                             </div>

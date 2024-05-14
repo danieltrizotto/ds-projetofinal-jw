@@ -68,7 +68,8 @@ main img {
 }
 
 main {
-    height: 1000px;
+    height: 100%;
+    width: 100vw;
     background-color: #d5f5c8;
 }
 form input {
@@ -80,8 +81,8 @@ form button{
 }
 
 body {
-    height: 100px;
-   
+    height: 100%;
+ 
 }
 
 .carrosel img {
@@ -134,6 +135,8 @@ h2 {
 }
 
 footer {
+    width: 100vw;
+    height: 10vh;
     text-align: center;
     background-color: #7AB32B;
 }

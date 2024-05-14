@@ -1,0 +1,70 @@
+header {
+    background-color: #ada9a9;
+    width: 100vw;
+    box-shadow: 0px 5px 4px rgb(65, 64, 66);
+}
+.inicio{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.logo{
+    font-family: 'Libre Barcode 39 Extended Text', cursive;
+}
+.logo h1{
+    font-family: 'Libre Barcode 39 Extended Text', cursive;
+}
+
+a {
+    text-decoration: none; /* Remove o sublinhado */
+    color: #000;
+}
+a:hover {
+    text-decoration: none; /* Remove o sublinhado */
+    color: #000; /* Define a cor do texto para preto, ou a cor desejada */
+}
+a:visited {
+    text-decoration: none; /* Remove o sublinhado */
+    color: #000; /* Define a cor do texto para preto, ou a cor desejada */
+}
+
+.outro i{
+    width: 40%;
+}
+
+header h1 {
+    font-family: "jersey-15-regular";
+    color: rgb(0, 0, 0);
+}
+
+
+main {
+    height: 100%;
+    width: 100vw;
+    background-color: #6e6e6e;
+}
+form input {
+    border-radius: 5px;
+   border: none;
+}
+form button{
+    border-radius: 5px;  
+}
+
+body {
+    height: 100%;
+ 
+}
+
+.container{
+ text-align: center;
+}
+
+
+footer {
+    width: 100vw;
+    height: 10vh;
+    text-align: center;
+    background-color: #ada9a9;
+}
