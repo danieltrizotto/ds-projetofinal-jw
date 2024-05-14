@@ -56,3 +56,15 @@ button:hover {
     background-color: rgb(22, 138, 7);
     cursor: pointer;
 }
+a {
+    text-decoration: none; /* Remove o sublinhado */
+    color: #ffffff;
+}
+a:hover {
+    text-decoration: none; /* Remove o sublinhado */
+    color: #ffffff; /* Define a cor do texto para preto, ou a cor desejada */
+}
+a:visited {
+    text-decoration: none; /* Remove o sublinhado */
+    color: #ffffff; /* Define a cor do texto para preto, ou a cor desejada */
+}

@@ -15,17 +15,20 @@
             <main>
                 <div class="areaCadastro">
                     <form name="formCadastro" method="post" action="cadastro">
-                        <h2>Cadastro</h2>
-                        <input type="text" placeholder="nome..." class="nomeInput" name="nome">
-                        <br><br>
-                        <input type="text" placeholder="usuario..." class="usuarioInput" name="usuario">
-                        <br><br>
-                        <input type="text" placeholder="Senha..." class="senhaInput" name="senha">
-                        <br><br>
-                        <input type="text" placeholder="telefone..." class="telInput" name="telefone">
-                        <br><br>
-                        <input type="text" class="cpfInput" name="cpf" placeholder="cpf...">
-                        <br><br>
+                        
+                            <img src="./assets/chalkboard-user-solid.svg" alt="" style="width: 90px;">
+                            <h2>Cadastro</h2>
+                            <input type="text" placeholder="nome..." class="nomeInput" name="nome">
+                            <br><br>
+                            <input type="text" placeholder="usuario..." class="usuarioInput" name="usuario">
+                            <br><br>
+                            <input type="text" placeholder="Senha..." class="senhaInput" name="senha">
+                            <br><br>
+                            <input type="text" placeholder="telefone..." class="telInput" name="telefone">
+                            <br><br>
+                            <input type="text" class="cpfInput" name="cpf" placeholder="cpf...">
+                            <br><br>
+                        
                         <button type="submit" name="entrar" value="Entrar" id="cadastro">cadastrar</button>
                         <a href="./voltarlogin">voltar ao login</a>
                     </form>

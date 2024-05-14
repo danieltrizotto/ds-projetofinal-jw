@@ -9,13 +9,18 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 70%;
-padding: 110px;
-border-radius: 5px;  
+    height: 96%;
+    width: 409px;
+    /* padding: 110px; */
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-h2{
+h2 {
     color: aliceblue;
 }
+
 form {
     display: flex;
     flex-wrap: wrap;
@@ -33,23 +38,34 @@ form input {
 input {
     padding: 3px;
     border: none;
-    border-radius: 5px;  
+    border-radius: 5px;
     outline: none;
 
 }
 
-button {
+.areaCadastro button {
     background-color: rgb(8, 168, 30);
     border: none;
     padding: 15px;
-    width: 100%;
-    border-radius: 5px;  
+    width: 60%;
+    border-radius: 5px;
     color: white;
     font-size: 15px;
-
 }
 
 button:hover {
     background-color: rgb(6, 145, 6);
     cursor: pointer;
+}
+a {
+    text-decoration: none; /* Remove o sublinhado */
+    color: #ffffff;
+}
+a:hover {
+    text-decoration: none; /* Remove o sublinhado */
+    color: #ffffff; /* Define a cor do texto para preto, ou a cor desejada */
+}
+a:visited {
+    text-decoration: none; /* Remove o sublinhado */
+    color: #ffffff; /* Define a cor do texto para preto, ou a cor desejada */
 }

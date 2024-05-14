@@ -10,16 +10,17 @@ package model.bean;
  * @author Senai
  */
 public class Produtos {
-       private int id_produto;
-       private int fk_categoria;
+
+    private int id_Produto;
+    private int fk_categoria;
     private String nome;
     private String descriçao;
     private byte[] imgBlob;
     private String img;
     private float preço;
 
-    public Produtos(int id_produto, int fk_categoria, String nome, String descriçao, byte[] imgBlob, String img, float preço) {
-        this.id_produto = id_produto;
+    public Produtos(int id_Produto, int fk_categoria, String nome, String descriçao, byte[] imgBlob, String img, float preço) {
+        this.id_Produto = id_Produto;
         this.fk_categoria = fk_categoria;
         this.nome = nome;
         this.descriçao = descriçao;
@@ -27,17 +28,17 @@ public class Produtos {
         this.img = img;
         this.preço = preço;
     }
-   
-    public Produtos(){
-        
+
+    public Produtos() {
+
     }
 
     public int getId_Produto() {
-        return id_produto;
+        return id_Produto;
     }
 
-    public void setId_Produto(int id_produto) {
-        this.id_produto = id_produto;
+    public void setId_Produto(int id_Produto) {
+        this.id_Produto = id_Produto;
     }
 
     public int getFk_categoria() {
@@ -87,5 +88,5 @@ public class Produtos {
     public void setPreço(float preço) {
         this.preço = preço;
     }
-    
+
 }

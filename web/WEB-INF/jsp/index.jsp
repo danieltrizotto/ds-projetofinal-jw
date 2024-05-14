@@ -16,7 +16,7 @@
     <main>
          <div class="login">
             <form name="formLogin" method="post" action="logar">
-             <i class="fa-solid fa-microchip"></i>
+                <img src="./assets/microchip-solid.svg" alt="" style="width: 90px;">
                 <h2>LOGIN</h2>
                 <input type="text" name="usuario" placeholder="Usuario..." />
                 <br><br>

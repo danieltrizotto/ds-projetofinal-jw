@@ -29,7 +29,7 @@
                     </div>
                     <div class="form-group">
                         <label for="descricao">Descrição:</label>
-                        <textarea class="form-control" id="descricao" name="descriçao" rows="3"></textarea>
+                        <input class="form-control" id="descriçao" name="descriçao" rows="3"></input>
                     </div>
                     <div class="form-group">
                         <label for="imagem">Imagem do Produto:</label>

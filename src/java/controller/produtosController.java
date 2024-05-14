@@ -34,8 +34,10 @@ import model.dao.ProdutosDAO;
  */
 @MultipartConfig
 public class produtosController extends HttpServlet {
- Carrinho objProduto = new Carrinho();
+
+    Carrinho objProduto = new Carrinho();
     CarrinhoDAO objProdutoDao = new CarrinhoDAO();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -47,63 +49,63 @@ public class produtosController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       ProdutosDAO produtosDAO = new ProdutosDAO();
-       List<Produtos> produtos = new ArrayList();
+        ProdutosDAO produtosDAO = new ProdutosDAO();
+        List<Produtos> produtos = new ArrayList();
         CategoriasDAO categoriasDAO = new CategoriasDAO();
         List<Categorias> categorias = categoriasDAO.listarCategorias();
         request.setAttribute("categorias", categorias);
         String url = request.getServletPath();
         System.out.println(url);
-        if(url.equals("/cadastrar-produto")) {
+        if (url.equals("/cadastrar-produto")) {
             String nextPage = "/WEB-INF/jsp/telaADM.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
-        } else if(url.equals("/home")){
+        } else if (url.equals("/home")) {
             produtos = produtosDAO.leitura();
             for (int i = 0; i < produtos.size(); i++) {
-                    
-                    if (produtos.get(i).getImgBlob()!= null) {
-                        String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImgBlob());
-                        System.out.println("aqui");
-                        System.out.println(imagemBase64);
-                        produtos.get(i).setImg(imagemBase64);
 
-                    }
+                if (produtos.get(i).getImgBlob() != null) {
+                    String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImgBlob());
+                    System.out.println("aqui");
+                    System.out.println(imagemBase64);
+                    produtos.get(i).setImg(imagemBase64);
+
                 }
+            }
             request.setAttribute("produtos", produtos);
             String nextPage = "/WEB-INF/jsp/telaHome.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
         } else if (url.equals("/buscar-produtos")) {
             String busca = request.getParameter("busca") != null ? request.getParameter("busca") : "";
-           
-            if(busca.equals("")) {
-                  for (int i = 0; i < produtos.size(); i++) {
-                    
-                    if (produtos.get(i).getImgBlob()!= null) {
-                        String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImgBlob());
-                        System.out.println("aqui");
-                        System.out.println(imagemBase64);
-                        produtos.get(i).setImg(imagemBase64);
-
-                    }
-                }
+            if (busca.equals("")) {
                 String categoria = request.getParameter("cat");
-               produtos = produtosDAO.buscaCategorias(Integer.parseInt(categoria));
+               produtos = produtosDAO.buscaCategorias(Integer.parseInt(categoria)); 
+               for (int i = 0; i < produtos.size(); i++) {
+
+                if (produtos.get(i).getImgBlob() != null) {
+                    String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImgBlob());
+                    System.out.println("aqui");
+                    System.out.println(imagemBase64);
+                    produtos.get(i).setImg(imagemBase64);
+
+                }
+            }
+               
                 request.setAttribute("produtos", produtos);
             } else {
-                  for (int i = 0; i < produtos.size(); i++) {
-                    
-                    if (produtos.get(i).getImgBlob()!= null) {
-                        String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImgBlob());
-                        System.out.println("aqui");
-                        System.out.println(imagemBase64);
-                        produtos.get(i).setImg(imagemBase64);
+                busca = "%" + busca + "%";
+                produtos = produtosDAO.buscaProdutos(busca);
+                 for (int i = 0; i < produtos.size(); i++) {
 
-                    }
+                if (produtos.get(i).getImgBlob() != null) {
+                    String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImgBlob());
+                    System.out.println("aqui");
+                    System.out.println(imagemBase64);
+                    produtos.get(i).setImg(imagemBase64);
+
                 }
-                busca = "%"+busca+"%";
-              produtos = produtosDAO.buscaProdutos(busca);
+            }
                 request.setAttribute("produtos", produtos);
             }
             String nextPage = "/WEB-INF/jsp/busca.jsp";
@@ -111,66 +113,36 @@ public class produtosController extends HttpServlet {
             dispatcher.forward(request, response);
         }else if(url.equals("/ver-produto")){
             int p = Integer.parseInt(request.getParameter("id"));
-           
-            Produtos pr = new Produtos();
-             for (int i = 0; i < produtos.size(); i++) {
+            for (int i = 0; i < produtos.size(); i++) {
                     
                     if (produtos.get(i).getImgBlob()!= null) {
                         String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImgBlob());
                         System.out.println("aqui");
                         System.out.println(imagemBase64);
                         produtos.get(i).setImg(imagemBase64);
-
                     }
                 }
+            Produtos pr = new Produtos();
              System.out.println(url);
             pr = produtosDAO.mostrarProdutos(p);
             request.setAttribute("produto", pr);
             String nextPage = "/WEB-INF/jsp/telaProduto.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
-        }else if(url.equals("/enviar-carr")){
-            
-               PrintWriter out = response.getWriter();
-        Part filePart = request.getPart("img");
-        InputStream inputStream = filePart.getInputStream();
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        byte[] buffer = new byte[4096];
-        int bytesRead = -1;
-        while ((bytesRead = inputStream.read(buffer)) != -1) {
-            outputStream.write(buffer, 0, bytesRead);
         }
-        byte[] imageBytes = outputStream.toByteArray();
+}
 
-        objProduto.setNome(request.getParameter("nome"));
-        objProduto.setPreçoUnitario(Float.parseFloat(request.getParameter("preço")));
-        
-        objProduto.setImgBlob(imageBytes);
-        objProduto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
-        objProduto.setIdCarrinho(Integer.parseInt(request.getParameter("idProduto")));
-        objProdutoDao.inserir(objProduto);
-        out.println("<script type=\"text/javascript\">");
-        out.println("alert('Comprafeita com sucesso.');");
-        out.println("window.location.href = './pages/produto.jsp';");
-        out.println("</script>");
-        response.sendRedirect("./carrinho");
-        }
-            
-        
-        
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+/**
+ * Handles the HTTP <code>GET</code> method.
+ *
+ * @param request servlet request
+ * @param response servlet response
+ * @throws ServletException if a servlet-specific error occurs
+ * @throws IOException if an I/O error occurs
+ */
+@Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -184,7 +156,7 @@ public class produtosController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Produtos newProduto = new Produtos();
         newProduto.setNome(request.getParameter("nome"));
@@ -213,7 +185,7 @@ public class produtosController extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

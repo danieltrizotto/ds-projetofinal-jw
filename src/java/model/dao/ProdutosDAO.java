@@ -33,7 +33,7 @@ public class ProdutosDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Produtos objProduto = new Produtos();
-                objProduto.setId_Produto(rs.getInt("id_produto"));
+                objProduto.setId_Produto(rs.getInt("id_Produto"));
                 objProduto.setFk_categoria(rs.getInt("fk_categoria"));
                 objProduto.setNome(rs.getString("nome"));
                 objProduto.setDescriçao(rs.getString("descriçao"));
@@ -64,11 +64,11 @@ public class ProdutosDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Produtos objProduto = new Produtos();
-                objProduto.setId_Produto(rs.getInt("id_produto"));
+                objProduto.setId_Produto(rs.getInt("id_Produto"));
                 objProduto.setFk_categoria(rs.getInt("fk_categoria"));
                 objProduto.setNome(rs.getString("nome"));
-                objProduto.setDescriçao("descriçao");
-                objProduto.setImgBlob(rs.getBytes("imagem"));
+           objProduto.setDescriçao(rs.getString("descriçao"));
+            objProduto.setImgBlob(rs.getBytes("imagem"));
                 objProduto.setPreço(rs.getFloat("preço"));
 
                 resultBusca.add(objProduto);
@@ -99,7 +99,7 @@ public class ProdutosDAO {
 
             while (rs.next()) {
                 Produtos prod = new Produtos();
-                prod.setId_Produto(rs.getInt("id_produto"));
+                prod.setId_Produto(rs.getInt("id_Produto"));
                 prod.setNome(rs.getString("nome"));
                 prod.setFk_categoria(rs.getInt("fk_categoria"));
                 prod.setDescriçao(rs.getString("descriçao"));
@@ -128,7 +128,7 @@ public class ProdutosDAO {
             stmt.setInt(1, p);
             rs = stmt.executeQuery();
             if (rs.next()) {
-                prod.setId_Produto(rs.getInt("id_produto"));
+                prod.setId_Produto(rs.getInt("id_Produto"));
                 prod.setFk_categoria(rs.getInt("fk_categoria"));
                 prod.setImgBlob(rs.getBytes("imagem"));
                 prod.setNome(rs.getString("nome"));
