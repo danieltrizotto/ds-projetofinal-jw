@@ -2,6 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/src/java/model/bean/Produtos.java</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/web/WEB-INF/jsp/telaCadastro.jsp</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/src/java/model/dao/ProdutosDAO.java</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/src/java/conexao/Conexao.java</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/web/WEB-INF/jsp/telaHome.jsp</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/web/WEB-INF/jsp/telaProduto.jsp</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/src/java/controller/produtosController.java</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/web/js/carrinho.js</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/src/java/controller/loginController.java</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/web/WEB-INF/jsp/telaADM.jsp</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/web/WEB-INF/jsp/busca.jsp</file>
+        </group>
     </open-files>
 </project-private>

@@ -175,8 +175,8 @@ public class produtosController extends HttpServlet {
         newProduto.setImgBlob(imgBytes);
         ProdutosDAO produtosD = new ProdutosDAO();
         produtosD.insertProduto(newProduto);
-        System.out.println("sdf:" + newProduto.getDescriçao());
-        response.sendRedirect("./home");
+        
+      
     }
 
     /**
