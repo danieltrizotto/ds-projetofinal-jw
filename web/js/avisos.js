@@ -1,4 +1,4 @@
-const form = document.getElementById("formulario");
+const form = document.getElementById("formLogin");
 
 form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -7,7 +7,7 @@ form.addEventListener("submit", function (event) {
     const senha = document.getElementsByName("senha");
 
     if(usuario.value.trim() === "" || senha.value.trim() === "" ) {
-        alert("Usuario e/ou Senha não preenchidos!");
+     window.alert("Usuario ou senha nao preenchidos!")
     } else {
         form.submit();
     }
