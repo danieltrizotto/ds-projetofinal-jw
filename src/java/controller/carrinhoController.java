@@ -21,7 +21,8 @@ import model.dao.CarrinhoDAO;
  * @author Senai
  */
 public class carrinhoController extends HttpServlet {
-
+ Carrinho objProduto = new Carrinho();
+    CarrinhoDAO objProdutoDao = new CarrinhoDAO();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,7 +36,7 @@ public class carrinhoController extends HttpServlet {
             throws ServletException, IOException {
         CarrinhoDAO produto = new CarrinhoDAO();
         List<Carrinho> c = produto.leitura();
-        request.setAttribute("carrinhos", c);
+        request.setAttribute("produtos", c);
        
          String nextPage = "/WEB-INF/jsp/telaCarrinho.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);

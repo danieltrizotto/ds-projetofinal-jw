@@ -20,11 +20,11 @@ import model.bean.Produtos;
  * @author Senai
  */
 public class CarrinhoDAO {
-
+    
     public List<Carrinho> leitura() {
         List<Carrinho> car = new ArrayList<>();
-     String sql = "SELECT * FROM carrinho INNER JOIN produtos ON carrinho.fkProduto = produtos.id_produto";
-
+        String sql = "SELECT * FROM carrinho ";
+        
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
@@ -33,13 +33,15 @@ public class CarrinhoDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Carrinho c = new Carrinho();
-                c.setIdCarrinho(rs.getInt("idCarrinho"));
-                c.setFkProduto(rs.getInt("fkProduto"));
-                c.setFkUsuario(rs.getInt("fkUsuario"));
-                c.setNome(rs.getString("nomeProduto"));
-                c.setPreçoUnitario(rs.getFloat("preçoUnitario"));
+                c.setIdCarrinho(rs.getInt("id_carrinho"));
+                c.setFkProduto(rs.getInt("fk_produto"));
+                c.setFkUsuario(rs.getInt("fk_usuario"));
                 c.setQuantidade(rs.getInt("quantidade"));
-                c.setImgBlob(rs.getBytes("imgBlob"));
+                c.setNome(rs.getString("nome"));
+                c.setValor_uni(rs.getFloat("valor_uni"));
+                c.setValor_total(rs.getFloat("valor_total"));
+                c.setFkCategoia(rs.getInt("fk_categoria"));
+                c.setImgBlob(rs.getBytes("imagem"));
                 car.add(c);
             }
             rs.close();
@@ -51,23 +53,24 @@ public class CarrinhoDAO {
         return car;
         
     }
+    
     public void inserir(Carrinho c) {
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
-
-            stmt = conexao.prepareStatement("INSERT INTO carrinho(fkUsuario,fkProduto,nome,quantidade,preçoUnitario,imgBlob)VALUES(?,?,?,?,?,?)");
-          stmt.setInt(1, c.getFkUsuario());
-          stmt.setInt(2, c.getFkProduto());
-          stmt.setString(3, c.getNome());
-          stmt.setInt(4, c.getQuantidade());
-          stmt.setFloat(5, c.getPreçoUnitario());
-          stmt.setBytes(6, c.getImgBlob());
+            
+            stmt = conexao.prepareStatement("INSERT INTO carrinho(fkUsuario,fkProduto,quantidade,nome,valor_uni)VALUES(?,?,?,?)");
+            stmt.setInt(1, c.getFkUsuario());
+            stmt.setInt(2, c.getFkProduto());
+            stmt.setInt(3, c.getQuantidade());
+            stmt.setString(4, c.getNome());
+            stmt.setFloat(5, c.getValor_uni());
+             stmt.setFloat(6, c.getValor_total());
             stmt.executeUpdate();
-
+            
             stmt.close();
             conexao.close();
-
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }

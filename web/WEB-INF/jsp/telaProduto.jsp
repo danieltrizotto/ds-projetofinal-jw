@@ -29,7 +29,7 @@
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
                             </form>
-                            <a class="outro" href=""><i class="fa-solid fa-cart-shopping"></i></a>
+                            <a class="outro" href="./carrinho"><i class="fa-solid fa-cart-shopping"></i></a>
                             <a class="outro" href=""><i class="fa-solid fa-truck"></i></a>
 
 

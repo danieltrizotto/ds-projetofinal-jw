@@ -13,26 +13,34 @@ import java.util.List;
  * @author Senai
  */
 public class Carrinho {
- private List<CarrinhoItem> itens;
+
+   
     private int idCarrinho;
     private int fkUsuario;
     private int fkProduto;
-    private String nome;
-    private static String nomeProduto;
     private int quantidade;
-    private float preçoUnitario;
+    private String nome;
+    private float valor_uni;
+    private float valor_total;
+    private int fkCategoia;
     private byte[] imgBlob;
+    private String img;
 
-    public Carrinho(int idCarrinho, int fkUsuario, int fkProduto, int quantidade, float preçoUnitario, String nome, byte[] imgBlob) {
+    public Carrinho( int idCarrinho, int fkUsuario, int fkProduto, int quantidade, String nome, float valor_uni, float valor_total, int fkCategoia, byte[] imgBlob, String img) {
+      
         this.idCarrinho = idCarrinho;
         this.fkUsuario = fkUsuario;
         this.fkProduto = fkProduto;
-        this.nome = nome;
         this.quantidade = quantidade;
-        this.preçoUnitario = preçoUnitario;
+        this.nome = nome;
+        this.valor_uni = valor_uni;
+        this.valor_total = valor_total;
+        this.fkCategoia = fkCategoia;
         this.imgBlob = imgBlob;
-           this.itens = new ArrayList<>();
+        this.img = img;
     }
+
+  
 
     public Carrinho() {
 
@@ -50,14 +58,6 @@ public class Carrinho {
         return fkUsuario;
     }
 
-    public byte[] getImgBlob() {
-        return imgBlob;
-    }
-
-    public void setImgBlob(byte[] imgBlob) {
-        this.imgBlob = imgBlob;
-    }
-
     public void setFkUsuario(int fkUsuario) {
         this.fkUsuario = fkUsuario;
     }
@@ -66,24 +66,8 @@ public class Carrinho {
         return fkProduto;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public void setFkProduto(int fkProduto) {
         this.fkProduto = fkProduto;
-    }
-
-    public static String getNomeProduto() {
-        return nomeProduto;
-    }
-
-    public static void setNomeProduto(String nomeProduto) {
-        Carrinho.nomeProduto = nomeProduto;
     }
 
     public int getQuantidade() {
@@ -94,20 +78,53 @@ public class Carrinho {
         this.quantidade = quantidade;
     }
 
-    public float getPreçoUnitario() {
-        return preçoUnitario;
+ 
+    public String getNome() {
+        return nome;
     }
 
-    public void setPreçoUnitario(float preçoUnitario) {
-        this.preçoUnitario = preçoUnitario;
-    }
-    
-     public List<CarrinhoItem> getItens() {
-        return itens;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void adicionarItem(CarrinhoItem item) {
-        itens.add(item);
+    public float getValor_uni() {
+        return valor_uni;
+    }
+
+    public void setValor_uni(float valor_uni) {
+        this.valor_uni = valor_uni;
+    }
+
+    public float getValor_total() {
+        return valor_total;
+    }
+
+    public void setValor_total(float valor_total) {
+        this.valor_total = valor_total;
+    }
+
+    public int getFkCategoia() {
+        return fkCategoia;
+    }
+
+    public void setFkCategoia(int fkCategoia) {
+        this.fkCategoia = fkCategoia;
+    }
+
+    public byte[] getImgBlob() {
+        return imgBlob;
+    }
+
+    public void setImgBlob(byte[] imgBlob) {
+        this.imgBlob = imgBlob;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
 }

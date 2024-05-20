@@ -28,7 +28,7 @@
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                         </form>
-                        <a class="outro" href="./carrinho"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a class="outro" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
                         <a class="outro" href=""><i class="fa-solid fa-truck"></i></a>
                     </div>
                     <div class="categorias">
@@ -42,19 +42,22 @@
                 </div>
             </header>
             <main>
-                <div class="carrinho">
-                <c:forEach items="${produtos}" var="produto">
-                    <img src="data:image/jpg;base64,${produto.img}" class="card-img-top" alt="${produto.nome}">
-                      <div class="texto">
-                        <h5>${produto.nome}</h5>
-                        <p class="card-text">quantidade:${produto.quantidade}</p>
-                        <p class="card-text">categoria:${produto.fk_categoria}</p>
-                        <p class="card-text">Valor unitario:${produto.preço}</p>
-                        <p class="card-text">Valor total:${produto.preço}</p>
-                      </div>
-                      <div class="excluir"><button><i class="fa-solid fa-trash"></i></button></div>
-                </c:forEach>
-            </div>
+                <div class="areaCarrinho">
+                    <c:forEach items="${produtos}" var="produto">
+                        <div class="carrinho">
+                            <img src="data:image/jpg;base64,${produto.img}" class="card-img-top" alt="${produto.nome}">
+                            <div class="texto">
+                                <h5>${produto.nome}</h5>
+                                  <p class="card-text">nome:${produto.nome}</p>
+                                <p class="card-text">quantidade:${produto.quantidade}</p>
+                                <p class="card-text">categoria:${produto.fk_categoria}</p>
+                                <p class="card-text">Valor unitario:${produto.preço}</p>
+                                <p class="card-text">Valor total:${produto.preço}</p>
+                            </div>
+                            <div class="excluir"><button><i class="fa-solid fa-trash"></i></button></div>
+                        </div>
+                    </c:forEach>
+                </div>
             </main>
         </body>
 
