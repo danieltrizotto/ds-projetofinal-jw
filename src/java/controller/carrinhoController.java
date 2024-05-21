@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,15 +15,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.bean.Carrinho;
+import model.bean.Produtos;
 import model.dao.CarrinhoDAO;
+import model.dao.ProdutosDAO;
 
 /**
  *
  * @author Senai
  */
+
 public class carrinhoController extends HttpServlet {
- Carrinho objProduto = new Carrinho();
-    CarrinhoDAO objProdutoDao = new CarrinhoDAO();
+ Carrinho bean = new Carrinho();// model bean
+    CarrinhoDAO dao = new CarrinhoDAO();//model dao
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,7 +37,10 @@ public class carrinhoController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException { 
+        ProdutosDAO produtosDAO = new ProdutosDAO();
+        List<Produtos> produtos = new ArrayList();
+        
         CarrinhoDAO produto = new CarrinhoDAO();
         List<Carrinho> c = produto.leitura();
         request.setAttribute("produtos", c);
@@ -69,7 +76,15 @@ public class carrinhoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        processRequest(request, response);    
+        String url = request.getServletPath();
+        if(url.equals("/enviar-carr")){
+            bean.getFkProduto();
+            bean.getFkUsuario();
+            bean.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
+            dao.inserir(bean);
+        }
+         
     }
 
     /**

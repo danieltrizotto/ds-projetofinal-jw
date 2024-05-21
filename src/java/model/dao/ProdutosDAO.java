@@ -48,7 +48,7 @@ public class ProdutosDAO {
             System.out.println("Leitura de produtos: " + e);
         }
         return produtos;
-
+///
     }
 
     public List<Produtos> buscaProdutos(String busca) {
@@ -67,8 +67,8 @@ public class ProdutosDAO {
                 objProduto.setId_Produto(rs.getInt("id_Produto"));
                 objProduto.setFk_categoria(rs.getInt("fk_categoria"));
                 objProduto.setNome(rs.getString("nome"));
-           objProduto.setDescriçao(rs.getString("descriçao"));
-            objProduto.setImgBlob(rs.getBytes("imagem"));
+                objProduto.setDescriçao(rs.getString("descriçao"));
+                objProduto.setImgBlob(rs.getBytes("imagem"));
                 objProduto.setPreço(rs.getFloat("preço"));
 
                 resultBusca.add(objProduto);

@@ -7,6 +7,8 @@ package model.bean;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import model.bean.Produtos;
 
 /**
  *
@@ -14,33 +16,31 @@ import java.util.List;
  */
 public class Carrinho {
 
-   
     private int idCarrinho;
     private int fkUsuario;
     private int fkProduto;
     private int quantidade;
+    private int idProduto;
+    private int fkCategoria;
     private String nome;
-    private float valor_uni;
-    private float valor_total;
-    private int fkCategoia;
+    private String descriçao;
     private byte[] imgBlob;
     private String img;
+    private float preço;
 
-    public Carrinho( int idCarrinho, int fkUsuario, int fkProduto, int quantidade, String nome, float valor_uni, float valor_total, int fkCategoia, byte[] imgBlob, String img) {
-      
+    public Carrinho(int idCarrinho, int fkUsuario, int fkProduto, int quantidade, int idProduto, int fkCategoria, String nome, String descriçao, byte[] imgBlob, String img, float preço) {
         this.idCarrinho = idCarrinho;
         this.fkUsuario = fkUsuario;
         this.fkProduto = fkProduto;
         this.quantidade = quantidade;
+        this.idProduto = idProduto;
+        this.fkCategoria = fkCategoria;
         this.nome = nome;
-        this.valor_uni = valor_uni;
-        this.valor_total = valor_total;
-        this.fkCategoia = fkCategoia;
+        this.descriçao = descriçao;
         this.imgBlob = imgBlob;
         this.img = img;
+        this.preço = preço;
     }
-
-  
 
     public Carrinho() {
 
@@ -78,7 +78,22 @@ public class Carrinho {
         this.quantidade = quantidade;
     }
 
- 
+    public int getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
+    }
+
+    public int getFkCategoria() {
+        return fkCategoria;
+    }
+
+    public void setFkCategoria(int fkCategoria) {
+        this.fkCategoria = fkCategoria;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -87,28 +102,12 @@ public class Carrinho {
         this.nome = nome;
     }
 
-    public float getValor_uni() {
-        return valor_uni;
+    public String getDescriçao() {
+        return descriçao;
     }
 
-    public void setValor_uni(float valor_uni) {
-        this.valor_uni = valor_uni;
-    }
-
-    public float getValor_total() {
-        return valor_total;
-    }
-
-    public void setValor_total(float valor_total) {
-        this.valor_total = valor_total;
-    }
-
-    public int getFkCategoia() {
-        return fkCategoia;
-    }
-
-    public void setFkCategoia(int fkCategoia) {
-        this.fkCategoia = fkCategoia;
+    public void setDescriçao(String descriçao) {
+        this.descriçao = descriçao;
     }
 
     public byte[] getImgBlob() {
@@ -125,6 +124,14 @@ public class Carrinho {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public float getPreço() {
+        return preço;
+    }
+
+    public void setPreço(float preço) {
+        this.preço = preço;
     }
 
 }

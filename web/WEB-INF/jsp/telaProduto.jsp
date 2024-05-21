@@ -67,23 +67,14 @@
 
                                     <input type="number" placeholder="Quantidade" class="form-control" id="quantidade"
                                         name="quantidade">
-                                    <button class="comprar" type="submit" class="btn btn-comprar"
-                                        data-id="${produto.id_Produto}" data-nome="${produto.nome}"
-                                        data-preço="${produto.preço}" data-imagem="${produto.img}"
-                                        data-quantidade=1>Comprar</button>
+                                    <form name="formCarr" method="POST" action="enviar-carr">
+                                        <button class="comprar" type="submit">Comprar</button>
+                                    </form>
 
                                 </div>
                             </div>
                         </div>
-                        <form id="form-comprar" action="enviar-carr" method="post" enctype="multipart/form-data"
-                            style="display: none;">
-                            <input type="hidden" name="idProduto" id="idProduto">
-                            <input type="hidden" name="nome" id="nome">
-                            <input type="hidden" name="preço" id="preço">
-                            <input type="file" name="img" id="img">
-                            <input type="hidden" name="quantidade" id="quantidade">
 
-                        </form>
                     </div>
                 </main>
                 <footer>

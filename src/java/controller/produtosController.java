@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import model.bean.Carrinho;
-import model.bean.CarrinhoItem;
 import model.bean.Categorias;
 import model.bean.Produtos;
 import model.bean.Usuarios;
@@ -128,6 +127,8 @@ public class produtosController extends HttpServlet {
             String nextPage = "/WEB-INF/jsp/telaProduto.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
+        } else if (url.equals("/enviar-carr")){
+            
         }
     }
 
@@ -157,7 +158,8 @@ public class produtosController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Produtos newProduto = new Produtos();
+      
+  Produtos newProduto = new Produtos();
         newProduto.setNome(request.getParameter("nome"));
         newProduto.setFk_categoria(Integer.parseInt(request.getParameter("categoria")));
         newProduto.setPreço(Float.parseFloat(request.getParameter("valor")));
