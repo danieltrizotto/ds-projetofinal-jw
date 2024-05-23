@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,9 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.bean.Carrinho;
+import model.bean.Categorias;
 import model.bean.Produtos;
 import model.bean.Usuarios;
 import model.dao.CarrinhoDAO;
+import model.dao.CategoriasDAO;
 import model.dao.ProdutosDAO;
 
 /**
@@ -26,9 +29,6 @@ import model.dao.ProdutosDAO;
  * @author Senai
  */
 public class carrinhoController extends HttpServlet {
-
-    Carrinho bean = new Carrinho();// model bean
-    CarrinhoDAO dao = new CarrinhoDAO();//model dao
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,12 +41,26 @@ public class carrinhoController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProdutosDAO produtosDAO = new ProdutosDAO();
-        List<Produtos> produtos = new ArrayList();
-
+        CategoriasDAO categoriasDAO = new CategoriasDAO();
+        List<Categorias> categorias = categoriasDAO.listarCategorias();
+        request.setAttribute("categorias", categorias);
+        
+        Carrinho bean = new Carrinho();// model bean
         CarrinhoDAO produto = new CarrinhoDAO();
-        List<Carrinho> c = produto.leitura();
-        request.setAttribute("produtos", c);
+        List<Carrinho> c = new ArrayList();
+        
+        if (bean.getImgBlob() != null) {
+            String imagemBase64 = Base64.getEncoder().encodeToString(bean.getImgBlob());
+            System.out.println("aqui");
+            System.out.println(imagemBase64);
+            bean.setImg(imagemBase64);
+        }
+        HttpSession session = request.getSession();
+
+        // recuperar o id do usuário da sessão
+        Integer usuarioId = (Integer) session.getAttribute("usuarioId");
+        c = produto.leitura(usuarioId);
+        request.setAttribute("carrinho", c);
 
         String nextPage = "/WEB-INF/jsp/telaCarrinho.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
@@ -65,7 +79,7 @@ public class carrinhoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**

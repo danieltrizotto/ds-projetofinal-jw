@@ -21,15 +21,17 @@ import model.bean.Produtos;
  */
 public class CarrinhoDAO {
     
-    public List<Carrinho> leitura() {
+    public List<Carrinho> leitura(int id) {
+        
         List<Carrinho> car = new ArrayList<>();
-        String sql = "SELECT * FROM carrinho INNER JOIN produtos AS p ON p.id_produto = carrinho.fk_produto  ";
+        String sql = "SELECT * FROM carrinho INNER JOIN produtos AS p ON p.id_produto = carrinho.fk_produto WHERE fk_usuario = ?  ";
         
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
             ResultSet rs = null;
             stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, id);
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Carrinho c = new Carrinho();
@@ -40,6 +42,7 @@ public class CarrinhoDAO {
                 c.setNome(rs.getString("nome"));
                 c.setIdProduto(rs.getInt("id_produto"));
                 c.setPreço(rs.getFloat("preço"));
+                c.setDescriçao(rs.getString("descriçao"));
                 c.setFkCategoria(rs.getInt("fk_categoria"));
                 c.setImgBlob(rs.getBytes("imagem"));
                 car.add(c);
