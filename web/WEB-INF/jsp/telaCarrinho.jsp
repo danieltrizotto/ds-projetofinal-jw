@@ -52,7 +52,7 @@
                                 <p class="card-text">quantidade:${produto.quantidade}</p>
                                 <p class="card-text">categoria:${produto.fk_categoria}</p>
                                 <p class="card-text">Valor unitario:${produto.preço}</p>
-                                <p class="card-text">Valor total:${produto.preço}</p>
+                                <p class="card-text">Valor total:${produto.preço * produto.quantidade }</p>
                             </div>
                             <div class="excluir"><button><i class="fa-solid fa-trash"></i></button></div>
                         </div>

@@ -35,8 +35,8 @@ import model.dao.ProdutosDAO;
 @MultipartConfig
 public class produtosController extends HttpServlet {
 
-    Carrinho objProduto = new Carrinho();
-    CarrinhoDAO objProdutoDao = new CarrinhoDAO();
+    Carrinho bean = new Carrinho();// model bean
+    CarrinhoDAO dao = new CarrinhoDAO();//model dao
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,7 +57,7 @@ public class produtosController extends HttpServlet {
         String url = request.getServletPath();
         System.out.println(url);
         if (url.equals("/cadastrar-produto")) {
-            
+
             String nextPage = "/WEB-INF/jsp/telaADM.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
@@ -127,8 +127,27 @@ public class produtosController extends HttpServlet {
             String nextPage = "/WEB-INF/jsp/telaProduto.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
-        } else if (url.equals("/enviar-carr")){
-            
+        } else if (url.equals("/enviar-carr")) {
+            HttpSession session = request.getSession();
+
+            // recuperar o id do usuário da sessão
+            Integer usuarioId = (Integer) session.getAttribute("usuarioId");
+            // recuperar parâmetros do produto e quantidade
+            int produtoId = Integer.parseInt(request.getParameter("id"));
+            int quantidade = Integer.parseInt(request.getParameter("quantidade"));
+
+            // inserir no banco de dados
+            Carrinho bean = new Carrinho();
+            bean.setFkProduto(produtoId);
+            bean.setFkUsuario(usuarioId);
+            bean.setQuantidade(quantidade);
+
+            dao.inserir(bean);
+            System.out.println(request.getParameter("id"));
+
+            System.out.println(url);
+            // redirecionar para a página do carrinho
+            response.sendRedirect("./carrinho");
         }
     }
 
@@ -158,8 +177,8 @@ public class produtosController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-  Produtos newProduto = new Produtos();
+
+        Produtos newProduto = new Produtos();
         newProduto.setNome(request.getParameter("nome"));
         newProduto.setFk_categoria(Integer.parseInt(request.getParameter("categoria")));
         newProduto.setPreço(Float.parseFloat(request.getParameter("valor")));
@@ -177,8 +196,7 @@ public class produtosController extends HttpServlet {
         newProduto.setImgBlob(imgBytes);
         ProdutosDAO produtosD = new ProdutosDAO();
         produtosD.insertProduto(newProduto);
-        
-      
+
     }
 
     /**

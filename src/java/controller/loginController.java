@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.bean.Usuarios;
 import model.dao.UsuariosDAO;
 
@@ -32,7 +33,7 @@ public class loginController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -47,7 +48,7 @@ public class loginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -61,48 +62,52 @@ public class loginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                String url = request.getServletPath();
-                if (url.equals("/logar")) {
-                    System.out.println("passou do url");
-                    String homePage = "/WEB-INF/jsp/telaHome.jsp";
-                    String admPage = "/WEB-INF/jsp/telaADM.jsp";
-                    String nextPage = "/WEB-INF/jsp/index.jsp";
-                    Usuarios user = new Usuarios();
-                    UsuariosDAO valida = new UsuariosDAO();
-        
-                    user.setUsuario(request.getParameter("usuario"));
-                    user.setSenha(request.getParameter("senha"));
-        
-                    try {
-                         Usuarios userAutenticado = valida.validaUser(user);
-                        System.out.println("passou do try");
-                        System.out.println("user:" + userAutenticado.getUsuario());
-                        System.out.println("senha:" + userAutenticado.getSenha());
-                        System.out.println("tipo " + userAutenticado.getTipo());
-                        if (userAutenticado != null && !userAutenticado.getNome().isEmpty() && userAutenticado.getTipo().equals("admin")) {
-                            System.out.println(" passou do if admin");
-                            System.out.println(admPage);
-                            response.sendRedirect("./cadastrar-produto");
-                        } else if(userAutenticado != null && !userAutenticado.getNome().isEmpty() && userAutenticado.getTipo().equals("cliente")){
-                             System.out.println(" passou do if cliente");
-                            System.out.println(homePage);
-                            response.sendRedirect("./home");
-                        }
-                        else {
-                            request.setAttribute("errorMessage", "Usuário ou senha inválidos");
-                            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-                            dispatcher.forward(request, response);
-                            System.out.println("erro login");
-                        }
-                    } catch (Exception e) {
-                        System.out.println("nao passou do if");
-                        request.setAttribute("errorMessage", "poblema com o banco de dados");
-                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-                        dispatcher.forward(request, response);
-                    }
+        String url = request.getServletPath();
+        if (url.equals("/logar")) {
+            System.out.println("passou do url");
+            String homePage = "/WEB-INF/jsp/telaHome.jsp";
+            String admPage = "/WEB-INF/jsp/telaADM.jsp";
+            String nextPage = "/WEB-INF/jsp/index.jsp";
+            Usuarios user = new Usuarios();
+            UsuariosDAO valida = new UsuariosDAO();
+
+            user.setUsuario(request.getParameter("usuario"));
+            user.setSenha(request.getParameter("senha"));
+
+            try {
+                Usuarios userAutenticado = valida.validaUser(user);
+                System.out.println("passou do try");
+                System.out.println("user:" + userAutenticado.getUsuario());
+                System.out.println("senha:" + userAutenticado.getSenha());
+                System.out.println("tipo " + userAutenticado.getTipo());
+                if (userAutenticado != null && !userAutenticado.getNome().isEmpty() && userAutenticado.getTipo().equals("admin")) {
+                    System.out.println(" passou do if admin");
+                    System.out.println(admPage);
+                    response.sendRedirect("./cadastrar-produto");
+                } else if (userAutenticado != null && !userAutenticado.getNome().isEmpty() && userAutenticado.getTipo().equals("cliente")) {
+                    System.out.println(" passou do if cliente");
+                    System.out.println(homePage);
+
+                    // salvar o ID do usuário na sessao
+                    HttpSession session = request.getSession();
+                    session.setAttribute("usuarioId", userAutenticado.getId_usuario());
+
+                    response.sendRedirect("./home");
                 } else {
-                    processRequest(request, response);
+                    request.setAttribute("errorMessage", "Usuário ou senha inválidos");
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+                    dispatcher.forward(request, response);
+                    System.out.println("erro login");
                 }
+            } catch (Exception e) {
+                System.out.println("nao passou do if");
+                request.setAttribute("errorMessage", "poblema com o banco de dados");
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+                dispatcher.forward(request, response);
+            }
+        } else {
+            processRequest(request, response);
+        }
     }
 
     /**

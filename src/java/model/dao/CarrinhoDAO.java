@@ -60,7 +60,7 @@ public class CarrinhoDAO {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
             
-            stmt = conexao.prepareStatement("INSERT INTO carrinho(fkUsuario,fkProduto,quantidade)VALUES(?,?,?)");
+            stmt = conexao.prepareStatement("INSERT INTO carrinho(fk_usuario,fk_produto,quantidade)VALUES(?,?,?)");
             stmt.setInt(1, c.getFkUsuario());
             stmt.setInt(2, c.getFkProduto());
             stmt.setInt(3, c.getQuantidade());
