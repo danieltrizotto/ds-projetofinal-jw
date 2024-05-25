@@ -97,7 +97,8 @@ body {
 }
 
 main {
-    height: 1000px;
+    height: 100vh;
+    width: 100vw;
     background-color: #d5f5c8;
 }
 
@@ -116,4 +117,31 @@ main {
 
 .carrinho{
     display:flex;
+}
+
+.finalizarArea{
+    background-color: #ffffff;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 6vh;
+    width: 67vw;
+    border-radius: 5px;
+}
+.finalizarArea .area{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.finalizarArea .area button{
+    background-color: #7AB32B;
+    border: none;
+    border-radius: 10deg;
+    color:#ffffff;
+}
+footer {
+    width: 100vw;
+    text-align: center;
+    background-color: #7AB32B;
 }
