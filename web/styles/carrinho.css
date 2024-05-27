@@ -115,10 +115,14 @@ main {
     border-radius: 5px;
 }
 
-.carrinho{
-    display:flex;
+.carrinho {
+    display: flex;
+    justify-content: flex-start;
 }
-
+.carrinho .excluir button{
+    display: flex;
+     justify-content: flex-end;
+}
 .finalizarArea{
     background-color: #ffffff;
     position: absolute;

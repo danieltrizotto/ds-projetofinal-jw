@@ -20,12 +20,12 @@ import model.bean.Produtos;
  * @author Senai
  */
 public class CarrinhoDAO {
-    
+
     public List<Carrinho> leitura(int id) {
-        
+
         List<Carrinho> car = new ArrayList<>();
         String sql = "SELECT * FROM carrinho INNER JOIN produtos AS p ON p.id_produto = carrinho.fk_produto WHERE fk_usuario = ?  ";
-        
+
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
@@ -54,28 +54,60 @@ public class CarrinhoDAO {
             System.out.println("Leitura de produtos: " + e);
         }
         return car;
-        
+
     }
-    
+
     public void inserir(Carrinho c) {
-        
+
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
-            
+
             stmt = conexao.prepareStatement("INSERT INTO carrinho(fk_usuario,fk_produto,quantidade)VALUES(?,?,?)");
             stmt.setInt(1, c.getFkUsuario());
             stmt.setInt(2, c.getFkProduto());
             stmt.setInt(3, c.getQuantidade());
-            
+
             stmt.executeUpdate();
-            
+
             stmt.close();
             conexao.close();
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
     }
+
+    ///luan consani
+    public float calcularTotalCarrinho(int fk) {
+        float total = 0.0f;
+
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+
+            String sql = "SELECT SUM(p.preco * c.quantidade) AS total FROM carrinho INNER JOIN produtos AS p ON p.id_produto = carrinho.fk_produto WHERE fk_usuario = ? ";
+
+            stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, fk);
+
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                total = rs.getFloat("total");
+            }
+
+            rs.close();
+            stmt.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return total;
+    }
+    ///
 }

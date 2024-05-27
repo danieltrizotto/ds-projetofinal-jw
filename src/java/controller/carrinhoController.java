@@ -41,26 +41,30 @@ public class carrinhoController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ///listar categorias
         CategoriasDAO categoriasDAO = new CategoriasDAO();
         List<Categorias> categorias = categoriasDAO.listarCategorias();
         request.setAttribute("categorias", categorias);
-        
-        Carrinho bean = new Carrinho();// model bean
-        CarrinhoDAO produto = new CarrinhoDAO();
+
+        CarrinhoDAO produto = new CarrinhoDAO();//model dao
         List<Carrinho> c = new ArrayList();
-        
-        if (bean.getImgBlob() != null) {
-            String imagemBase64 = Base64.getEncoder().encodeToString(bean.getImgBlob());
-            System.out.println("aqui");
-            System.out.println(imagemBase64);
-            bean.setImg(imagemBase64);
-        }
+
         HttpSession session = request.getSession();
 
         // recuperar o id do usuário da sessão
         Integer usuarioId = (Integer) session.getAttribute("usuarioId");
         c = produto.leitura(usuarioId);
+        float valorTotal = 0;
+        for (int i = 0; i < c.size(); i++) {
+            if (c.get(i).getImgBlob() != null) {//tratamento para imagem
+                String imagemBase64 = Base64.getEncoder().encodeToString(c.get(i).getImgBlob());
+                c.get(i).setImg(imagemBase64);
+                valorTotal = valorTotal + (c.get(i).getQuantidade() * c.get(i).getPreço());
+            }
+        }
+
         request.setAttribute("carrinho", c);
+         request.setAttribute("total", valorTotal);
 
         String nextPage = "/WEB-INF/jsp/telaCarrinho.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
