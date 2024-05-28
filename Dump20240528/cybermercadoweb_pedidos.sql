@@ -16,33 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `usuarios`
+-- Table structure for table `pedidos`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
+DROP TABLE IF EXISTS `pedidos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usuarios` (
-  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(155) DEFAULT NULL,
-  `senha` varchar(45) NOT NULL,
-  `usuario` varchar(45) NOT NULL,
-  `telefone` char(15) DEFAULT NULL,
-  `cpf` char(14) DEFAULT NULL,
-  `tipo` enum('cliente','admin') DEFAULT 'cliente',
-  PRIMARY KEY (`id_usuario`),
-  UNIQUE KEY `usuario` (`usuario`,`cpf`,`telefone`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `pedidos` (
+  `id_pedido` int(11) NOT NULL AUTO_INCREMENT,
+  `fk_usuario` int(11) DEFAULT NULL,
+  `pagamento` enum('concluido','pendente') NOT NULL DEFAULT 'pendente',
+  `modo_pago` enum('pix','cartao') NOT NULL,
+  `valor_total` float(8,2) DEFAULT NULL,
+  `data_hora` datetime NOT NULL,
+  PRIMARY KEY (`id_pedido`),
+  KEY `fk_usuario` (`fk_usuario`),
+  CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`fk_usuario`) REFERENCES `usuarios` (`id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuarios`
+-- Dumping data for table `pedidos`
 --
 
-LOCK TABLES `usuarios` WRITE;
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'daniel','1234','erty','4399765677','4546689345','admin'),(2,'leinad','8080','qwer','4393741227','4234323345','cliente'),(3,'daniel trizotto','1409','leinad','4535435434','4353441438','cliente');
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+LOCK TABLES `pedidos` WRITE;
+/*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-20 17:23:28
+-- Dump completed on 2024-05-28 17:23:38

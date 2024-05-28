@@ -16,27 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `categorias`
+-- Table structure for table `pedidos_produtos`
 --
 
-DROP TABLE IF EXISTS `categorias`;
+DROP TABLE IF EXISTS `pedidos_produtos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `categorias` (
-  `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `pedidos_produtos` (
+  `id_pedido_produto` int(11) NOT NULL AUTO_INCREMENT,
+  `pedido_fk` int(11) DEFAULT NULL,
+  `produto_fk` int(11) DEFAULT NULL,
+  `quantidade` tinyint(4) DEFAULT NULL,
+  `preco_unitario` float(8,2) DEFAULT NULL,
+  PRIMARY KEY (`id_pedido_produto`),
+  KEY `pedido_id` (`pedido_fk`),
+  KEY `produto_id` (`produto_fk`),
+  CONSTRAINT `pedido_id` FOREIGN KEY (`pedido_fk`) REFERENCES `pedidos` (`id_pedido`),
+  CONSTRAINT `produto_id` FOREIGN KEY (`produto_fk`) REFERENCES `produtos` (`id_produto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `categorias`
+-- Dumping data for table `pedidos_produtos`
 --
 
-LOCK TABLES `categorias` WRITE;
-/*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES (1,'jaquetas'),(2,'calças'),(3,'blusas'),(4,'camisas'),(5,'tenis');
-/*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
+LOCK TABLES `pedidos_produtos` WRITE;
+/*!40000 ALTER TABLE `pedidos_produtos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pedidos_produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-20 17:23:28
+-- Dump completed on 2024-05-28 17:23:39

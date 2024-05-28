@@ -7,9 +7,6 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,15 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.bean.Carrinho;
-import model.bean.Categorias;
-import model.dao.CarrinhoDAO;
-import model.dao.CategoriasDAO;
 
 /**
  *
- * @author User
+ * @author Senai
  */
-public class checkoutController extends HttpServlet {
+public class pedidosControler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,35 +32,30 @@ public class checkoutController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         ///listar categorias
-        CategoriasDAO categoriasDAO = new CategoriasDAO();
-        List<Categorias> categorias = categoriasDAO.listarCategorias();
-        request.setAttribute("categorias", categorias);
+          HttpSession session = request.getSession();
 
-        CarrinhoDAO produto = new CarrinhoDAO();//model dao
-        List<Carrinho> c = new ArrayList();
+            // recuperar o id do usuário da sessão
+            Integer usuarioId = (Integer) session.getAttribute("usuarioId");
+            // recuperar parâmetros do produto e quantidade
+            int produtoId = Integer.parseInt(request.getParameter("id"));
+            int quantidade = Integer.parseInt(request.getParameter("quantidade"));
 
-        HttpSession session = request.getSession();
+            // inserir no banco de dados
+           Pedidos bean = new Pedidos();
+            bean.setFkProduto(produtoId);
+            bean.setFkUsuario(usuarioId);
+            bean.setQuantidade(quantidade);
 
-        // recuperar o id do usuário da sessão
-        Integer usuarioId = (Integer) session.getAttribute("usuarioId");
-        c = produto.leitura(usuarioId);
-        float valorTotal = 0;
-        for (int i = 0; i < c.size(); i++) {
-            if (c.get(i).getImgBlob() != null) {//tratamento para imagem
-                String imagemBase64 = Base64.getEncoder().encodeToString(c.get(i).getImgBlob());
-                c.get(i).setImg(imagemBase64);
-                valorTotal = valorTotal + (c.get(i).getQuantidade() * c.get(i).getPreço());
-            }
-        }
+            dao.inserir(bean);
+            System.out.println(request.getParameter("id"));
 
-        request.setAttribute("carrinho", c);
-         request.setAttribute("total", valorTotal);
-
+            System.out.println(url);
+            // redirecionar para a página do carrinho
+            response.sendRedirect("./carrinho");
         
-       String nextPage = "/WEB-INF/jsp/telaCheckout.jsp";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-            dispatcher.forward(request, response);
+        String nextPage = "/WEB-INF/jsp/telaPedidos.jsp";
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

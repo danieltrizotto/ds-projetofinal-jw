@@ -23,12 +23,12 @@ public class Carrinho {
     private int idProduto;
     private int fkCategoria;
     private String nome;
-    private String descriçao;
+    private String descricao;
     private byte[] imgBlob;
     private String img;
     private float preço;
 
-    public Carrinho(int idCarrinho, int fkUsuario, int fkProduto, int quantidade, int idProduto, int fkCategoria, String nome, String descriçao, byte[] imgBlob, String img, float preço) {
+    public Carrinho(int idCarrinho, int fkUsuario, int fkProduto, int quantidade, int idProduto, int fkCategoria, String nome, String descricao, byte[] imgBlob, String img, float preço) {
         this.idCarrinho = idCarrinho;
         this.fkUsuario = fkUsuario;
         this.fkProduto = fkProduto;
@@ -36,7 +36,7 @@ public class Carrinho {
         this.idProduto = idProduto;
         this.fkCategoria = fkCategoria;
         this.nome = nome;
-        this.descriçao = descriçao;
+        this.descricao = descricao;
         this.imgBlob = imgBlob;
         this.img = img;
         this.preço = preço;
@@ -102,12 +102,12 @@ public class Carrinho {
         this.nome = nome;
     }
 
-    public String getDescriçao() {
-        return descriçao;
+    public String getDescricao() {
+        return descricao;
     }
 
     public void setDescriçao(String descriçao) {
-        this.descriçao = descriçao;
+        this.descricao = descriçao;
     }
 
     public byte[] getImgBlob() {

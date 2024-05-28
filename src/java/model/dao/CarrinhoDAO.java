@@ -79,35 +79,5 @@ public class CarrinhoDAO {
 
     }
 
-    ///luan consani
-    public float calcularTotalCarrinho(int fk) {
-        float total = 0.0f;
-
-        try {
-            Connection conexao = Conexao.conectar();
-            PreparedStatement stmt = null;
-            ResultSet rs = null;
-
-            String sql = "SELECT SUM(p.preco * c.quantidade) AS total FROM carrinho INNER JOIN produtos AS p ON p.id_produto = carrinho.fk_produto WHERE fk_usuario = ? ";
-
-            stmt = conexao.prepareStatement(sql);
-            stmt.setInt(1, fk);
-
-            rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                total = rs.getFloat("total");
-            }
-
-            rs.close();
-            stmt.close();
-            conexao.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return total;
-    }
     ///
 }
