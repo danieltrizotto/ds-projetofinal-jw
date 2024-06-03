@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.bean.Carrinho;
+import model.bean.Pedidos;
 
 /**
  *
@@ -40,16 +41,16 @@ public class pedidosControler extends HttpServlet {
             int produtoId = Integer.parseInt(request.getParameter("id"));
             int quantidade = Integer.parseInt(request.getParameter("quantidade"));
 
-            // inserir no banco de dados
-           Pedidos bean = new Pedidos();
-            bean.setFkProduto(produtoId);
-            bean.setFkUsuario(usuarioId);
-            bean.setQuantidade(quantidade);
-
-            dao.inserir(bean);
-            System.out.println(request.getParameter("id"));
-
-            System.out.println(url);
+//            // inserir no banco de dados
+//           Pedidos bean = new Pedidos();
+//            bean.setIdPedido(produtoId);
+//            bean.setFkUsuario(usuarioId);
+//            bean.setQuantidade(quantidade);
+//
+//            dao.inserir(bean);
+//            System.out.println(request.getParameter("id"));
+//
+//            System.out.println(url);
             // redirecionar para a página do carrinho
             response.sendRedirect("./carrinho");
         

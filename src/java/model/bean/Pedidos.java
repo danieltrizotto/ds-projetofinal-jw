@@ -19,8 +19,16 @@ public class Pedidos {
     private String modo_pago;
     private float valor_total;
     private Date data_hora;
+    private int fk_produto;
+    private byte[] imgBlob;
+    private String img;
 
-    public Pedidos(int idPedido, int fkUsuario, int fkEndereco, String pagamento, String modo_pago, float valor_total, Date data_hora) {
+   
+    public Pedidos(){
+        
+    }
+
+    public Pedidos(int idPedido, int fkUsuario, int fkEndereco, String pagamento, String modo_pago, float valor_total, Date data_hora, int fk_produto, byte[] imgBlob, String img) {
         this.idPedido = idPedido;
         this.fkUsuario = fkUsuario;
         this.fkEndereco = fkEndereco;
@@ -28,9 +36,9 @@ public class Pedidos {
         this.modo_pago = modo_pago;
         this.valor_total = valor_total;
         this.data_hora = data_hora;
-    }
-    public Pedidos(){
-        
+        this.fk_produto = fk_produto;
+        this.imgBlob = imgBlob;
+        this.img = img;
     }
 
     public int getIdPedido() {
@@ -88,5 +96,31 @@ public class Pedidos {
     public void setData_hora(Date data_hora) {
         this.data_hora = data_hora;
     }
+
+    public int getFk_produto() {
+        return fk_produto;
+    }
+
+    public void setFk_produto(int fk_produto) {
+        this.fk_produto = fk_produto;
+    }
+
+    public byte[] getImgBlob() {
+        return imgBlob;
+    }
+
+    public void setImgBlob(byte[] imgBlob) {
+        this.imgBlob = imgBlob;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+   
     
 }

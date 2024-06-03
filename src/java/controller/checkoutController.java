@@ -67,6 +67,10 @@ public class checkoutController extends HttpServlet {
        String nextPage = "/WEB-INF/jsp/telaCheckout.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
+              String url = request.getServletPath();
+            if (url.equals("/checkoutFrete")) {
+            
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

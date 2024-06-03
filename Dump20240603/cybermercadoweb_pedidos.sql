@@ -30,10 +30,13 @@ CREATE TABLE `pedidos` (
   `valor_total` float(8,2) DEFAULT NULL,
   `data_hora` datetime NOT NULL,
   `fk_endereço` int(11) NOT NULL,
+  `fk_produto` int(11) NOT NULL,
   PRIMARY KEY (`id_pedido`),
   KEY `fk_usuario` (`fk_usuario`),
   KEY `fk_endereço_idx` (`fk_endereço`),
+  KEY `fk_produtos_idx` (`fk_produto`),
   CONSTRAINT `fk_endereço` FOREIGN KEY (`fk_endereço`) REFERENCES `enderecos` (`id_endereco`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_produtos` FOREIGN KEY (`fk_produto`) REFERENCES `produtos` (`id_produto`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`fk_usuario`) REFERENCES `usuarios` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -56,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-28 17:29:29
+-- Dump completed on 2024-06-03 17:22:22

@@ -72,27 +72,21 @@
                 </form>
             </div>
             <br>
-            <div class="metodoPagamneto">
-                 <form action="checkoutPagamento" method="get" name="formpaga">
-
-                    <P><B>Metodo de Pagamento:</B><BR>
+            <form action="checkoutPagamento" method="get" name="formpaga"> 
+                <div class="metodoPagamneto">
+                    <p><b>Metodo de Pagamento:</b><br>
                         <INPUT type="radio" name="metodo" value="Pix">Pix<BR>
                         <INPUT type="radio" name="metodo" value="debito">Debito<br>
                         <INPUT type="radio" name="metodo" value="Credito">Credito
-                    </P>
-
-               
-            </div>
-            <br>
-            <div class="finalizarPedido">
-                <p>preço frete</p>
-                <p>preço total:${total}</p>
-               
+                    </p>
+                </div>
+                <br>
+                <div class="finalizarPedido">
+                    <p>preço frete</p>
+                    <p>preço total:${total}</p>
                     <button class="compra" type="submit" name="compra"><a href="./pedidos">finalizar compra</a></button>
-                </form>
-            </div>
-
-
+                </div>
+            </form>
         </main>
 
         <footer>
