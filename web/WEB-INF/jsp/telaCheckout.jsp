@@ -82,9 +82,11 @@
                 </div>
                 <br>
                 <div class="finalizarPedido">
-                    <p>preço frete</p>
+                    <p>preço frete:5,00</p>
                     <p>preço total:${total}</p>
                     <button class="compra" type="submit" name="compra"><a href="./pedidos">finalizar compra</a></button>
+                     <input type="hidden" name="id" value="${produto.id_Produto}">
+                     <input type="hidden" name="id" value="${produto.id_Produto}">  
                 </div>
             </form>
         </main>

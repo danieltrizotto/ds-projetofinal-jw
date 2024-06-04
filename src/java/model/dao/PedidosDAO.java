@@ -2,6 +2,7 @@ package model.dao;
 
 import conexao.Conexao;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,9 +35,17 @@ public class PedidosDAO {
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
             while (rs.next()) {
-               Pedidos c = new Pedidos();
-               c.
-                p.add(c);
+               Pedidos e = new Pedidos();
+               e.setIdPedido(rs.getInt("id_pedido"));
+               e.setFkEndereco(rs.getInt("fk_endereço"));
+               e.setFkUsuario(rs.getInt("fk_usuario"));
+               e.setFkEndereco(rs.getInt("fk_endereço"));
+               e.setModo_pago(rs.getString("modo_pago"));
+               e.setPagamento(rs.getString("pagamento"));
+               e.setValor_total(rs.getFloat("valor_total"));
+               e.setImgBlob(rs.getBytes("imagem"));
+               e.setData_hora(rs.getDate("data_hora"));
+                p.add(e);
             }
             rs.close();
             stmt.close();
@@ -47,4 +56,30 @@ public class PedidosDAO {
         return p;
 
     }
+    
+     public void inserir(Pedidos p) {
+
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+
+            stmt = conexao.prepareStatement("INSERT INTO pedidos(fk_usuario,modo_pago,valor_total,data_hora,fk_endereço,fk_produto)VALUES(?,?,?,?,?,?)");
+            stmt.setInt(1, p.getFkUsuario());
+            stmt.setString(2, p.getModo_pago());
+            stmt.setFloat(3, p.getValor_total());
+            stmt.setDate(4, (Date) p.getData_hora());
+            stmt.setInt(5, p.getFkEndereco());
+            stmt.setInt(6, p.getFk_produto());
+
+            stmt.executeUpdate();
+
+            stmt.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
