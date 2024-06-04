@@ -49,7 +49,7 @@
                                  alt="${carrinho.nome}">
                             <div class="texto">
                                 <p class="card-text">nome:${carrinho.nome}</p>
-                                <p class="card-text">quantidade:${carrinho.descricao}</p>
+                                <p class="card-text">Descriçao:${carrinho.descricao}</p>
                                 <p class="card-text">categoria:${carrinho.fkCategoria}</p>
                                 <p class="card-text">Valor:${carrinho.preço}</p>
                                 <p class="card-text">quantidade:${carrinho.quantidade}</p>
@@ -74,19 +74,21 @@
             <br>
             <form action="checkoutPagamento" method="get" name="formpaga"> 
                 <div class="metodoPagamneto">
-                    <p><b>Metodo de Pagamento:</b><br>
-                        <INPUT type="radio" name="metodo" value="Pix">Pix<BR>
-                        <INPUT type="radio" name="metodo" value="debito">Debito<br>
-                        <INPUT type="radio" name="metodo" value="Credito">Credito
+                    <p><b>Método de Pagamento:</b><br>
+                        <input type="radio" name="metodo" value="pix">Pix<br>
+                        <input type="radio" name="metodo" value="debito">Débito<br>
+                        <input type="radio" name="metodo" value="credito">Crédito
                     </p>
                 </div>
                 <br>
                 <div class="finalizarPedido">
-                    <p>preço frete:5,00</p>
+                    <p>preço frete:0</p>
                     <p>preço total:${total}</p>
-                    <button class="compra" type="submit" name="compra"><a href="./pedidos">finalizar compra</a></button>
-                     <input type="hidden" name="id" value="${produto.id_Produto}">
-                     <input type="hidden" name="id" value="${produto.id_Produto}">  
+                    <button class="compra" type="submit" name="compra">Finalizar Compra</button>
+                    <input type="hidden" name="idProduto" value="${produto.id_Produto}">
+                    <input type="hidden" name="idEndereco" value="${endereco.id_endereco}">
+                
+
                 </div>
             </form>
         </main>

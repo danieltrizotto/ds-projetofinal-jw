@@ -7,8 +7,11 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,14 +21,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.bean.Carrinho;
 import model.bean.Categorias;
+import model.bean.Pedidos;
 import model.dao.CarrinhoDAO;
 import model.dao.CategoriasDAO;
+import model.dao.PedidosDAO;
 
 /**
  *
  * @author User
  */
 public class checkoutController extends HttpServlet {
+
+    Pedidos ped = new Pedidos();
+    PedidosDAO dao = new PedidosDAO();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +46,7 @@ public class checkoutController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         ///listar categorias
+        ///listar categorias
         CategoriasDAO categoriasDAO = new CategoriasDAO();
         List<Categorias> categorias = categoriasDAO.listarCategorias();
         request.setAttribute("categorias", categorias);
@@ -61,15 +69,35 @@ public class checkoutController extends HttpServlet {
         }
 
         request.setAttribute("carrinho", c);
-         request.setAttribute("total", valorTotal);
+        request.setAttribute("total", valorTotal);//mostrar valor total 
 
-        
-       String nextPage = "/WEB-INF/jsp/telaCheckout.jsp";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-            dispatcher.forward(request, response);
-              String url = request.getServletPath();
-            if (url.equals("/checkoutFrete")) {
+        String nextPage = "/WEB-INF/jsp/telaCheckout.jsp";
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+        dispatcher.forward(request, response);
+        String url = request.getServletPath();
+
+        if (url.equals("/checkoutPagamento")) {
+
+            // recuperar parâmetros do produto
+            int produtoId = Integer.parseInt(request.getParameter("idProduto"));
+            int endereço = Integer.parseInt(request.getParameter("idEndereco"));
+            String precoStr = request.getParameter("preco");
             
+            String metodoPagamento = request.getParameter("metodo");
+            // inserir no banco de dados
+            Carrinho bean = new Carrinho();
+            ped.setFk_produto(produtoId);
+            ped.setFkUsuario(usuarioId);
+            ped.setFkEndereco(endereço);
+            ped.setValor_total(bean.getPreço());
+            ped.setPagamento(metodoPagamento);
+
+            dao.inserir(ped);
+            System.out.println(request.getParameter("id"));
+
+            System.out.println(url);
+            // redirecionar para a página dos pedidos
+            response.sendRedirect("./pedidos");
         }
     }
 

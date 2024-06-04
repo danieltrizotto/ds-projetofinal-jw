@@ -110,6 +110,10 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>pedidosControler</servlet-name>
+        <url-pattern>/pedidosDepoisPagamento</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>pedidosControler</servlet-name>
         <url-pattern>/pedidos</url-pattern>
     </servlet-mapping>
     <session-config>

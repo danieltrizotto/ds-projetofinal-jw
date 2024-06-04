@@ -63,13 +63,12 @@ public class PedidosDAO {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
 
-            stmt = conexao.prepareStatement("INSERT INTO pedidos(fk_usuario,modo_pago,valor_total,data_hora,fk_endereço,fk_produto)VALUES(?,?,?,?,?,?)");
+            stmt = conexao.prepareStatement("INSERT INTO pedidos(fk_usuario,modo_pago,valor_total,data_hora,fk_endereço,fk_produto)VALUES(?,?,?,now(),?,?)");
             stmt.setInt(1, p.getFkUsuario());
             stmt.setString(2, p.getModo_pago());
             stmt.setFloat(3, p.getValor_total());
-            stmt.setDate(4, (Date) p.getData_hora());
-            stmt.setInt(5, p.getFkEndereco());
-            stmt.setInt(6, p.getFk_produto());
+            stmt.setInt(4, p.getFkEndereco());
+            stmt.setInt(5, p.getFk_produto());
 
             stmt.executeUpdate();
 
