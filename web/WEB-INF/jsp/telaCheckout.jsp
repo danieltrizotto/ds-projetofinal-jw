@@ -60,8 +60,8 @@
                 </div>
             </div>
 
-            <div class="calculoFrete">
-                <form action="checkoutFrete" method="GET" class="frete">
+            <div class="inserirEndereço">
+                <form action="insereLocal" method="GET" class="frete">
                     <input type="text" placeholder="Rua" name="rua">
                     <br>
                     <input type="text" placeholder="Numero" name="numero">
@@ -79,6 +79,9 @@
                         <input type="radio" name="metodo" value="debito">Débito<br>
                         <input type="radio" name="metodo" value="credito">Crédito
                     </p>
+                    <div class="infoCartao">
+                        <input type="text" placeholder="numero do cartao">
+                    </div>
                 </div>
                 <br>
                 <div class="finalizarPedido">
@@ -97,6 +100,7 @@
             <h3>CYBER TREND</h3>
             <p>Daniel trizotto@2024</p>
         </footer>
+        
     </body>
-
+   
 </html>

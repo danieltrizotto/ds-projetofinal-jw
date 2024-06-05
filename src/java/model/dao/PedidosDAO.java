@@ -22,7 +22,7 @@ import model.bean.Pedidos;
  * @author Senai
  */
 public class PedidosDAO {
-    public List<Pedidos> leitura(int id) {
+    public List<Pedidos> leitura(int id) {//le os pedidos para mostrar na pagina de pedidos
 
         List<Pedidos> p = new ArrayList<>();
         String sql = "SELECT * FROM pedidos INNER JOIN produtos AS p ON p.id_produto = pedido.fk_produtos WHERE fk_usuario = ?  ";

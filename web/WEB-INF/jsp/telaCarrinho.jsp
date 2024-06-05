@@ -72,6 +72,13 @@
             <h3>CYBER TREND</h3>
             <p>Daniel trizotto@2024</p>
         </footer>
+        <script>
+            var carrinhoItems = document.querySelectorAll('.carrinho');
+            if (carrinhoItems.length === 0) {
+                var areaCarrinho = document.querySelector('.areaCarrinho');
+                areaCarrinho.innerHTML = "<p>Carrinho vazio</p>";
+            }
+        </script>
     </body>
 
 </html>

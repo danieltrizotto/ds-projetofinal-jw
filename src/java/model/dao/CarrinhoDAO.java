@@ -21,7 +21,7 @@ import model.bean.Produtos;
  */
 public class CarrinhoDAO {
 
-    public List<Carrinho> leitura(int id) {
+    public List<Carrinho> leitura(int id) {///leitura usando a tabela produtos 
 
         List<Carrinho> car = new ArrayList<>();
         String sql = "SELECT * FROM carrinho INNER JOIN produtos AS p ON p.id_produto = carrinho.fk_produto WHERE fk_usuario = ?  ";
@@ -57,7 +57,7 @@ public class CarrinhoDAO {
 
     }
 
-    public void inserir(Carrinho c) {
+    public void inserir(Carrinho c) {///insert no carrinho
 
         try {
             Connection conexao = Conexao.conectar();
@@ -78,6 +78,26 @@ public class CarrinhoDAO {
         }
 
     }
+    
+ public void inserirPEDIDOSPROD(Carrinho c) {//para inserir na tabela pedidos produtos
 
-    ///
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+
+            stmt = conexao.prepareStatement("INSERT INTO pedidos_produtos(fk_usuario,fk_produto,quantidade)VALUES(?,?,?)");
+            stmt.setInt(1, c.getFkUsuario());
+            stmt.setInt(2, c.getFkProduto());
+            stmt.setInt(3, c.getQuantidade());
+
+            stmt.executeUpdate();
+
+            stmt.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

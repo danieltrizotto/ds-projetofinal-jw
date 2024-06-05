@@ -20,6 +20,7 @@ public class Carrinho {
     private int fkUsuario;
     private int fkProduto;
     private int quantidade;
+    ///variaveis para botar no select inner join do carrinho
     private int idProduto;
     private int fkCategoria;
     private String nome;

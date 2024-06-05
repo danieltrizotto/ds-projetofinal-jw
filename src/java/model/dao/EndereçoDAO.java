@@ -17,7 +17,7 @@ import model.bean.Endereço;
  */
 public class EndereçoDAO {
 
-    public void inserir(Endereço e) {
+    public void inserir(Endereço e) {//insert de endereço
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
