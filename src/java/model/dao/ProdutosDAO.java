@@ -151,12 +151,13 @@ public class ProdutosDAO {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
 
-            stmt = conexao.prepareStatement("INSERT INTO produtos (fk_categoria, nome, preço, descriçao, imagem) VALUES (?, ?, ?, ?, ?)");
+            stmt = conexao.prepareStatement("INSERT INTO produtos (fk_categoria, nome, preço, descriçao, imagem, estoque) VALUES (?, ?, ?, ?, ?, ?)");
             stmt.setInt(1, p.getFk_categoria());
             stmt.setString(2, p.getNome());
             stmt.setFloat(3, p.getPreço());
             stmt.setString(4, p.getDescriçao());
             stmt.setBytes(5, p.getImgBlob());
+            stmt.setInt(6, p.getEstoque());
             System.out.println("feito");
 
             stmt.executeUpdate();

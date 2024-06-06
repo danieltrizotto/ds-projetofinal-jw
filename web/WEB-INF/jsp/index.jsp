@@ -4,9 +4,9 @@
 
 <html>
     <head>
-      
-       
-   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
         <script src="https://kit.fontawesome.com/0444e3e789.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="./styles/index.css"/>
@@ -14,13 +14,13 @@
 
     <body>
     <main>
-         <div class="login">
+        <div class="login">
             <form name="formLogin" method="post" action="logar">
                 <img src="./assets/microchip-solid.svg" alt="" style="width: 90px;">
                 <h2>LOGIN</h2>
-                <input type="text" name="usuario" placeholder="Usuario..." />
+                <input type="text" id="usuario" name="usuario" placeholder="Usuario..." />
                 <br><br>
-                <input type="password" name="senha" placeholder="Senha..." />
+                <input type="password" id="senha" name="senha" placeholder="Senha..." />
                 <br><br>
                 <button type="submit" name="entrar" value="Entrar">Entrar</button>
                 <p class="errorMessage">${requestScope.errorMessage}</p> 
@@ -28,6 +28,14 @@
             </form>
         </div>
     </main>
-    </body>
-    <script src="./js/avisos.js"></script>
+    <script>
+        const usuario = document.getElementById("usuario");
+        const senha = document.getElementById("senha");
+
+        if (usuario.value.trim() === "" || senha.value.trim() === "") {
+            window.alert("Usuario ou senha nao preenchidos!")
+        }
+    </script>
+</body>
+<script src="./js/avisos.js"></script>
 </html>

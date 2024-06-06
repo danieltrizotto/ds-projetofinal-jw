@@ -75,12 +75,35 @@
             <form action="checkoutPagamento" method="get" name="formpaga"> 
                 <div class="metodoPagamneto">
                     <p><b>Método de Pagamento:</b><br>
-                        <input type="radio" name="metodo" value="pix">Pix<br>
-                        <input type="radio" name="metodo" value="debito">Débito<br>
-                        <input type="radio" name="metodo" value="credito">Crédito
+                        <input type="radio" name="metodo" value="pix" onclick="mostrarDiv()">Pix<br>
+                        <input type="radio" name="metodo" value="debito" onclick="mostrarDiv()">Débito<br>
+                        <input type="radio" name="metodo" value="credito" onclick="mostrarDiv()">Crédito
                     </p>
                     <div class="infoCartao">
-                        <input type="text" placeholder="numero do cartao">
+                        <h2>Informações do Cartão de Crédito</h2>
+                        <div class="form-group">
+                            <label for="nome-cartao">Nome no Cartão</label>
+                            <input type="text" id="nome-cartao" name="nome-cartao" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="numero-cartao">Número do Cartão</label>
+                            <input type="text" id="numero-cartao" name="numero-cartao" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="validade-cartao">Data de Validade (MM/AA)</label>
+                            <input type="text" id="validade-cartao" name="validade-cartao" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv-cartao">CVV</label>
+                            <input type="text" id="cvv-cartao" name="cvv-cartao" required>
+                        </div>
+                    </div>
+                    <div class="pagarPix">
+                        <h2>CPF para PIX</h2>
+                        <div class="form-group">
+                            <label for="cpf">CPF</label>
+                            <input type="text" id="cpf" name="cpf" required>
+                        </div>
                     </div>
                 </div>
                 <br>
@@ -90,7 +113,7 @@
                     <button class="compra" type="submit" name="compra">Finalizar Compra</button>
                     <input type="hidden" name="idProduto" value="${produto.id_Produto}">
                     <input type="hidden" name="idEndereco" value="${endereco.id_endereco}">
-                
+
 
                 </div>
             </form>
@@ -100,7 +123,7 @@
             <h3>CYBER TREND</h3>
             <p>Daniel trizotto@2024</p>
         </footer>
-        
+        <script src="js/script.js"></script>
     </body>
-   
+
 </html>

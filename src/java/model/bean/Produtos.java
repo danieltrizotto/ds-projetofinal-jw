@@ -18,8 +18,9 @@ public class Produtos {
     private byte[] imgBlob;
     private String img;
     private float preço;
+    private int estoque;
 
-    public Produtos(int id_Produto, int fk_categoria, String nome, String descriçao, byte[] imgBlob, String img, float preço) {
+    public Produtos(int id_Produto, int fk_categoria, String nome, String descriçao, byte[] imgBlob, String img, float preço, int estoque) {
         this.id_Produto = id_Produto;
         this.fk_categoria = fk_categoria;
         this.nome = nome;
@@ -27,6 +28,7 @@ public class Produtos {
         this.imgBlob = imgBlob;
         this.img = img;
         this.preço = preço;
+        this.estoque = estoque;
     }
 
     public Produtos() {
@@ -87,6 +89,14 @@ public class Produtos {
 
     public void setPreço(float preço) {
         this.preço = preço;
+    }
+
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
     }
 
  

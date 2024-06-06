@@ -21,8 +21,7 @@
 
                         <div class="admin">
                             <a class="outro" href="">Produtos</a>
-                            <a class="outro" href="">Pedidos</a>
-                            <a class="outro" href="">Financeiro</a>
+                            <a class="outro" href="">Pedidos</a>                      
                             <a class="outro" href="">Usuarios</a>
                         </div>
                         <br>
@@ -59,6 +58,11 @@
                             <div class="form-group">
                                 <label for="imagem">Imagem do Produto:</label>
                                 <input type="file" class="form-control-file" id="imagem" name="imagem">
+                            </div>
+                            <br>
+                                <div class="form-group">
+                                <label for="imagem">Estoque:</label>
+                                <input type="number" class="form-control-file" id="estoque" name="estoque">
                             </div>
                             <br>
                             <button type="submit" class="btn btn-primary">Cadastrar</button>
