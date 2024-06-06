@@ -1,14 +1,11 @@
-const form = document.getElementById("formLogin");
+const form = document.getElementsByName("formLogin");
 
-form.addEventListener("submit", function (event) {
+form.addEventListener("click", function (event) {
     event.preventDefault();
+    const usuario = document.getElementById("usuario");
+        const senha = document.getElementById("senha");
 
-    const usuario = document.getElementByName("usuario");
-    const senha = document.getElementsByName("senha");
-
-    if(usuario.value.trim() === "" || senha.value.trim() === "" ) {
-     window.alert("Usuario ou senha nao preenchidos!")
-    } else {
-        form.submit();
-    }
+        if (usuario.value.trim() === "" || senha.value.trim() === "") {
+            window.alert("Usuario ou senha nao preenchidos!");
+        }
 });

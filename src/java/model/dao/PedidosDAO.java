@@ -80,5 +80,26 @@ public class PedidosDAO {
         }
 
     }
+     
+      public void updateEstoque(Carrinho c) {
+
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+
+            stmt = conexao.prepareStatement("UPDATE produtos p JOIN carrinho c ON p.id_produto = c.fk_produto SET p.estoque = CASE  WHEN p.estoque >= c.quantidade THEN p.estoque - c.quantidade ELSE 0 END WHERE c.id_carrinho = ? ");
+            stmt.setInt(1, c.getIdCarrinho());
+          
+
+            stmt.executeUpdate();
+
+            stmt.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }

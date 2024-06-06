@@ -28,14 +28,7 @@
             </form>
         </div>
     </main>
-    <script>
-        const usuario = document.getElementById("usuario");
-        const senha = document.getElementById("senha");
-
-        if (usuario.value.trim() === "" || senha.value.trim() === "") {
-            window.alert("Usuario ou senha nao preenchidos!")
-        }
-    </script>
+                <script src="js/avisos.js"></script>
 </body>
-<script src="./js/avisos.js"></script>
+
 </html>

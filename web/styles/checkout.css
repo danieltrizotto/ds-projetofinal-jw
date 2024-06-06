@@ -142,7 +142,11 @@ main {
     border-radius: 10deg;
     color: #ffffff;
 }
-
+.inserirEndereço{
+    display: flex;
+    justify-content: center;
+    margin-left: 600px;
+}
 .metodoPagamneto {
     display: flex;
     align-items: flex-end;
