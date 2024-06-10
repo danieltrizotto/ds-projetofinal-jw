@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.bean.Carrinho;
 import model.bean.Pedidos;
+import model.dao.CarrinhoDAO;
+import model.dao.PedidosDAO;
 
 /**
  *
@@ -33,27 +35,7 @@ public class pedidosControler extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          HttpSession session = request.getSession();
 
-            // recuperar o id do usuário da sessão
-            Integer usuarioId = (Integer) session.getAttribute("usuarioId");
-            // recuperar parâmetros do produto e quantidade
-            int produtoId = Integer.parseInt(request.getParameter("id"));
-            int quantidade = Integer.parseInt(request.getParameter("quantidade"));
-
-//            // inserir no banco de dados
-//           Pedidos bean = new Pedidos();
-//            bean.setIdPedido(produtoId);
-//            bean.setFkUsuario(usuarioId);
-//            bean.setQuantidade(quantidade);
-//
-//            dao.inserir(bean);
-//            System.out.println(request.getParameter("id"));
-//
-//            System.out.println(url);
-            // redirecionar para a página do carrinho
-            response.sendRedirect("./carrinho");
-        
         String nextPage = "/WEB-INF/jsp/telaPedidos.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
         dispatcher.forward(request, response);
@@ -71,7 +53,7 @@ public class pedidosControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+     processRequest(request, response);
     }
 
     /**

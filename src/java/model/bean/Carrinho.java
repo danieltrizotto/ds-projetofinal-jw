@@ -28,8 +28,9 @@ public class Carrinho {
     private byte[] imgBlob;
     private String img;
     private float preço;
+    private int estoque;
 
-    public Carrinho(int idCarrinho, int fkUsuario, int fkProduto, int quantidade, int idProduto, int fkCategoria, String nome, String descricao, byte[] imgBlob, String img, float preço) {
+    public Carrinho(int idCarrinho, int fkUsuario, int fkProduto, int quantidade, int idProduto, int fkCategoria, String nome, String descricao, byte[] imgBlob, String img, float preço, int estoque) {
         this.idCarrinho = idCarrinho;
         this.fkUsuario = fkUsuario;
         this.fkProduto = fkProduto;
@@ -41,6 +42,7 @@ public class Carrinho {
         this.imgBlob = imgBlob;
         this.img = img;
         this.preço = preço;
+        this.estoque= estoque;
     }
 
     public Carrinho() {
@@ -135,4 +137,12 @@ public class Carrinho {
         this.preço = preço;
     }
 
+    public int getEstoque(){
+        return estoque;
+}
+    
+    public void setEstoque(int estoque){
+        this.estoque = estoque;
+    }
+    
 }

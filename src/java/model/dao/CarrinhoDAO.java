@@ -45,6 +45,7 @@ public class CarrinhoDAO {
                 c.setDescriçao(rs.getString("descriçao"));
                 c.setFkCategoria(rs.getInt("fk_categoria"));
                 c.setImgBlob(rs.getBytes("imagem"));
+        
                 car.add(c);
             }
             rs.close();
@@ -78,26 +79,6 @@ public class CarrinhoDAO {
         }
 
     }
-    
- public void inserirPEDIDOSPROD(Carrinho c) {//para inserir na tabela pedidos produtos
 
-        try {
-            Connection conexao = Conexao.conectar();
-            PreparedStatement stmt = null;
-
-            stmt = conexao.prepareStatement("INSERT INTO pedidos_produtos(fk_usuario,fk_produto,quantidade)VALUES(?,?,?)");
-            stmt.setInt(1, c.getFkUsuario());
-            stmt.setInt(2, c.getFkProduto());
-            stmt.setInt(3, c.getQuantidade());
-
-            stmt.executeUpdate();
-
-            stmt.close();
-            conexao.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
+  
 }

@@ -64,13 +64,9 @@ public class produtosController extends HttpServlet {
         } else if (url.equals("/home")) {
             produtos = produtosDAO.leitura();
             for (int i = 0; i < produtos.size(); i++) {
-
                 if (produtos.get(i).getImgBlob() != null) {
                     String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImgBlob());
-                    System.out.println("aqui");
-                    System.out.println(imagemBase64);
                     produtos.get(i).setImg(imagemBase64);
-
                 }
             }
             request.setAttribute("produtos", produtos);
@@ -86,8 +82,6 @@ public class produtosController extends HttpServlet {
 
                     if (produtos.get(i).getImgBlob() != null) {
                         String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImgBlob());
-                        System.out.println("aqui");
-                        System.out.println(imagemBase64);
                         produtos.get(i).setImg(imagemBase64);
 
                     }
@@ -101,8 +95,6 @@ public class produtosController extends HttpServlet {
 
                     if (produtos.get(i).getImgBlob() != null) {
                         String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImgBlob());
-                        System.out.println("aqui");
-                        System.out.println(imagemBase64);
                         produtos.get(i).setImg(imagemBase64);
 
                     }
@@ -119,8 +111,6 @@ public class produtosController extends HttpServlet {
             pr = produtosDAO.mostrarProdutos(p);
             if (pr.getImgBlob() != null) {
                 String imagemBase64 = Base64.getEncoder().encodeToString(pr.getImgBlob());
-                System.out.println("aqui");
-                System.out.println(imagemBase64);
                 pr.setImg(imagemBase64);
             }
             request.setAttribute("produto", pr);

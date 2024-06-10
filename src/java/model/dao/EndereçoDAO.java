@@ -17,13 +17,13 @@ import model.bean.Endereço;
  */
 public class EndereçoDAO {
 
-    public void inserir(Endereço e) {//insert de endereço
+    public void inserirEndereço(Endereço e) {//insert de endereço
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
 
             stmt = conexao.prepareStatement("insert into enderecos (fk_usuario,rua,cep,numero) values (?,?,?,?)");
-            stmt.setInt(1, e.getFk_endereco());
+            stmt.setInt(1, e.getFk_usuario());
             stmt.setString(2, e.getRua());
             stmt.setString(3, e.getCep());
             stmt.setInt(4, e.getNumero());

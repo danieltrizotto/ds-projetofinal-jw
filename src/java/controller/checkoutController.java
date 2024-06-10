@@ -21,9 +21,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.bean.Carrinho;
 import model.bean.Categorias;
+import model.bean.Endereço;
 import model.bean.Pedidos;
 import model.dao.CarrinhoDAO;
 import model.dao.CategoriasDAO;
+import model.dao.EndereçoDAO;
 import model.dao.PedidosDAO;
 
 /**
@@ -55,10 +57,10 @@ public class checkoutController extends HttpServlet {
         List<Carrinho> c = new ArrayList();
 
         HttpSession session = request.getSession();
-
         // recuperar o id do usuário da sessão
         Integer usuarioId = (Integer) session.getAttribute("usuarioId");
         c = produto.leitura(usuarioId);
+        request.setAttribute("carrinho", c);
         float valorTotal = 0;
         for (int i = 0; i < c.size(); i++) {
             if (c.get(i).getImgBlob() != null) {//tratamento para imagem
@@ -69,36 +71,12 @@ public class checkoutController extends HttpServlet {
         }
 
         request.setAttribute("carrinho", c);
-        request.setAttribute("total", valorTotal);//mostrar valor total 
+        request.setAttribute("total", valorTotal);
 
         String nextPage = "/WEB-INF/jsp/telaCheckout.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
         dispatcher.forward(request, response);
-        String url = request.getServletPath();
 
-        if (url.equals("/checkoutPagamento")) {
-
-            // recuperar parâmetros do produto
-            int produtoId = Integer.parseInt(request.getParameter("idProduto"));
-            int endereço = Integer.parseInt(request.getParameter("idEndereco"));
-            String precoStr = request.getParameter("preco");
-            
-            String metodoPagamento = request.getParameter("metodo");
-            // inserir no banco de dados
-            Carrinho bean = new Carrinho();
-            ped.setFk_produto(produtoId);
-            ped.setFkUsuario(usuarioId);
-            ped.setFkEndereco(endereço);
-            ped.setValor_total(bean.getPreço());
-            ped.setPagamento(metodoPagamento);
-
-            dao.inserir(ped);
-            System.out.println(request.getParameter("id"));
-
-            System.out.println(url);
-            // redirecionar para a página dos pedidos
-            response.sendRedirect("./pedidos");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -113,7 +91,7 @@ public class checkoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
     /**

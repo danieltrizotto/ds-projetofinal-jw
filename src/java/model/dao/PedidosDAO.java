@@ -16,12 +16,12 @@ import model.bean.Pedidos;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Senai
  */
 public class PedidosDAO {
+
     public List<Pedidos> leitura(int id) {//le os pedidos para mostrar na pagina de pedidos
 
         List<Pedidos> p = new ArrayList<>();
@@ -35,16 +35,15 @@ public class PedidosDAO {
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
             while (rs.next()) {
-               Pedidos e = new Pedidos();
-               e.setIdPedido(rs.getInt("id_pedido"));
-               e.setFkEndereco(rs.getInt("fk_endereço"));
-               e.setFkUsuario(rs.getInt("fk_usuario"));
-               e.setFkEndereco(rs.getInt("fk_endereço"));
-               e.setModo_pago(rs.getString("modo_pago"));
-               e.setPagamento(rs.getString("pagamento"));
-               e.setValor_total(rs.getFloat("valor_total"));
-               e.setImgBlob(rs.getBytes("imagem"));
-               e.setData_hora(rs.getDate("data_hora"));
+                Pedidos e = new Pedidos();
+                e.setIdPedido(rs.getInt("id_pedido"));
+                e.setFkEndereco(rs.getInt("fk_endereço"));
+                e.setFkUsuario(rs.getInt("fk_usuario"));
+                e.setFkEndereco(rs.getInt("fk_endereço"));
+                e.setModo_pago(rs.getString("modo_pago"));
+                e.setPagamento(rs.getString("pagamento"));
+                e.setValor_total(rs.getFloat("valor_total"));
+                e.setData_hora(rs.getDate("data_hora"));
                 p.add(e);
             }
             rs.close();
@@ -56,19 +55,18 @@ public class PedidosDAO {
         return p;
 
     }
-    
-     public void inserir(Pedidos p) {
+
+    public void inserir(Pedidos p) {
 
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
 
-            stmt = conexao.prepareStatement("INSERT INTO pedidos(fk_usuario,modo_pago,valor_total,data_hora,fk_endereço,fk_produto)VALUES(?,?,?,now(),?,?)");
+            stmt = conexao.prepareStatement("INSERT INTO pedidos(fk_usuario,modo_pago,valor_total,data_hora,fk_endereço)VALUES(?,?,?,now(),?)");
             stmt.setInt(1, p.getFkUsuario());
             stmt.setString(2, p.getModo_pago());
             stmt.setFloat(3, p.getValor_total());
             stmt.setInt(4, p.getFkEndereco());
-            stmt.setInt(5, p.getFk_produto());
 
             stmt.executeUpdate();
 
@@ -80,8 +78,8 @@ public class PedidosDAO {
         }
 
     }
-     
-      public void updateEstoque(Carrinho c) {
+
+    public void updateEstoque(Carrinho c) {
 
         try {
             Connection conexao = Conexao.conectar();
@@ -89,7 +87,6 @@ public class PedidosDAO {
 
             stmt = conexao.prepareStatement("UPDATE produtos p JOIN carrinho c ON p.id_produto = c.fk_produto SET p.estoque = CASE  WHEN p.estoque >= c.quantidade THEN p.estoque - c.quantidade ELSE 0 END WHERE c.id_carrinho = ? ");
             stmt.setInt(1, c.getIdCarrinho());
-          
 
             stmt.executeUpdate();
 
@@ -100,6 +97,49 @@ public class PedidosDAO {
             e.printStackTrace();
         }
 
+    }
+
+    public void inserirPEDIDOSPROD(Carrinho c) {//para inserir na tabela pedidos produtos
+
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+
+            stmt = conexao.prepareStatement("INSERT INTO pedidos_produtos(fk_usuario,fk_produto,quantidade)VALUES(?,?,?)");
+            stmt.setInt(1, c.getFkUsuario());
+            stmt.setInt(2, c.getFkProduto());
+            stmt.setInt(3, c.getQuantidade());
+
+            stmt.executeUpdate();
+            final ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                final int lastId = rs.getInt(1);
+            }
+            stmt.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void deleteCheckout(int fkUsuario) {
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+
+            stmt = conexao.prepareStatement("DELETE FROM carrinho where fk_usuario = ?");
+            stmt.setInt(1, fkUsuario);
+
+            stmt.executeUpdate();
+
+            stmt.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

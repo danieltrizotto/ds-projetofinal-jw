@@ -161,9 +161,6 @@ main {
     margin-right: 300px;
 }
 
-.infoCartao, .pagarPix {
-    display: none;
-}
 footer {
     width: 100vw;
     text-align: center;

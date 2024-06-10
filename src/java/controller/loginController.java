@@ -97,7 +97,7 @@ public class loginController extends HttpServlet {
                         response.sendRedirect("./home");
                     }
 
-                } else {
+                } else if(userAutenticado == null && userAutenticado.getNome().isEmpty()){
                     request.setAttribute("errorMessage", "Usuário ou senha inválidos");
                     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
                     dispatcher.forward(request, response);

@@ -50,10 +50,10 @@ public class carrinhoController extends HttpServlet {
         List<Carrinho> c = new ArrayList();
 
         HttpSession session = request.getSession();
-
         // recuperar o id do usuário da sessão
         Integer usuarioId = (Integer) session.getAttribute("usuarioId");
         c = produto.leitura(usuarioId);
+        request.setAttribute("carrinho", c);
         float valorTotal = 0;
         for (int i = 0; i < c.size(); i++) {
             if (c.get(i).getImgBlob() != null) {//tratamento para imagem
