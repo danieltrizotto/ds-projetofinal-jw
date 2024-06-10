@@ -62,9 +62,9 @@
             <div class="finalizarArea">
                 <div class="area">
                     <p>Total Carrinho:${total}</p>
-                    <form action="">
+                 
                         <button><a href="./checkout">Finalizar Compra</a></button>
-                    </form>
+                    
                 </div>
             </div>
         </main>
