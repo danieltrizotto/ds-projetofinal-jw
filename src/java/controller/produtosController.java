@@ -173,7 +173,7 @@ public class produtosController extends HttpServlet {
         newProduto.setFk_categoria(Integer.parseInt(request.getParameter("categoria")));
         newProduto.setPreço(Float.parseFloat(request.getParameter("valor")));
         newProduto.setDescriçao(request.getParameter("descricao"));
-
+    
         Part filePart = request.getPart("imagem");
         InputStream istream = filePart.getInputStream();
         ByteArrayOutputStream byteA = new ByteArrayOutputStream();
@@ -184,6 +184,7 @@ public class produtosController extends HttpServlet {
         }
         byte[] imgBytes = byteA.toByteArray();
         newProduto.setImgBlob(imgBytes);
+          newProduto.setEstoque(Integer.parseInt(request.getParameter("estoque")));
         ProdutosDAO produtosD = new ProdutosDAO();
         produtosD.insertProduto(newProduto);
 

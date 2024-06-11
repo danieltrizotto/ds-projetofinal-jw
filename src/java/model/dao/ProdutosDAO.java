@@ -165,6 +165,7 @@ public class ProdutosDAO {
             conexao.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Erro ao inserir produto: " + e.getMessage());
         }
     }
 }

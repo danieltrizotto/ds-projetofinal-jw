@@ -153,7 +153,10 @@ main {
     flex-direction: column;
     margin-right: 300px;
 }
-
+.metodoPagamneto p input{
+    background-color: #ffffff;
+    border-radius: 10px;
+}
 .finalizarPedido{
     display: flex;
     align-items: flex-end;

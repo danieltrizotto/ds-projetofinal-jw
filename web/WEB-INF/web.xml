@@ -108,6 +108,10 @@
         <servlet-name>checkoutController</servlet-name>
         <url-pattern>/checkoutPagamento</url-pattern>
     </servlet-mapping>
+       <servlet-mapping>
+        <servlet-name>checkoutController</servlet-name>
+        <url-pattern>/checkoutFinal</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

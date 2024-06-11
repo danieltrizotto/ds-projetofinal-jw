@@ -52,16 +52,16 @@ public class checkoutController extends HttpServlet {
             throws ServletException, IOException {
         String url = request.getServletPath();
         HttpSession session = request.getSession();
-        
-            ///listar categorias
-            CategoriasDAO categoriasDAO = new CategoriasDAO();
-            List<Categorias> categorias = categoriasDAO.listarCategorias();
-            request.setAttribute("categorias", categorias);
 
-            CarrinhoDAO produto = new CarrinhoDAO();//model dao
-            List<Carrinho> c = new ArrayList();
+        ///listar categorias
+        CategoriasDAO categoriasDAO = new CategoriasDAO();
+        List<Categorias> categorias = categoriasDAO.listarCategorias();
+        request.setAttribute("categorias", categorias);
 
-        if (url.equals("/checkout")) {
+        CarrinhoDAO produto = new CarrinhoDAO();//model dao
+        List<Carrinho> c = new ArrayList();
+
+       
 
             // recuperar o id do usuário da sessão
             Integer usuarioId = (Integer) session.getAttribute("usuarioId");
@@ -83,20 +83,7 @@ public class checkoutController extends HttpServlet {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
 
-        } else if (url.equals("/checkoutFrete")) {
-            Integer usuarioId = (Integer) session.getAttribute("usuarioId");
-            String rua = request.getParameter("rua");
-            int numero = Integer.parseInt(request.getParameter("numero"));
-            String cep = request.getParameter("cep");
-
-            e.setFk_usuario(usuarioId);
-            e.setRua(rua);
-            e.setNumero(numero);
-            e.setCep(cep);
-
-            ed.inserirEndereço(e);
-            System.out.println("feito endereço");
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -111,7 +98,8 @@ public class checkoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+            processRequest(request, response);
+     
     }
 
     /**
@@ -126,6 +114,32 @@ public class checkoutController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+                 String url = request.getServletPath();
+                    List<Carrinho> carrinho = new ArrayList();
+        HttpSession session = request.getSession();
+        if (url.equals("/checkoutFrete")) {
+            Integer usuarioId = (Integer) session.getAttribute("usuarioId");
+            String rua = request.getParameter("rua");
+            int numero = Integer.parseInt(request.getParameter("numero"));
+            String cep = request.getParameter("cep");
+
+            e.setFk_usuario(usuarioId);
+            e.setRua(rua);
+            e.setNumero(numero);
+            e.setCep(cep);
+
+            ed.inserirEndereço(e);
+            System.out.println("feito endereço");
+        }else if(url.equals("/checkoutPagamento")){
+            
+        }else if (url.equals("/checkoutFinal")) {
+            int idPedido = dao.inserirPedido(informacoesDoPedido);
+            for(int i = 0; i < carrinho.length; i++) {
+                dao.inserirPedidoProduto(carrinho.get(i), idPedido);
+                
+                dao.updateNaQuantidade(carrinho.get(i));
+            }
+        }
     }
 
     /**

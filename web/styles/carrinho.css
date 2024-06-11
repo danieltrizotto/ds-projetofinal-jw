@@ -138,11 +138,16 @@ main {
     align-items: center;
     justify-content: space-between;
 }
+.finalizarArea p {
+    margin-top: 5px;
+    margin-bottom: 1rem;
+}
 .finalizarArea .area button{
     background-color: #7AB32B;
     border: none;
-    border-radius: 10deg;
+    border-radius: 10px;
     color:#ffffff;
+    margin-right: 30px;
 }
 footer {
     width: 100vw;
