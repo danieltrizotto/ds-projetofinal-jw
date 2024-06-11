@@ -38,6 +38,7 @@ public class checkoutController extends HttpServlet {
     PedidosDAO dao = new PedidosDAO();
     Endereço e = new Endereço();
     EndereçoDAO ed = new EndereçoDAO();
+    float valorTotal = 0;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,7 +53,7 @@ public class checkoutController extends HttpServlet {
             throws ServletException, IOException {
         String url = request.getServletPath();
         HttpSession session = request.getSession();
-
+        Integer usuarioId = (Integer) session.getAttribute("usuarioId");
         ///listar categorias
         CategoriasDAO categoriasDAO = new CategoriasDAO();
         List<Categorias> categorias = categoriasDAO.listarCategorias();
@@ -60,30 +61,31 @@ public class checkoutController extends HttpServlet {
 
         CarrinhoDAO produto = new CarrinhoDAO();//model dao
         List<Carrinho> c = new ArrayList();
-
-       
-
-            // recuperar o id do usuário da sessão
-            Integer usuarioId = (Integer) session.getAttribute("usuarioId");
-            c = produto.leitura(usuarioId);
-            request.setAttribute("carrinho", c);
-            float valorTotal = 0;
-            for (int i = 0; i < c.size(); i++) {
-                if (c.get(i).getImgBlob() != null) {//tratamento para imagem
-                    String imagemBase64 = Base64.getEncoder().encodeToString(c.get(i).getImgBlob());
-                    c.get(i).setImg(imagemBase64);
-                    valorTotal = valorTotal + (c.get(i).getQuantidade() * c.get(i).getPreço());
-                }
-            }
-
-            request.setAttribute("carrinho", c);
-            request.setAttribute("total", valorTotal);
-
-            String nextPage = "/WEB-INF/jsp/telaCheckout.jsp";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-            dispatcher.forward(request, response);
-
         
+         ///listar os endereços
+        List<Endereço> e = new ArrayList();
+        e = ed.leitura(usuarioId);
+        request.setAttribute("enderecos", e);
+
+        // recuperar o id do usuário da sessão
+        c = produto.leitura(usuarioId);
+        request.setAttribute("carrinho", c);
+
+        for (int i = 0; i < c.size(); i++) {
+            if (c.get(i).getImgBlob() != null) {//tratamento para imagem
+                String imagemBase64 = Base64.getEncoder().encodeToString(c.get(i).getImgBlob());
+                c.get(i).setImg(imagemBase64);
+                valorTotal = valorTotal + (c.get(i).getQuantidade() * c.get(i).getPreço());
+            }
+        }
+
+        request.setAttribute("carrinho", c);
+        request.setAttribute("total", valorTotal);
+
+        String nextPage = "/WEB-INF/jsp/telaCheckout.jsp";
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+        dispatcher.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -98,8 +100,8 @@ public class checkoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            processRequest(request, response);
-     
+        processRequest(request, response);
+
     }
 
     /**
@@ -114,11 +116,12 @@ public class checkoutController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-                 String url = request.getServletPath();
-                    List<Carrinho> carrinho = new ArrayList();
+        String url = request.getServletPath();
+        List<Carrinho> carrinho = new ArrayList();
         HttpSession session = request.getSession();
+        Integer usuarioId = (Integer) session.getAttribute("usuarioId");
         if (url.equals("/checkoutFrete")) {
-            Integer usuarioId = (Integer) session.getAttribute("usuarioId");
+            ///para fazer insert em endereços
             String rua = request.getParameter("rua");
             int numero = Integer.parseInt(request.getParameter("numero"));
             String cep = request.getParameter("cep");
@@ -130,15 +133,20 @@ public class checkoutController extends HttpServlet {
 
             ed.inserirEndereço(e);
             System.out.println("feito endereço");
-        }else if(url.equals("/checkoutPagamento")){
-            
-        }else if (url.equals("/checkoutFinal")) {
-            int idPedido = dao.inserirPedido(informacoesDoPedido);
-            for(int i = 0; i < carrinho.length; i++) {
-                dao.inserirPedidoProduto(carrinho.get(i), idPedido);
-                
-                dao.updateNaQuantidade(carrinho.get(i));
+        } else if (url.equals("/checkoutPagamento")) {
+            ped.setPagamento(request.getParameter("metodo"));
+            ped.setValor_total(valorTotal);
+            ped.setFkUsuario(usuarioId);
+            ped.setFkEndereco(Integer.parseInt(request.getParameter("enderecoID")));
+            ped.
+            int idPedido = dao.inserir(ped);
+            for (int i = 0; i < carrinho.length; i++) {
+                dao.inserirPEDIDOSPROD(carrinho.get(i), idPedido);
+                dao.updateEstoque(carrinho.get(i).getEstoque());
             }
+            dao.deleteCheckout(usuarioId);
+
+            response.sendRedirect("./pedidos");//redireciona a tela pedidos
         }
     }
 

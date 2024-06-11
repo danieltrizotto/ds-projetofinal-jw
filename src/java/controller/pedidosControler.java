@@ -35,10 +35,17 @@ public class pedidosControler extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         String nextPage = "/WEB-INF/jsp/telaPedidos.jsp";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-        dispatcher.forward(request, response);
+        String thankspage = "/WEB-INF/jsp/agradecimento.jsp";
+        String url = request.getServletPath();
+        if (url.equals("/cotersia")) {
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(thankspage);
+            dispatcher.forward(request, response);
+        } else if (url.equals("/pedidos")) {
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+            dispatcher.forward(request, response);
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -53,7 +60,7 @@ public class pedidosControler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-     processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**

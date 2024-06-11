@@ -79,14 +79,15 @@ public class PedidosDAO {
 
     }
 
-    public void updateEstoque(Carrinho c) {
+    public void updateEstoque(int qtd, int id) {
 
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
 
-            stmt = conexao.prepareStatement("UPDATE produtos p JOIN carrinho c ON p.id_produto = c.fk_produto SET p.estoque = CASE  WHEN p.estoque >= c.quantidade THEN p.estoque - c.quantidade ELSE 0 END WHERE c.id_carrinho = ? ");
-            stmt.setInt(1, c.getIdCarrinho());
+            stmt = conexao.prepareStatement("UPDATE produtos SET estoque =( estoque - ?) WHERE id_produto = ?");
+            stmt.setInt(1, qtd);
+            stmt.setInt(2, id);
 
             stmt.executeUpdate();
 
