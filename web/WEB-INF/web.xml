@@ -41,8 +41,8 @@
         <servlet-class>controller.checkoutController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>pedidosControler</servlet-name>
-        <servlet-class>controller.pedidosControler</servlet-class>
+        <servlet-name>pedidosController</servlet-name>
+        <servlet-class>controller.pedidosController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
@@ -113,11 +113,11 @@
         <url-pattern>/checkoutFinal</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>pedidosControler</servlet-name>
+        <servlet-name>pedidosController</servlet-name>
         <url-pattern>/pedidos</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
-        <servlet-name>pedidosControler</servlet-name>
+     <servlet-mapping>
+        <servlet-name>pedidosController</servlet-name>
         <url-pattern>/cortesia</url-pattern>
     </servlet-mapping>
     <session-config>

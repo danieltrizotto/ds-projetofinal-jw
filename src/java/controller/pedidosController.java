@@ -12,17 +12,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.bean.Carrinho;
-import model.bean.Pedidos;
-import model.dao.CarrinhoDAO;
-import model.dao.PedidosDAO;
 
 /**
  *
- * @author Senai
+ * @author User
  */
-public class pedidosControler extends HttpServlet {
+public class pedidosController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +33,7 @@ public class pedidosControler extends HttpServlet {
         String nextPage = "/WEB-INF/jsp/telaPedidos.jsp";
         String thankspage = "/WEB-INF/jsp/agradecimento.jsp";
         String url = request.getServletPath();
-        if (url.equals("/cotersia")) {
+        if (url.equals("/cortersia")) {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(thankspage);
             dispatcher.forward(request, response);
         } else if (url.equals("/pedidos")) {

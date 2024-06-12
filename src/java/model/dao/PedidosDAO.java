@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.bean.Carrinho;
@@ -43,7 +44,7 @@ public class PedidosDAO {
                 e.setModo_pago(rs.getString("modo_pago"));
                 e.setPagamento(rs.getString("pagamento"));
                 e.setValor_total(rs.getFloat("valor_total"));
-                e.setData_hora(rs.getDate("data_hora"));
+
                 p.add(e);
             }
             rs.close();
@@ -56,13 +57,14 @@ public class PedidosDAO {
 
     }
 
-    public void inserir(Pedidos p) {
-
+    public int inserirPedidos(Pedidos p) {
+        int lastId = -1;
         try {
             Connection conexao = Conexao.conectar();
-            PreparedStatement stmt = null;
-
-            stmt = conexao.prepareStatement("INSERT INTO pedidos(fk_usuario,modo_pago,valor_total,data_hora,fk_endereço)VALUES(?,?,?,now(),?)");
+            PreparedStatement stmt = conexao.prepareStatement(
+                    "INSERT INTO pedidos(fk_usuario, modo_pago, valor_total, data_hora, fk_endereço) VALUES (?, ?, ?, now(), ?)",
+                    Statement.RETURN_GENERATED_KEYS
+            );
             stmt.setInt(1, p.getFkUsuario());
             stmt.setString(2, p.getModo_pago());
             stmt.setFloat(3, p.getValor_total());
@@ -70,13 +72,18 @@ public class PedidosDAO {
 
             stmt.executeUpdate();
 
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                lastId = rs.getInt(1);
+            }
+
+            rs.close();
             stmt.close();
             conexao.close();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        return lastId;
     }
 
     public void updateEstoque(int qtd, int id) {
@@ -100,32 +107,24 @@ public class PedidosDAO {
 
     }
 
-    public void inserirPEDIDOSPROD(Carrinho c) {//para inserir na tabela pedidos produtos
+  public void inserirPEDIDOSPROD(Carrinho c, int pedidoId) {
+    try {
+        Connection conexao = Conexao.conectar();
+        PreparedStatement stmt = conexao.prepareStatement("INSERT INTO pedidos_produtos(fk_pedido, fk_produto, quantidade) VALUES (?, ?, ?)");
+        stmt.setInt(1, pedidoId);
+        stmt.setInt(2, c.getFkProduto());
+        stmt.setInt(3, c.getQuantidade());
+        System.out.println("id produto:"+ c.getFkProduto());
+        stmt.executeUpdate();
 
-        try {
-            Connection conexao = Conexao.conectar();
-            PreparedStatement stmt = null;
-
-            stmt = conexao.prepareStatement("INSERT INTO pedidos_produtos(fk_usuario,fk_produto,quantidade)VALUES(?,?,?)");
-            stmt.setInt(1, c.getFkUsuario());
-            stmt.setInt(2, c.getFkProduto());
-            stmt.setInt(3, c.getQuantidade());
-
-            stmt.executeUpdate();
-            final ResultSet rs = stmt.getGeneratedKeys();
-            if (rs.next()) {
-                final int lastId = rs.getInt(1);
-            }
-            stmt.close();
-            conexao.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        stmt.close();
+        conexao.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+}
 
-    public void deleteCheckout(int fkUsuario) {
+    public void deleteCarrinho(int fkUsuario) {
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;

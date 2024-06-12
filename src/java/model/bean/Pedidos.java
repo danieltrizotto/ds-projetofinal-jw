@@ -18,7 +18,8 @@ public class Pedidos {
     private String pagamento;
     private String modo_pago;
     private float valor_total;
-    private Date data_hora;
+    private int fk_produto;
+
 
 
    
@@ -26,15 +27,14 @@ public class Pedidos {
         
     }
 
-    public Pedidos(int idPedido, int fkUsuario, int fkEndereco, String pagamento, String modo_pago, float valor_total, Date data_hora) {
+    public Pedidos(int idPedido, int fkUsuario, int fkEndereco, String pagamento, String modo_pago, float valor_total, int fk_produto) {
         this.idPedido = idPedido;
         this.fkUsuario = fkUsuario;
         this.fkEndereco = fkEndereco;
         this.pagamento = pagamento;
         this.modo_pago = modo_pago;
         this.valor_total = valor_total;
-        this.data_hora = data_hora;
-
+        this.fk_produto = fk_produto;
     }
 
     public int getIdPedido() {
@@ -85,14 +85,14 @@ public class Pedidos {
         this.valor_total = valor_total;
     }
 
-    public Date getData_hora() {
-        return data_hora;
+    public int getFk_produto() {
+        return fk_produto;
     }
 
-    public void setData_hora(Date data_hora) {
-        this.data_hora = data_hora;
+    public void setFk_produto(int fk_produto) {
+        this.fk_produto = fk_produto;
     }
 
-   
-  
+    
+
 }

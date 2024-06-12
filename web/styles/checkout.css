@@ -163,6 +163,13 @@ main {
     flex-direction: column;
     margin-right: 300px;
 }
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
 footer {
     width: 100vw;
     text-align: center;
