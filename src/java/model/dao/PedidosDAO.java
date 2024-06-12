@@ -107,14 +107,14 @@ public class PedidosDAO {
 
     }
 
-  public void inserirPEDIDOSPROD(Carrinho c, int pedidoId) {
+  public void inserirPEDIDOSPROD(int qtd,int fk, int pedidoId) {
     try {
         Connection conexao = Conexao.conectar();
-        PreparedStatement stmt = conexao.prepareStatement("INSERT INTO pedidos_produtos(fk_pedido, fk_produto, quantidade) VALUES (?, ?, ?)");
+        PreparedStatement stmt = conexao.prepareStatement("INSERT INTO pedidos_produtos(pedido_fk,produto_fk, quantidade) VALUES (?, ?, ?)");
         stmt.setInt(1, pedidoId);
-        stmt.setInt(2, c.getFkProduto());
-        stmt.setInt(3, c.getQuantidade());
-        System.out.println("id produto:"+ c.getFkProduto());
+        stmt.setInt(2, fk);
+        stmt.setInt(3, qtd);
+       
         stmt.executeUpdate();
 
         stmt.close();

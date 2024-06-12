@@ -148,15 +148,15 @@ public class checkoutController extends HttpServlet {
             int enderecoID = Integer.parseInt(enderecoIDParam);
             
             ped.setModo_pago(metodoPagamento);
-            ped.setValor_total(valorTotal);
+            ped.setValor_total(valorTotal + 5);
             ped.setFkUsuario(usuarioId);
             ped.setFkEndereco(enderecoID);
             Carrinho c = new Carrinho();
             int idPedido = dao.inserirPedidos(ped);
        
             for (int i = 0; i < carrinho.size(); i++) {
-                dao.inserirPEDIDOSPROD(carrinho.get(i), c.);
-                dao.updateEstoque(carrinho.get(i), carrinho.get(i).getFkProduto());
+                dao.inserirPEDIDOSPROD(carrinho.get(i).getQuantidade(),carrinho.get(i).getFkProduto(), idPedido);
+                dao.updateEstoque(carrinho.get(i).getQuantidade(), carrinho.get(i).getFkProduto());
                   System.out.println("Inserindo produto no pedido: " +carrinho.get(i).getFkProduto()); // Adicionando log para depuração
             }
             dao.deleteCarrinho(usuarioId);
