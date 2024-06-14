@@ -117,13 +117,15 @@ main {
 
 .carrinho {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
-.carrinho .excluir button{
+
+.carrinho .excluir button {
     display: flex;
-     justify-content: flex-end;
+    justify-content: flex-end;
 }
-.finalizarArea{
+
+.finalizarArea {
     background-color: #ffffff;
     position: absolute;
     top: 100%;
@@ -133,22 +135,37 @@ main {
     width: 67vw;
     border-radius: 5px;
 }
-.finalizarArea .area{
+
+button.excluirCarrinh  {
+    margin-top: 60vh;
+    margin-left: 30vh;
+    border-radius: 5px;
+    border: none;
+    background-color: red;
+    color: #ffffff;
+}
+
+
+
+.finalizarArea .area {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 .finalizarArea p {
     margin-top: 5px;
     margin-bottom: 1rem;
 }
-.finalizarArea .area button{
+
+.finalizarArea .area button {
     background-color: #7AB32B;
     border: none;
     border-radius: 10px;
-    color:#ffffff;
+    color: #ffffff;
     margin-right: 30px;
 }
+
 footer {
     width: 100vw;
     text-align: center;

@@ -45,7 +45,7 @@ public class CarrinhoDAO {
                 c.setDescriçao(rs.getString("descriçao"));
                 c.setFkCategoria(rs.getInt("fk_categoria"));
                 c.setImgBlob(rs.getBytes("imagem"));
-        
+
                 car.add(c);
             }
             rs.close();
@@ -79,15 +79,15 @@ public class CarrinhoDAO {
         }
 
     }
-public void excluirProduto(Carrinho c) {///insert no carrinho
+
+    public void excluirProduto(int id) {///delete no carrinho
 
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
 
-            stmt = conexao.prepareStatement("DELETE FROM carrinho WHERE fk_produto=?;");
-            stmt.setInt(1, c.getFkProduto());
-           
+            stmt = conexao.prepareStatement("DELETE FROM carrinho WHERE id_carrinho = ?;");
+            stmt.setInt(1, id);
 
             stmt.executeUpdate();
 
@@ -99,5 +99,5 @@ public void excluirProduto(Carrinho c) {///insert no carrinho
         }
 
     }
-  
+
 }
