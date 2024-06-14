@@ -53,6 +53,7 @@ public class produtosController extends HttpServlet {
         List<Produtos> produtos = new ArrayList();
         CategoriasDAO categoriasDAO = new CategoriasDAO();
         List<Categorias> categorias = categoriasDAO.listarCategorias();
+  
         request.setAttribute("categorias", categorias);
         String url = request.getServletPath();
         System.out.println(url);
@@ -133,6 +134,13 @@ public class produtosController extends HttpServlet {
             bean.setQuantidade(quantidade);
 
             dao.inserir(bean);
+          // Atualizar a lista de carrinho na sessão
+    List<Carrinho> carrinho = (List<Carrinho>) session.getAttribute("carrinho");
+    if (carrinho == null) {
+        carrinho = new ArrayList<>();
+    }
+    carrinho.add(bean);
+    session.setAttribute("carrinho", carrinho);
             System.out.println(request.getParameter("id"));
 
             System.out.println(url);

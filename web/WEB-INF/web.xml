@@ -97,6 +97,14 @@
         <url-pattern>/carrinho</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>carrinhoController</servlet-name>
+        <url-pattern>/excluirCarrin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>carrinhoController</servlet-name>
+        <url-pattern>/apagarProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>checkoutController</servlet-name>
         <url-pattern>/checkout</url-pattern>
     </servlet-mapping>

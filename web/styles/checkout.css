@@ -77,11 +77,6 @@ main img {
     height: 200px;
 }
 
-main {
-    height: 1000px;
-    background-color: #d5f5c8;
-}
-
 form input {
     border-radius: 5px;
     border: none;
@@ -97,7 +92,7 @@ body {
 }
 
 main {
-    height: 100vh;
+    height: 150vh;
     width: 100vw;
     background-color: #d5f5c8;
 }
@@ -170,6 +165,7 @@ main {
 .visible {
     display: block;
 }
+
 footer {
     width: 100vw;
     text-align: center;

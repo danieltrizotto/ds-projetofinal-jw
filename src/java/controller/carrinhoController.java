@@ -29,7 +29,7 @@ import model.dao.ProdutosDAO;
  * @author Senai
  */
 public class carrinhoController extends HttpServlet {
-
+Carrinho ca = new Carrinho();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -98,6 +98,23 @@ public class carrinhoController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+           CategoriasDAO categoriasDAO = new CategoriasDAO();
+        List<Categorias> categorias = categoriasDAO.listarCategorias();
+        request.setAttribute("categorias", categorias);
+        CarrinhoDAO produto = new CarrinhoDAO();//model dao
+        List<Carrinho> c = new ArrayList();
+        HttpSession session = request.getSession();
+        // recuperar o id do usuário da sessão
+        Integer usuarioId = (Integer) session.getAttribute("usuarioId");
+        c = produto.leitura(usuarioId);
+        request.setAttribute("carrinho", c);
+              String url = request.getServletPath();
+        List<Carrinho> carrinho = new ArrayList();
+        if (url.equals("/apagarProduto")) {
+                int produtoId = Integer.parseInt(request.getParameter("id"));
+                ca.setFkProduto(produtoId);
+               produto.excluirProduto(ca);
+        }
 
     }
 

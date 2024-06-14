@@ -53,8 +53,12 @@
                             <p class="card-text">Valor unitario:${carrinho.preço}</p>
                             <p class="card-text">Valor total:${carrinho.preço * carrinho.quantidade }</p>
                         </div>
-                        <div class="excluir"><button><i class="fa-solid fa-trash"></i></button></div>
+                       <form action="apagarProduto">
+                             <input type="hidden" name="id" value="${carrinho.fkProduto}">
+                           <div class="excluir"><button name="apagarP"><i class="fa-solid fa-trash"></i></button></div>
+                       </form>
                     </div>
+                    <form action="excluirCarrin"><button class="excluirCarrinh" name="excluirCarrin">Excluir carrinho</button></form>
                     <hr>
                 </c:forEach>
             </div>

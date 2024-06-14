@@ -10,6 +10,7 @@
               crossorigin="anonymous">
         <title>Checkout</title>
         <script src="https://kit.fontawesome.com/0444e3e789.js" crossorigin="anonymous"></script>
+        <script src="../web/js/yourScript.js"></script>
         <link rel="stylesheet" href="./styles/checkout.css" />
     </head>
 
@@ -74,12 +75,13 @@
                         <br>
                         <input type="text" placeholder="CEP" name="cep">
                         <br>
-                        <button type="submit" name="freteBtn" class="freteBtn">informar endereço</button>
+                        <button type="submit" name="freteBtn" class="freteBtn" style="color: aliceblue; background-color: black;">informar endereço</button>
                     </form>
                 </div>
+                <br>
                 <form action="checkoutPagamento" method="POST" name="formpaga">
                     <div class="selecionarLocal" style="margin-right: 250px ">
-                        <label>endereço?</a>
+
                             <label for="local">Endereço:</label>
                             <select name="enderecoID" id="local">
                                 <c:forEach items="${enderecos}" var="endereco">
@@ -88,19 +90,42 @@
                             </select>
                     </div>
                     <br>
-
-
-                    <div class="metodoPagamneto" style="margin-right: 300px;">
+                    <div class="metodoPagamento">
                         <p><b>Método de Pagamento:</b><br>
-                            <input type="radio" name="metodo" value="pix" onclick="mostrarDiv();">Pix<br>
-                            <input type="radio" name="metodo" value="debito" onclick="mostrarDiv();">Débito<br>
-                            <input type="radio" name="metodo" value="credito" onclick="mostrarDiv();">Crédito
+                            <input type="radio" name="metodo" value="pix" onclick="mostrarDiv()">Pix<br>
+                            <input type="radio" name="metodo" value="debito" onclick="mostrarDiv()">Débito<br>
+                            <input type="radio" name="metodo" value="credito" onclick="mostrarDiv()">Crédito
                         </p>
+                        <div class="infoCartao hidden">
+                    
+                            <div class="form-group">
+                                <label for="nomeCartao">Nome no Cartao</label>
+                                <input type="text" id="nomeCartao" name="nomeCartao" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="numeroCartao">Número do Cartao</label>
+                                <input type="text" id="numeroCartao" name="numeroCartao" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="validade">Validade (MM/AA)</label>
+                                <input type="text" id="validadeCartao" name="validadeCartao" style="width: 50px;" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" name="cvv" style="width: 30px;"  required>
+                            </div>
+                        </div>
+                        <div class="pagarPix hidden">
+                            <div class="form-group">
+                                <label for="pixCode">Pix</label>
+                                <input type="text" id="pixCode" name="pixCode" readonly>
+                            </div>
+                        </div>
                     </div>
                     <br>
                     <div class="finalizarPedido">
                         <p>preço frete:5,00</p>
-                        <p>preço total:${total}</p>
+                        <p>preço total:${total + 5}</p>
 
                         <button class="compra" type="submit" name="compra">Finalizar Compra</button>
 
@@ -114,6 +139,40 @@
             <h3>CYBER TREND</h3>
             <p>Daniel trizotto@2024</p>
         </footer>
+  <script>
+    function mostrarDiv() {///mostra os div
+    var metodo = document.querySelector('input[name="metodo"]:checked').value;
+    var infoCartao = document.querySelector('.infoCartao');
+    var pagarPix = document.querySelector('.pagarPix');
+    var pixCodeInput = document.getElementById('pixCode');
+    
+
+    if (metodo === 'credito' || metodo === 'debito') {//para cartao    
+        infoCartao.classList.add('visible');
+        infoCartao.classList.remove('hidden');
+        pagarPix.classList.add('hidden');
+        pagarPix.classList.remove('visible');
+    } else if (metodo === 'pix') {//para pix
+        infoCartao.classList.add('hidden');
+        infoCartao.classList.remove('visible');
+        pagarPix.classList.add('visible');
+        pagarPix.classList.remove('hidden');
+        pixCodeInput.value = gerarCodigoPix(12); 
+    } 
+
+}
+
+
+function gerarCodigoPix(length) {
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var code = '';
+    for (var i = 0; i < length; i++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return code;
+}
+
+  </script>
     </body>
 
 </html>

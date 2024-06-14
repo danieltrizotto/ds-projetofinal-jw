@@ -79,6 +79,25 @@ public class CarrinhoDAO {
         }
 
     }
+public void excluirProduto(Carrinho c) {///insert no carrinho
 
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+
+            stmt = conexao.prepareStatement("DELETE FROM carrinho WHERE fk_produto=?;");
+            stmt.setInt(1, c.getFkProduto());
+           
+
+            stmt.executeUpdate();
+
+            stmt.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
   
 }
