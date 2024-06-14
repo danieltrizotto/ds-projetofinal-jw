@@ -101,7 +101,17 @@ public class checkoutController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
+        //para atualizar pagina
+        CarrinhoDAO produto = new CarrinhoDAO(); // model dao
+        HttpSession session = request.getSession();
+        Integer usuarioId = (Integer) session.getAttribute("usuarioId");
+        List<Carrinho> c = produto.leitura(usuarioId);
+        request.setAttribute("carrinho", c);
+          ///listar os endereços
+        List<Endereço> e = new ArrayList();
+        e = ed.leitura(usuarioId);
+        request.setAttribute("enderecos", e);
+        
     }
 
     /**
@@ -115,7 +125,7 @@ public class checkoutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+   
         String url = request.getServletPath();
         List<Carrinho> carrinho = new ArrayList();
         HttpSession session = request.getSession();
@@ -133,6 +143,7 @@ public class checkoutController extends HttpServlet {
 
             ed.inserirEndereço(e);
             System.out.println("feito endereço");
+             response.sendRedirect("./checkout");
         } else if (url.equals("/checkoutPagamento")) {
             String metodoPagamento = request.getParameter("metodo");
             String enderecoIDParam = request.getParameter("enderecoID");

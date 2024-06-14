@@ -119,6 +119,7 @@ h1 {
 .areaProduto input{
     width: 170px;
     height: 20%;
+    margin-left: 2vw;
 }
 
 .areaProduto button{

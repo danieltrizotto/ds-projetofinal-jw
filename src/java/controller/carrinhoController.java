@@ -30,8 +30,10 @@ import model.dao.ProdutosDAO;
  * @author Senai
  */
 public class carrinhoController extends HttpServlet {
-Carrinho ca = new Carrinho();
- PedidosDAO dao = new PedidosDAO();
+
+    Carrinho ca = new Carrinho();
+    PedidosDAO dao = new PedidosDAO();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -66,7 +68,7 @@ Carrinho ca = new Carrinho();
         }
 
         request.setAttribute("carrinho", c);
-         request.setAttribute("total", valorTotal);
+        request.setAttribute("total", valorTotal);
 
         String nextPage = "/WEB-INF/jsp/telaCarrinho.jsp";///redireciona ao carrinho
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
@@ -86,12 +88,13 @@ Carrinho ca = new Carrinho();
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-          CarrinhoDAO produto = new CarrinhoDAO(); // model dao
-    HttpSession session = request.getSession();
-    Integer usuarioId = (Integer) session.getAttribute("usuarioId");
-    List<Carrinho> c = produto.leitura(usuarioId);
-    request.setAttribute("carrinho", c);
-    request.getRequestDispatcher("/caminho/para/suaPaginaCarrinho.jsp").forward(request, response);
+        //para atualizar pagina
+        CarrinhoDAO produto = new CarrinhoDAO(); // model dao
+        HttpSession session = request.getSession();
+        Integer usuarioId = (Integer) session.getAttribute("usuarioId");
+        List<Carrinho> c = produto.leitura(usuarioId);
+        request.setAttribute("carrinho", c);
+        
     }
 
     /**
@@ -105,8 +108,8 @@ Carrinho ca = new Carrinho();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-          
+
+
         CarrinhoDAO produto = new CarrinhoDAO();//model dao
         List<Carrinho> c = new ArrayList();
         HttpSession session = request.getSession();
@@ -114,18 +117,18 @@ Carrinho ca = new Carrinho();
         Integer usuarioId = (Integer) session.getAttribute("usuarioId");
         c = produto.leitura(usuarioId);
         request.setAttribute("carrinho", c);
-              String url = request.getServletPath();
+        String url = request.getServletPath();
         List<Carrinho> carrinho = new ArrayList();
         if (url.equals("/apagarProduto")) {
-                int carrinhoId = Integer.parseInt(request.getParameter("id"));
-               produto.excluirProduto(carrinhoId);
-               System.out.println("apagado produto de id:"+carrinhoId);
-               response.sendRedirect("./carrinho");
-        }else if (url.equals("/excluirCarrin")) {
-         
-               dao.deleteCarrinho(usuarioId);
-               System.out.println("apagado produto de id:"+usuarioId);
-               response.sendRedirect("./carrinho");
+            int carrinhoId = Integer.parseInt(request.getParameter("id"));
+            produto.excluirProduto(carrinhoId);//excluir produto especifico
+            System.out.println("apagado produto de id:" + carrinhoId);
+            response.sendRedirect("./carrinho");
+            
+        } else if (url.equals("/excluirCarrin")) {
+            dao.deleteCarrinho(usuarioId);//excluir todo o carrinho
+            System.out.println("apagado produto de id:" + usuarioId);
+            response.sendRedirect("./carrinho");
         }
 
     }

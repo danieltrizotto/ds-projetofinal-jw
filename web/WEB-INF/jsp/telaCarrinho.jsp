@@ -63,7 +63,7 @@
                 </c:forEach>
             </div>
             <br><br><br><br><br>
-            <form action="excluirCarrin" method="post"><button class="excluirCarrinh" name="excluirCarrin">Excluir carrinho</button></form>
+            <form action="excluirCarrin" method="post"><button class="excluirCarrinh" type="submit">Excluir carrinho</button></form>
             <div class="finalizarArea">
                 <div class="area">
                     <p>Total Carrinho:${total}</p>
