@@ -159,8 +159,9 @@ public class checkoutController extends HttpServlet {
                 for (int i = 0; i < carrinho.size(); i++) {
                     int quantidade = carrinho.get(i).getQuantidade();
                     int fkProduto = carrinho.get(i).getFkProduto();
+                    float preco_uni = carrinho.get(i).getPreço();
                     System.out.println("Inserindo produto no pedido: id pedido = " + idPedido + ", fk produto = " + fkProduto + ", quantidade = " + quantidade);
-                    dao.inserirPEDIDOSPROD(quantidade, fkProduto, idPedido);
+                    dao.inserirPEDIDOSPROD(quantidade, fkProduto, idPedido, preco_uni);
                     dao.updateEstoque(quantidade, fkProduto);
                 }
 

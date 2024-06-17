@@ -49,6 +49,7 @@ public class loginController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /**
@@ -67,46 +68,42 @@ public class loginController extends HttpServlet {
             System.out.println("passou do url");
             String homePage = "/WEB-INF/jsp/telaHome.jsp";
             String admPage = "/WEB-INF/jsp/telaADM.jsp";
-            String nextPage = "/WEB-INF/jsp/index.jsp";
-            Usuarios user = new Usuarios();
-            UsuariosDAO valida = new UsuariosDAO();
+            String loginPage = "/WEB-INF/jsp/index.jsp";
+            Usuarios usu = new Usuarios();
+            UsuariosDAO dao = new UsuariosDAO();
 
-            user.setUsuario(request.getParameter("usuario"));
-            user.setSenha(request.getParameter("senha"));
+            usu.setUsuario(request.getParameter("usuario"));
+            usu.setSenha(request.getParameter("senha"));
 
             try {
-                Usuarios userAutenticado = valida.validaUser(user);
+                Usuarios userLogado = dao.validalogin(usu);
                 System.out.println("passou do try");
-                System.out.println("user:" + userAutenticado.getUsuario());
-                System.out.println("senha:" + userAutenticado.getSenha());
-                System.out.println("tipo " + userAutenticado.getTipo());
-                if (userAutenticado != null && !userAutenticado.getNome().isEmpty()) {
-                    if (userAutenticado.getTipo().equals("admin")) {//entrar como usuario admin 
+                System.out.println("user:" + userLogado.getUsuario());
+                System.out.println("senha:" + userLogado.getSenha());
+                System.out.println("tipo " + userLogado.getTipo());
+                if (userLogado != null && !userLogado.getNome().isEmpty()) {
+                    if (userLogado.getTipo().equals("admin")) {//entrar como usuario admin 
                         System.out.println(" passou do if admin");
                         System.out.println(admPage);
                         response.sendRedirect("./cadastrar-produto");
                     }
-                    if (userAutenticado.getTipo().equals("cliente")) {//entrar como usuario cliente
+                    if (userLogado.getTipo().equals("cliente")) {//entrar como usuario cliente
                         System.out.println(" passou do if cliente");
                         System.out.println(homePage);
 
                         // salvar o ID do usuario na sessao
                         HttpSession session = request.getSession();
-                        session.setAttribute("usuarioId", userAutenticado.getId_usuario());
+                        session.setAttribute("usuarioId", userLogado.getId_usuario());
 
                         response.sendRedirect("./home");
                     }
 
-                } else if(userAutenticado == null && userAutenticado.getNome().isEmpty()){
-                    request.setAttribute("errorMessage", "Usuário ou senha inválidos");
-                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-                    dispatcher.forward(request, response);
-                    System.out.println("erro login");
-                }
+               } 
             } catch (Exception e) {
                 System.out.println("nao passou do if");
-                request.setAttribute("errorMessage", "poblema com o banco de dados");
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+                System.out.println("erro:"+e);
+                request.setAttribute("errorMessage", "problema no banco de dados  ou usuario & senha incorreta ");
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(loginPage);
                 dispatcher.forward(request, response);
             }
         } else {

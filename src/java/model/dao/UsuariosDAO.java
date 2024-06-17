@@ -55,8 +55,8 @@ public class UsuariosDAO {
     }
 
    
-    public Usuarios validaUser(Usuarios user) {
-        Usuarios usuarioValido = new Usuarios();
+    public Usuarios validalogin(Usuarios user) {
+        Usuarios Valido = new Usuarios();
         try {
             Connection con = Conexao.conectar();
             PreparedStatement stmt = null;
@@ -68,11 +68,11 @@ public class UsuariosDAO {
             rs = stmt.executeQuery();
             
             if(rs.next()) {
-                usuarioValido.setId_usuario(rs.getInt("id_usuario"));
-                usuarioValido.setNome(rs.getString("nome"));
-                usuarioValido.setTipo(rs.getString("tipo"));
-                usuarioValido.setUsuario(rs.getString("usuario"));
-                usuarioValido.setSenha(rs.getString("senha"));
+                Valido.setId_usuario(rs.getInt("id_usuario"));
+                Valido.setNome(rs.getString("nome"));
+                Valido.setTipo(rs.getString("tipo"));
+                Valido.setUsuario(rs.getString("usuario"));
+                Valido.setSenha(rs.getString("senha"));
             }
             
             rs.close();
@@ -82,7 +82,7 @@ public class UsuariosDAO {
             e.printStackTrace();
            
         }
-        return usuarioValido;
+        return Valido;
     }
 
     public void inserirUsuario(Usuarios user) {

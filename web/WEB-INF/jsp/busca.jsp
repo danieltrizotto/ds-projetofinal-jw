@@ -42,7 +42,7 @@
         </div>
     </header>
     <main>
-        <h1>PESQUISA</h1>
+        <h1 id="h1Pesquisa">PESQUISA</h1>
         <hr>
         <div class="produtos">
             <%-- Use JSP para iterar sobre a lista de livros e exibi-los na tabela --%>

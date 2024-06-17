@@ -51,7 +51,7 @@ public class ProdutosDAO {
 ///
     }
 
-    public List<Produtos> buscaProdutos(String busca) {
+    public List<Produtos> pesquisaProdutos(String busca) {
         List<Produtos> resultBusca = new ArrayList<>();
         try {
             Connection conexao = Conexao.conectar();
@@ -85,7 +85,7 @@ public class ProdutosDAO {
 
     }
 
-    public List<Produtos> buscaCategorias(int categoria) {
+    public List<Produtos> pesquisaCategorias(int categoria) {
         List<Produtos> resultBusca = new ArrayList<>();
         try {
             Connection conexao = Conexao.conectar();

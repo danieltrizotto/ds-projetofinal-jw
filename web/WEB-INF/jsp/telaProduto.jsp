@@ -69,6 +69,7 @@
                             <form name="formCarr" method="GET" action="enviar-carr">
                                 <input type="hidden" name="id" value="${produto.id_Produto}">
                                 <input type="number" placeholder="Quantidade" class="form-control" id="quantidade" name="quantidade" min="1" required>
+                                  <input type="hidden" name="preco_uni" value="${produto.preço}">
                                 <button class="comprar" type="submit">Comprar</button>
                             </form>
 

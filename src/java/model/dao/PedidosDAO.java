@@ -107,13 +107,14 @@ public class PedidosDAO {
 
     }
 
-  public void inserirPEDIDOSPROD(int qtd,int fk, int pedidoId) {
+  public void inserirPEDIDOSPROD(int qtd,int fk, int pedidoId, float preço_unitario) {
     try {
         Connection conexao = Conexao.conectar();
-        PreparedStatement stmt = conexao.prepareStatement("INSERT INTO pedidos_produtos(pedido_fk,produto_fk, quantidade) VALUES (?, ?, ?)");
+        PreparedStatement stmt = conexao.prepareStatement("INSERT INTO pedidos_produtos(pedido_fk,produto_fk, quantidade, preco_unitario) VALUES (?, ?, ?, ?)");
         stmt.setInt(1, pedidoId);
         stmt.setInt(2, fk);
         stmt.setInt(3, qtd);
+        stmt.setFloat(4, preço_unitario);
        
         stmt.executeUpdate();
 
