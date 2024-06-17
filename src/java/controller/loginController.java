@@ -81,16 +81,16 @@ public class loginController extends HttpServlet {
                 System.out.println("senha:" + userAutenticado.getSenha());
                 System.out.println("tipo " + userAutenticado.getTipo());
                 if (userAutenticado != null && !userAutenticado.getNome().isEmpty()) {
-                    if (userAutenticado.getTipo().equals("admin")) {
+                    if (userAutenticado.getTipo().equals("admin")) {//entrar como usuario admin 
                         System.out.println(" passou do if admin");
                         System.out.println(admPage);
                         response.sendRedirect("./cadastrar-produto");
                     }
-                    if (userAutenticado.getTipo().equals("cliente")) {
+                    if (userAutenticado.getTipo().equals("cliente")) {//entrar como usuario cliente
                         System.out.println(" passou do if cliente");
                         System.out.println(homePage);
 
-                        // salvar o ID do usuário na sessao
+                        // salvar o ID do usuario na sessao
                         HttpSession session = request.getSession();
                         session.setAttribute("usuarioId", userAutenticado.getId_usuario());
 

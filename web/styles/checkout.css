@@ -116,11 +116,12 @@ main {
     justify-content: space-evenly;
 }
 
-.pagamentoCheck{
+.pagamentoCheck {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
+
 .calculoFrete {
     display: flex;
     align-items: flex-end;
@@ -148,16 +149,29 @@ main {
     flex-direction: column;
     margin-right: 300px;
 }
-.metodoPagamneto p input{
+
+.metodoPagamneto p input {
     background-color: #ffffff;
     border-radius: 10px;
 }
-.finalizarPedido{
+
+.finalizarPedido {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     flex-direction: column;
     margin-right: 300px;
+    background-color: white;
+    width: 18vw;
 }
+
+
+.finalizarPedido button {
+    border: none;
+    background-color: black;
+    color: aliceblue;
+    margin-bottom: 5px;
+}
+
 .hidden {
     display: none;
 }

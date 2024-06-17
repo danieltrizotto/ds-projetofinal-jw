@@ -33,12 +33,12 @@ public class pedidosController extends HttpServlet {
         String nextPage = "/WEB-INF/jsp/telaPedidos.jsp";
         String thankspage = "/WEB-INF/jsp/agradecimento.jsp";
         String url = request.getServletPath();
-        if (url.equals("/cortersia")) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(thankspage);
-            dispatcher.forward(request, response);
-        } else if (url.equals("/pedidos")) {
+        if (url.equals("/cortesia")) {//para ver a apgina de cortersia
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(thankspage);
+        dispatcher.forward(request, response);
+        }else if (url.equals("/pedidos")) {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-            dispatcher.forward(request, response);
+        dispatcher.forward(request, response);
         }
         
     }

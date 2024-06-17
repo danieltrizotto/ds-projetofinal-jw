@@ -107,11 +107,11 @@ public class checkoutController extends HttpServlet {
         Integer usuarioId = (Integer) session.getAttribute("usuarioId");
         List<Carrinho> c = produto.leitura(usuarioId);
         request.setAttribute("carrinho", c);
-          ///listar os endereços
+        ///listar os endereços
         List<Endereço> e = new ArrayList();
         e = ed.leitura(usuarioId);
         request.setAttribute("enderecos", e);
-        
+
     }
 
     /**
@@ -125,10 +125,10 @@ public class checkoutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   
+
         String url = request.getServletPath();
-        List<Carrinho> carrinho = new ArrayList();
         HttpSession session = request.getSession();
+        List<Carrinho> carrinho = (List<Carrinho>) session.getAttribute("carrinho");
         Integer usuarioId = (Integer) session.getAttribute("usuarioId");
         if (url.equals("/checkoutFrete")) {
             ///para fazer insert em endereços
@@ -143,19 +143,11 @@ public class checkoutController extends HttpServlet {
 
             ed.inserirEndereço(e);
             System.out.println("feito endereço");
-             response.sendRedirect("./checkout");
+            response.sendRedirect("./checkout");
         } else if (url.equals("/checkoutPagamento")) {
             String metodoPagamento = request.getParameter("metodo");
-            String enderecoIDParam = request.getParameter("enderecoID");
-
-            System.out.println("Metodo de Pagamento: " + metodoPagamento);
-            System.out.println("Endereco ID Param: " + enderecoIDParam);
-
-            if (metodoPagamento == null || enderecoIDParam == null || enderecoIDParam.isEmpty()) {
-                throw new IllegalArgumentException("Parâmetros inválidos.");
-            }
-
-            int enderecoID = Integer.parseInt(enderecoIDParam);
+            String enderecoIDString = request.getParameter("enderecoID");
+            int enderecoID = Integer.parseInt(enderecoIDString );
 
             ped.setModo_pago(metodoPagamento);
             ped.setValor_total(valorTotal + 5);
@@ -163,26 +155,19 @@ public class checkoutController extends HttpServlet {
             ped.setFkEndereco(enderecoID);
             Carrinho c = new Carrinho();
             int idPedido = dao.inserirPedidos(ped);
-            System.out.println("Inserindo produto no pedido: ID Pedido = " + idPedido + ", FK Produto = " + c.getFkProduto() + ", Quantidade = " + c.getQuantidade());
-            if (carrinho != null && !carrinho.isEmpty()) {
 
                 for (int i = 0; i < carrinho.size(); i++) {
                     int quantidade = carrinho.get(i).getQuantidade();
                     int fkProduto = carrinho.get(i).getFkProduto();
-
-                    System.out.println("Inserindo produto no pedido: ID Pedido = " + idPedido + ", FK Produto = " + fkProduto + ", Quantidade = " + quantidade);
-
+                    System.out.println("Inserindo produto no pedido: id pedido = " + idPedido + ", fk produto = " + fkProduto + ", quantidade = " + quantidade);
                     dao.inserirPEDIDOSPROD(quantidade, fkProduto, idPedido);
                     dao.updateEstoque(quantidade, fkProduto);
                 }
 
-               
-            } else {
-                System.err.println("O carrinho está vazio ou é nulo");
-            }
- // remover o carrinho do usuário após a finalização do pedido
-                dao.deleteCarrinho(usuarioId);
-            response.sendRedirect("./cortersia");//redireciona a tela pedidos
+            dao.deleteCarrinho(usuarioId);   // remover o carrinho do usuário após a finalização do pedido
+            session.removeAttribute("carrinho");   // remover o carrinho da sessao apos a finalização do pedido
+            valorTotal = 0;///apaga o valor salvo apos pedido
+            response.sendRedirect("./cortesia");//redireciona a tela pedidos
         }
     }
 

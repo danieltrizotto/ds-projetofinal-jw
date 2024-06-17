@@ -109,7 +109,7 @@ public class produtosController extends HttpServlet {
             int p = Integer.parseInt(request.getParameter("id"));
             Produtos pr = new Produtos();
             System.out.println(url);
-            pr = produtosDAO.mostrarProdutos(p);
+            pr = produtosDAO.mostrarProdutos(p);//mostra o o produto do id
             if (pr.getImgBlob() != null) {//trata a imagem
                 String imagemBase64 = Base64.getEncoder().encodeToString(pr.getImgBlob());
                 pr.setImg(imagemBase64);
@@ -141,8 +141,8 @@ public class produtosController extends HttpServlet {
             }
             carrinho.add(bean);
             session.setAttribute("carrinho", carrinho);
-            System.out.println(request.getParameter("id"));
 
+            System.out.println(request.getParameter("id"));
             System.out.println(url);
             // redirecionar para a página do carrinho
             response.sendRedirect("./carrinho");
@@ -175,30 +175,29 @@ public class produtosController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//insert em produto
         String url = request.getServletPath();
-   
-            Produtos newProduto = new Produtos();
-            newProduto.setNome(request.getParameter("nome"));
-            newProduto.setFk_categoria(Integer.parseInt(request.getParameter("categoria")));
-            newProduto.setPreço(Float.parseFloat(request.getParameter("valor")));
-            newProduto.setDescriçao(request.getParameter("descricao"));
+        Produtos newProduto = new Produtos();
+        newProduto.setNome(request.getParameter("nome"));
+        newProduto.setFk_categoria(Integer.parseInt(request.getParameter("categoria")));
+        newProduto.setPreço(Float.parseFloat(request.getParameter("valor")));
+        newProduto.setDescriçao(request.getParameter("descricao"));
+//tratar a imagem
+        Part filePart = request.getPart("imagem");
+        InputStream istream = filePart.getInputStream();
+        ByteArrayOutputStream byteA = new ByteArrayOutputStream();
+        byte[] img = new byte[4096];
+        int byteRead = -1;
+        while ((byteRead = istream.read(img)) != -1) {
+            byteA.write(img, 0, byteRead);
+        }
+        byte[] imgBytes = byteA.toByteArray();
+        newProduto.setImgBlob(imgBytes);
+        newProduto.setEstoque(Integer.parseInt(request.getParameter("estoque")));
+        ProdutosDAO produtosD = new ProdutosDAO();
+        produtosD.insertProduto(newProduto);
+        response.sendRedirect("./telaADM");
 
-            Part filePart = request.getPart("imagem");
-            InputStream istream = filePart.getInputStream();
-            ByteArrayOutputStream byteA = new ByteArrayOutputStream();
-            byte[] img = new byte[4096];
-            int byteRead = -1;
-            while ((byteRead = istream.read(img)) != -1) {
-                byteA.write(img, 0, byteRead);
-            }
-            byte[] imgBytes = byteA.toByteArray();
-            newProduto.setImgBlob(imgBytes);
-            newProduto.setEstoque(Integer.parseInt(request.getParameter("estoque")));
-            ProdutosDAO produtosD = new ProdutosDAO();
-            produtosD.insertProduto(newProduto);
-             response.sendRedirect("./telaADM");
-        
     }
 
     /**

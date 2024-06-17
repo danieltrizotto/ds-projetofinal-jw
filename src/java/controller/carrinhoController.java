@@ -113,6 +113,7 @@ public class carrinhoController extends HttpServlet {
         CarrinhoDAO produto = new CarrinhoDAO();//model dao
         List<Carrinho> c = new ArrayList();
         HttpSession session = request.getSession();
+         List<Carrinho> ca = (List<Carrinho>) session.getAttribute("carrinho");
         // recuperar o id do usuário da sessão
         Integer usuarioId = (Integer) session.getAttribute("usuarioId");
         c = produto.leitura(usuarioId);
@@ -122,11 +123,13 @@ public class carrinhoController extends HttpServlet {
         if (url.equals("/apagarProduto")) {
             int carrinhoId = Integer.parseInt(request.getParameter("id"));
             produto.excluirProduto(carrinhoId);//excluir produto especifico
+             session.removeAttribute("carrinho");
             System.out.println("apagado produto de id:" + carrinhoId);
             response.sendRedirect("./carrinho");
             
         } else if (url.equals("/excluirCarrin")) {
             dao.deleteCarrinho(usuarioId);//excluir todo o carrinho
+             session.removeAttribute("carrinho");
             System.out.println("apagado produto de id:" + usuarioId);
             response.sendRedirect("./carrinho");
         }

@@ -3,14 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/src/java/model/bean/Produtos.java</file>
-            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/web/WEB-INF/jsp/telaCarrinho.jsp</file>
-            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/web/WEB-INF/dispatcher-servlet.xml</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/src/java/controller/checkoutController.java</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/src/java/model/bean/Categorias.java</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/src/java/model/bean/Carrinho.java</file>
             <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/src/java/controller/carrinhoController.java</file>
-            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/web/WEB-INF/jsp/telaHome.jsp</file>
-            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/web/WEB-INF/jsp/telaProduto.jsp</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/src/java/model/dao/PedidosDAO.java</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/src/java/controller/pedidosController.java</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/web/WEB-INF/jsp/telaCheckout.jsp</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/src/java/conexao/Conexao.java</file>
             <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/src/java/controller/produtosController.java</file>
+            <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/web/WEB-INF/jsp/agradecimento.jsp</file>
             <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/src/java/controller/loginController.java</file>
             <file>file:/C:/Users/User/Documents/codigos%20daniel/ds-projetofinal-jw/src/java/model/dao/CarrinhoDAO.java</file>
         </group>
