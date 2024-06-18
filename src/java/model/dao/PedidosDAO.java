@@ -38,9 +38,8 @@ public class PedidosDAO {
             while (rs.next()) {
                 Pedidos e = new Pedidos();
                 e.setIdPedido(rs.getInt("id_pedido"));
-                e.setFkEndereco(rs.getInt("fk_endereço"));
+                e.setFkEndereco(rs.getInt("fk_endereco"));
                 e.setFkUsuario(rs.getInt("fk_usuario"));
-                e.setFkEndereco(rs.getInt("fk_endereço"));
                 e.setModo_pago(rs.getString("modo_pago"));
                 e.setPagamento(rs.getString("pagamento"));
                 e.setValor_total(rs.getFloat("valor_total"));
@@ -62,7 +61,7 @@ public class PedidosDAO {
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = conexao.prepareStatement(
-                    "INSERT INTO pedidos(fk_usuario, modo_pago, valor_total, data_hora, fk_endereço) VALUES (?, ?, ?, now(), ?)",
+                    "INSERT INTO pedidos(fk_usuario, modo_pago, valor_total, data_hora, fk_endereco) VALUES (?, ?, ?, now(), ?)",
                     Statement.RETURN_GENERATED_KEYS
             );
             stmt.setInt(1, p.getFkUsuario());

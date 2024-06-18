@@ -132,17 +132,17 @@ public class produtosController extends HttpServlet {
             int produtoId = Integer.parseInt(request.getParameter("id"));///adiciona o id
             int quantidade = Integer.parseInt(request.getParameter("quantidade"));//adiciona quantidade
             float preco_uni = Float.parseFloat(request.getParameter("preco_uni"));//adicioan o preço unitario
-                    Carrinho bean = new Carrinho();
+            Carrinho bean = new Carrinho();
             bean.setFkProduto(produtoId);
             bean.setFkUsuario(usuarioId);
             bean.setQuantidade(quantidade);
             bean.setPreço(preco_uni);
 
             dao.inserir(bean);
-            // atualiza a lista de carrinho na sessao
+         
             List<Carrinho> carrinho = (List<Carrinho>) session.getAttribute("carrinho");
             if (carrinho == null) {
-                carrinho = new ArrayList<>();
+                carrinho = new ArrayList<>();// atualiza a lista de carrinho na sessao
             }
             carrinho.add(bean);
             session.setAttribute("carrinho", carrinho);
@@ -183,8 +183,10 @@ public class produtosController extends HttpServlet {
         //insert em produto
         String u = request.getServletPath();
         Produtos p = new Produtos();
+        String categoriaIDString = request.getParameter("categoria");
+        int categoriaID = Integer.parseInt(categoriaIDString);
         p.setNome(request.getParameter("nome"));
-        p.setFk_categoria(Integer.parseInt(request.getParameter("categoria")));
+        p.setFk_categoria(categoriaID);
         p.setPreço(Float.parseFloat(request.getParameter("valor")));
         p.setDescriçao(request.getParameter("descricao"));
         //tratar a imagem

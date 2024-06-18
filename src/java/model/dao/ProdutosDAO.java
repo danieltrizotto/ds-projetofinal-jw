@@ -36,9 +36,9 @@ public class ProdutosDAO {
                 objProduto.setId_Produto(rs.getInt("id_Produto"));
                 objProduto.setFk_categoria(rs.getInt("fk_categoria"));
                 objProduto.setNome(rs.getString("nome"));
-                objProduto.setDescriçao(rs.getString("descriçao"));
+                objProduto.setDescriçao(rs.getString("descricao"));
                 objProduto.setImgBlob(rs.getBytes("imagem"));
-                objProduto.setPreço(rs.getFloat("preço"));
+                objProduto.setPreço(rs.getFloat("preco"));
                 produtos.add(objProduto);
             }
             rs.close();
@@ -69,7 +69,7 @@ public class ProdutosDAO {
                 objProduto.setNome(rs.getString("nome"));
                 objProduto.setDescriçao(rs.getString("descriçao"));
                 objProduto.setImgBlob(rs.getBytes("imagem"));
-                objProduto.setPreço(rs.getFloat("preço"));
+                objProduto.setPreço(rs.getFloat("preco"));
 
                 resultBusca.add(objProduto);
             }
@@ -102,8 +102,8 @@ public class ProdutosDAO {
                 prod.setId_Produto(rs.getInt("id_Produto"));
                 prod.setNome(rs.getString("nome"));
                 prod.setFk_categoria(rs.getInt("fk_categoria"));
-                prod.setDescriçao(rs.getString("descriçao"));
-                prod.setPreço(rs.getFloat("preço"));
+                prod.setDescriçao(rs.getString("descricao"));
+                prod.setPreço(rs.getFloat("preco"));
                 prod.setImgBlob(rs.getBytes("imagem"));
 
                 resultBusca.add(prod);
@@ -132,8 +132,8 @@ public class ProdutosDAO {
                 prod.setFk_categoria(rs.getInt("fk_categoria"));
                 prod.setImgBlob(rs.getBytes("imagem"));
                 prod.setNome(rs.getString("nome"));
-                prod.setDescriçao(rs.getString("descriçao"));
-                prod.setPreço(rs.getFloat("preço"));
+                prod.setDescriçao(rs.getString("descricao"));
+                prod.setPreço(rs.getFloat("preco"));
             }
 
             rs.close();
@@ -151,7 +151,7 @@ public class ProdutosDAO {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
 
-            stmt = conexao.prepareStatement("INSERT INTO produtos (fk_categoria, nome, preço, descriçao, imagem, estoque) VALUES (?, ?, ?, ?, ?, ?)");
+            stmt = conexao.prepareStatement("INSERT INTO produtos (fk_categoria, nome, preco, descricao, imagem, estoque) VALUES (?, ?, ?, ?, ?, ?)");
             stmt.setInt(1, p.getFk_categoria());
             stmt.setString(2, p.getNome());
             stmt.setFloat(3, p.getPreço());

@@ -1,30 +1,30 @@
 <%-- Document : telaADM Created on : 30/04/2024, 17:06:04 Author : Senai --%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <%@page contentType="text/html" pageEncoding="UTF-8" %>
-            <!DOCTYPE html>
-            <html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
 
-            <head>
+    <head>
 
-                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-                <title>adm pag</title>
-                <link rel="stylesheet" href="./styles/telaADM.css" />
-            </head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>adm pag</title>
+        <link rel="stylesheet" href="./styles/telaADM.css" />
+    </head>
 
-            <body>
-                <header>
-                    <div class="header">
-                        <div class="inicio">
-                            <h2>PAGINA DE ADMINISTRAÇAO</h2>
-                        </div>
-                        <br>
+    <body>
+        <header>
+            <div class="header">
+                <div class="inicio">
+                    <h2>PAGINA DE ADMINISTRAÇAO</h2>
+                </div>
+                <br>
 
-                        <div class="admin">
-                            <a class="outro" href="">Produtos</a>
-                            <a class="outro" href="">Pedidos</a>                      
-                            <a class="outro" href="">Usuarios</a>
-                        </div>
-                        <br>
+                <div class="admin">
+                    <a class="outro" href="">Produtos</a>
+                    <a class="outro" href="">Pedidos</a>                      
+                    <a class="outro" href="">Usuarios</a>
+                </div>
+                <br>
                 </header>
                 <main>
                     <br>
@@ -42,7 +42,11 @@
                             <br>
                             <div class="form-group">
                                 <label for="categoria">Categoria:</label>
-                                <input type="number" name="categoria">
+                                <select name="categoria" id="local">
+                                    <c:forEach items="${categorias}" var="categorias">
+                                        <option value="${categorias.idCategoria}">${categorias.nome}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
                             <br>
                             <div class="form-group">
@@ -60,7 +64,7 @@
                                 <input type="file" class="form-control-file" id="imagem" name="imagem">
                             </div>
                             <br>
-                                <div class="form-group">
+                            <div class="form-group">
                                 <label for="imagem">Estoque:</label>
                                 <input type="number" class="form-control-file" id="estoque" name="estoque">
                             </div>
@@ -74,6 +78,6 @@
                     <p>Daniel trizotto@2024</p>
                 </footer>
 
-            </body>
+                </body>
 
-            </html>
+                </html>

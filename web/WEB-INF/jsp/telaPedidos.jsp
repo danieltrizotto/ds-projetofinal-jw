@@ -19,6 +19,6 @@
             <link rel="stylesheet" href="./styles/checkout.css" />
         </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>tela pedidos</h1>
     </body>
 </html>

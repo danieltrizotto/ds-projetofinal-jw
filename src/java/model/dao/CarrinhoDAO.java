@@ -41,8 +41,8 @@ public class CarrinhoDAO {
                 c.setQuantidade(rs.getInt("quantidade"));
                 c.setNome(rs.getString("nome"));
                 c.setIdProduto(rs.getInt("id_produto"));
-                c.setPreço(rs.getFloat("preço"));
-                c.setDescriçao(rs.getString("descriçao"));
+                c.setPreço(rs.getFloat("preco"));
+                c.setDescriçao(rs.getString("descricao"));
                 c.setFkCategoria(rs.getInt("fk_categoria"));
                 c.setImgBlob(rs.getBytes("imagem"));
 

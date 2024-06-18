@@ -10,7 +10,6 @@
                 crossorigin="anonymous">
             <title>Checkout</title>
             <script src="https://kit.fontawesome.com/0444e3e789.js" crossorigin="anonymous"></script>
-            <script src="../web/js/yourScript.js"></script>
             <link rel="stylesheet" href="./styles/checkout.css" />
         </head>
 
@@ -143,22 +142,20 @@
             <script>
                 function mostrarDiv() {///mostra os div
                     var metodo = document.querySelector('input[name="metodo"]:checked').value;
-                    var infoCartao = document.querySelector('.infoCartao');
-                    var pagarPix = document.querySelector('.pagarPix');
-                    var pixCodeInput = document.getElementById('pixCode');
-
-
+                    var metodoCartao = document.getElementsByClassName('.infoCartao');
+                    var metodoPix = document.getElementsByClassName('.pagarPix');
+                    var codigoPix = document.getElementById('pixCode');
                     if (metodo === 'credito' || metodo === 'debito') {//para cartao    
-                        infoCartao.classList.add('visible');
-                        infoCartao.classList.remove('hidden');
-                        pagarPix.classList.add('hidden');
-                        pagarPix.classList.remove('visible');
+                        metodoCartao.classList.add('visible');
+                        metodoCartao.classList.remove('hidden');
+                        metodoPix.classList.add('hidden');
+                        metodoPix.classList.remove('visible');
                     } else if (metodo === 'pix') {//para pix
-                        infoCartao.classList.add('hidden');
-                        infoCartao.classList.remove('visible');
-                        pagarPix.classList.add('visible');
-                        pagarPix.classList.remove('hidden');
-                        pixCodeInput.value = gerarCodigoPix(12);
+                        metodoCartao.classList.add('hidden');
+                        metodoCartao.classList.remove('visible');
+                        metodoPix.classList.add('visible');
+                        metodoPix.classList.remove('hidden');
+                        codigoPix.value = gerarCodigo(12);
                         //remover o required
                         document.getElementById('nomeCartao').removeAttribute('required');
                         document.getElementById('numeroCartao').removeAttribute('required');
@@ -204,7 +201,7 @@
 
 
 
-                function gerarCodigoPix(length) {
+                function gerarCodigo(length) {
                     var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
                     var code = '';
                     for (var i = 0; i < length; i++) {
