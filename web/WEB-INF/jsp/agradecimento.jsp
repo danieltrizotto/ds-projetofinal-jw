@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>cortesia</title>
     </head>
     <body>
-        <h1>obridado por comprar na nossa loja</h1>
+        <h1>obrigado por comprar na nossa loja</h1>
     </body>
 </html>

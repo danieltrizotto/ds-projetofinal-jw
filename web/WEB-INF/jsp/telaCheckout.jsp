@@ -142,8 +142,8 @@
             <script>
                 function mostrarDiv() {///mostra os div
                     var metodo = document.querySelector('input[name="metodo"]:checked').value;
-                    var metodoCartao = document.getElementsByClassName('.infoCartao');
-                    var metodoPix = document.getElementsByClassName('.pagarPix');
+                    var metodoCartao = document.querySelector('.infoCartao');
+                    var metodoPix = document.querySelector('.pagarPix');
                     var codigoPix = document.getElementById('pixCode');
                     if (metodo === 'credito' || metodo === 'debito') {//para cartao    
                         metodoCartao.classList.add('visible');
