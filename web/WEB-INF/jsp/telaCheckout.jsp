@@ -120,7 +120,7 @@
                             <div class="pagarPix hidden">
                                 <div class="form-group">
                                     <label for="pixCode">Pix</label>
-                                    <input type="text" id="pixCode" name="pixCode" >
+                                    <input type="text" id="pixCode" name="pixCode" readonly>
                                 </div>
                             </div>
                         </div>
