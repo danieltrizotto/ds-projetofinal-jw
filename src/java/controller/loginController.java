@@ -87,7 +87,7 @@ public class loginController extends HttpServlet {
                         System.out.println(admPage);
                         response.sendRedirect("./cadastrar-produto");
                     }
-                    if (userLogado.getTipo().equals("cliente")) {//entrar como usuario cliente
+                    else if (userLogado.getTipo().equals("cliente")) {//entrar como usuario cliente
                         System.out.println(" passou do if cliente");
                         System.out.println(homePage);
 

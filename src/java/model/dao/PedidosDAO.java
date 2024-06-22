@@ -56,7 +56,7 @@ public class PedidosDAO {
 
     }
 
-    public int inserirPedidos(Pedidos p) {
+    public int inserirPedidos(Pedidos p) {//inserir os pedidos
         int lastId = -1;
         try {
             Connection conexao = Conexao.conectar();
@@ -85,7 +85,7 @@ public class PedidosDAO {
         return lastId;
     }
 
-    public void updateEstoque(int qtd, int id) {
+    public void updateEstoque(int qtd, int id) {//update no estoque de produtos
 
         try {
             Connection conexao = Conexao.conectar();
@@ -106,7 +106,7 @@ public class PedidosDAO {
 
     }
 
-  public void inserirPEDIDOSPROD(int qtd,int fk, int pedidoId, float preço_unitario) {
+  public void inserirPEDIDOSPROD(int qtd,int fk, int pedidoId, float preço_unitario) {//insert em pedidos_produtos
     try {
         Connection conexao = Conexao.conectar();
         PreparedStatement stmt = conexao.prepareStatement("INSERT INTO pedidos_produtos(pedido_fk,produto_fk, quantidade, preco_unitario) VALUES (?, ?, ?, ?)");
@@ -124,7 +124,7 @@ public class PedidosDAO {
     }
 }
 
-    public void deleteCarrinho(int fkUsuario) {
+    public void deleteCarrinho(int fkUsuario) {//delete no carrinho todo
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;

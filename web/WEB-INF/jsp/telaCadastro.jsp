@@ -30,7 +30,7 @@
                             <br><br>
                         
                         <button type="submit" name="entrar" value="Entrar" id="cadastro">cadastrar</button>
-                        <a href="./voltarlogin">voltar ao login</a>
+                    
                     </form>
 
                 </div>

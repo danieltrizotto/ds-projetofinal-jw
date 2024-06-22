@@ -32,6 +32,7 @@
                     </form>
                     <a class="outro" href="./carrinho"><i class="fa-solid fa-cart-shopping"></i></a>
                     <a class="outro" href="./pedidos"><i class="fa-solid fa-truck"></i></a>
+                       <a class="outro" href="./voltarlogin"><i class="fa-solid fa-door-open"></i></a>
 
 
                 </div>

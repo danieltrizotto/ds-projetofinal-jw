@@ -20,8 +20,10 @@ import model.dao.UsuariosDAO;
  * @author Senai
  */
 public class cadastroController extends HttpServlet {
- UsuariosDAO dao = new UsuariosDAO();
+
+    UsuariosDAO dao = new UsuariosDAO();
     Usuarios bean = new Usuarios();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,7 +37,7 @@ public class cadastroController extends HttpServlet {
             throws ServletException, IOException {
         String nextPage = "/WEB-INF/jsp/telaCadastro.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-                    dispatcher.forward(request, response);
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -64,24 +66,26 @@ public class cadastroController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        String nome = request.getParameter("nome");
-        String usuario = request.getParameter("usuario");
-        String senha = request.getParameter("senha");
-        String telefone = request.getParameter("telefone");
-        String cpf = request.getParameter("cpf");
-        
+        String url = request.getServletPath();
+        if (url.equals("/cadastro")) {
+            String nome = request.getParameter("nome");
+            String usuario = request.getParameter("usuario");
+            String senha = request.getParameter("senha");
+            String telefone = request.getParameter("telefone");
+            String cpf = request.getParameter("cpf");
 
-        bean.setNome(nome);
-        bean.setUsuario(usuario);
-        bean.setSenha(senha);
-        bean.setTelefone(telefone);
-        bean.setCpf(cpf);
+            bean.setNome(nome);
+            bean.setUsuario(usuario);
+            bean.setSenha(senha);
+            bean.setTelefone(telefone);
+            bean.setCpf(cpf);
 
-       dao.inserirUsuario(bean); 
-        System.out.println("feito");
-        
-        response.sendRedirect("./login");
+            dao.inserirUsuario(bean);
+            System.out.println("feito");
+
+            response.sendRedirect("./voltarlogin");
+        }
+
     }
 
     /**

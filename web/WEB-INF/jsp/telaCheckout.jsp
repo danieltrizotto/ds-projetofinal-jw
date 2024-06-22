@@ -29,6 +29,7 @@
                         </form>
                         <a class="outro" href="./carrinho"><i class="fa-solid fa-cart-shopping"></i></a>
                         <a class="outro" href="./pedidos"><i class="fa-solid fa-truck"></i></a>
+                       <a class="outro" href="./voltarlogin"><i class="fa-solid fa-door-open"></i></a>
                     </div>
                     <div class="categorias">
                         <c:forEach items="${categorias}" var="categoria">
@@ -119,7 +120,7 @@
                             <div class="pagarPix hidden">
                                 <div class="form-group">
                                     <label for="pixCode">Pix</label>
-                                    <input type="text" id="pixCode" name="pixCode" readonly>
+                                    <input type="text" id="pixCode" name="pixCode" >
                                 </div>
                             </div>
                         </div>

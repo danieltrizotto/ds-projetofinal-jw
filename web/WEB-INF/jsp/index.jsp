@@ -18,9 +18,9 @@
             <form name="formLogin" method="post" action="logar">
                 <img src="./assets/microchip-solid.svg" alt="" style="width: 90px;">
                 <h2>LOGIN</h2>
-                <input type="text" id="usuario" name="usuario" placeholder="Usuario..." />
+                <input type="text" id="usuario" name="usuario" placeholder="Usuario..." required />
                 <br><br>
-                <input type="password" id="senha" name="senha" placeholder="Senha..." />
+                <input type="password" id="senha" name="senha" placeholder="Senha..." required/>
                 <br><br>
                 <button type="submit" name="entrar" value="Entrar">Entrar</button>
                 <p class="errorMessage">${requestScope.errorMessage}</p> 

@@ -9,6 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>adm pag</title>
         <link rel="stylesheet" href="./styles/telaADM.css" />
+                <script src="https://kit.fontawesome.com/0444e3e789.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
@@ -20,9 +21,10 @@
                 <br>
 
                 <div class="admin">
-                    <a class="outro" href="">Produtos</a>
-                    <a class="outro" href="">Pedidos</a>                      
-                    <a class="outro" href="">Usuarios</a>
+                    <a class="outro" href="#">Produtos</a>
+                    <a class="outro" href="#">Pedidos</a>                      
+                    <a class="outro" href="#">Usuarios</a>
+                    <a class="outro" href="./voltarlogin"><i class="fa-solid fa-door-open"></i></a>
                 </div>
                 <br>
                 </header>
