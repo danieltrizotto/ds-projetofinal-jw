@@ -16,17 +16,17 @@
                 <div class="areaCadastro">
                     <form name="formCadastro" method="post" action="cadastro">
                         
-                            <img src="./assets/chalkboard-user-solid.svg" alt="" style="width: 90px;">
+                            <img src="./assets/chalkboard-user-solid.svg" alt="" style="width: 90px;" >
                             <h2>Cadastro</h2>
-                            <input type="text" placeholder="nome..." class="nomeInput" name="nome">
+                            <input type="text" placeholder="nome..." class="nomeInput" name="nome" required>
                             <br><br>
-                            <input type="text" placeholder="usuario..." class="usuarioInput" name="usuario">
+                            <input type="text" placeholder="usuario..." class="usuarioInput" name="usuario" required>
                             <br><br>
-                            <input type="text" placeholder="Senha..." class="senhaInput" name="senha">
+                            <input type="text" placeholder="Senha..." class="senhaInput" name="senha" required>
                             <br><br>
-                            <input type="text" placeholder="telefone..." class="telInput" name="telefone">
+                            <input type="text" placeholder="telefone..." class="telInput" name="telefone" required>
                             <br><br>
-                            <input type="text" class="cpfInput" name="cpf" placeholder="cpf...">
+                            <input type="text" class="cpfInput" name="cpf" placeholder="cpf..." required>
                             <br><br>
                         
                         <button type="submit" name="entrar" value="Entrar" id="cadastro">cadastrar</button>
