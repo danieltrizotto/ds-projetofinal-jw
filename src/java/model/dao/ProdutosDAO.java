@@ -58,7 +58,7 @@ public class ProdutosDAO {
             PreparedStatement stmt = null;
             ResultSet rs = null;
 
-            stmt = conexao.prepareStatement("SELECT * FROM produtos WHERE nome LIKE ? OR descriçao LIKE ?");
+            stmt = conexao.prepareStatement("SELECT * FROM produtos WHERE nome LIKE ? OR descricao LIKE ?");
             stmt.setString(1, busca);
             stmt.setString(2, busca);
             rs = stmt.executeQuery();
@@ -67,7 +67,7 @@ public class ProdutosDAO {
                 objProduto.setId_Produto(rs.getInt("id_Produto"));
                 objProduto.setFk_categoria(rs.getInt("fk_categoria"));
                 objProduto.setNome(rs.getString("nome"));
-                objProduto.setDescriçao(rs.getString("descriçao"));
+                objProduto.setDescriçao(rs.getString("descricao"));
                 objProduto.setImgBlob(rs.getBytes("imagem"));
                 objProduto.setPreço(rs.getFloat("preco"));
 

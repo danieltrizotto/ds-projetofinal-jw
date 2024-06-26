@@ -133,6 +133,7 @@ public class produtosController extends HttpServlet {
             int quantidade = Integer.parseInt(request.getParameter("quantidade"));//adiciona quantidade
             float preco_uni = Float.parseFloat(request.getParameter("preco_uni"));//adicioan o preço unitario
             Carrinho bean = new Carrinho();
+            //da  o valor para os objetos
             bean.setFkProduto(produtoId);
             bean.setFkUsuario(usuarioId);
             bean.setQuantidade(quantidade);
@@ -144,7 +145,7 @@ public class produtosController extends HttpServlet {
             if (carrinho == null) {
                 carrinho = new ArrayList<>();// atualiza a lista de carrinho na sessao
             }
-            carrinho.add(bean);
+            carrinho.add(bean);///insere o valores na sessao
             session.setAttribute("carrinho", carrinho);
 
             System.out.println(request.getParameter("id"));

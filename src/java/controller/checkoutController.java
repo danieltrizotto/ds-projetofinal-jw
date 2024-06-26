@@ -146,8 +146,8 @@ public class checkoutController extends HttpServlet {
             response.sendRedirect("./checkout");
         } else if (url.equals("/checkoutPagamento")) {
             String metodoPagamento = request.getParameter("metodo");
-            String enderecoIDString = request.getParameter("enderecoID");
-            int enderecoID = Integer.parseInt(enderecoIDString );
+            String enderecoIDString = request.getParameter("enderecoID");//trasformao id do input em string para conversao em int
+            int enderecoID = Integer.parseInt(enderecoIDString );//converte para int
 
             ped.setModo_pago(metodoPagamento);
             ped.setValor_total(valorTotal + 5);
@@ -160,8 +160,8 @@ public class checkoutController extends HttpServlet {
                     int quantidade = carrinho.get(i).getQuantidade();
                     int fkProduto = carrinho.get(i).getFkProduto();
                     float preco_uni = carrinho.get(i).getPreço();
-                    dao.inserirPEDIDOSPROD(quantidade, fkProduto, idPedido, preco_uni);
-                    dao.updateEstoque(quantidade, fkProduto);
+                    dao.inserirPEDIDOSPROD(quantidade, fkProduto, idPedido, preco_uni);//insert em pedidos produtos
+                    dao.updateEstoque(quantidade, fkProduto);//update em estoque
                 }
 
             dao.deleteCarrinho(usuarioId);   // remover o carrinho do usuário após a finalização do pedido

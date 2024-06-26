@@ -116,22 +116,22 @@ h1 {
     border-radius: 5px;
 }
 
-.areaProduto input{
+.areaProduto input {
     width: 170px;
     height: 20%;
     margin-left: 2vw;
 }
 
-.areaProduto button{
+.areaProduto button {
     background-color: #7AB32B;
-    color:#ffffff;
+    color: #ffffff;
 }
 
-.container text-center{
+.container text-center {
     display: flex;
 }
 
-.row1{
+.row1 {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
@@ -142,11 +142,14 @@ h1 {
     align-content: space-around;
     align-items: flex-end;
 }
-.row1 .comprar{
+
+.row1 .comprar {
     width: 60%;
     height: 30px;
 }
+
 footer {
     text-align: center;
     background-color: #7AB32B;
 }
+

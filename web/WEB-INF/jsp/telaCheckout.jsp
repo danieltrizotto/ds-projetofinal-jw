@@ -69,18 +69,18 @@
 
                     <div class="inserirEndereço" style="margin-right: 15rem;">
                         <form action="checkoutFrete" method="POST" class="frete">
-                            <input type="text" placeholder="Rua" name="rua">
+                            <input type="text" placeholder="Rua" name="rua" required>
                             <br>
-                            <input type="text" placeholder="Numero" name="numero">
+                            <input type="text" placeholder="Numero" name="numero" required>
                             <br>
-                            <input type="text" placeholder="CEP" name="cep">
+                            <input type="text" placeholder="CEP" name="cep" required> 
                             <br>
                             <button type="submit" name="freteBtn" class="freteBtn"
                                 style="color: aliceblue; background-color: black;">informar endereço</button>
                         </form>
                     </div>
                     <br>
-                    <form action="checkoutPagamento" method="POST" name="formpaga" onsubmit="return validarCampos()">
+                  <form action="checkoutPagamento" method="POST" name="formpaga" onsubmit="return validarCampos()"><!--  apenas enviara caso o boolean preenchido estiver true-->
                         <div class="selecionarLocal" style="margin-right: 250px ">
 
                             <label for="local">Endereço:</label>
@@ -120,7 +120,7 @@
                             <div class="pagarPix hidden">
                                 <div class="form-group">
                                     <label for="pixCode">Pix</label>
-                                    <input type="text" id="pixCode" name="pixCode" readonly>
+                                    <input type="text" id="pixCode" name="pixCode" readonly> <!--valor nao aparece editavel-->
                                 </div>
                             </div>
                         </div>
@@ -147,16 +147,16 @@
                     var metodoPix = document.querySelector('.pagarPix');
                     var codigoPix = document.getElementById('pixCode');
                     if (metodo === 'credito' || metodo === 'debito') {//para cartao    
-                        metodoCartao.classList.add('visible');
-                        metodoCartao.classList.remove('hidden');
+                        metodoCartao.classList.add('visible');//adiciona o visible comn display block  ficar visivel
+                        metodoCartao.classList.remove('hidden');//remove o  hidden display none que deixaq invisivel
                         metodoPix.classList.add('hidden');
                         metodoPix.classList.remove('visible');
                     } else if (metodo === 'pix') {//para pix
-                        metodoCartao.classList.add('hidden');
-                        metodoCartao.classList.remove('visible');
+                        metodoCartao.classList.add('hidden');//adiciona o visible comn display block  ficar visivel
+                        metodoCartao.classList.remove('visible');//remove o  hidden display none que deixaq invisivel
                         metodoPix.classList.add('visible');
                         metodoPix.classList.remove('hidden');
-                        codigoPix.value = gerarCodigo(12);
+                        codigoPix.value = gerarCodigo(12);//adiciona um valor de 12 numeros para o sorteio de numeros
                         //remover o required
                         document.getElementById('nomeCartao').removeAttribute('required');
                         document.getElementById('numeroCartao').removeAttribute('required');
@@ -168,7 +168,7 @@
                 }
 
                 function validarCampos() {
-                    var metodo = document.querySelector('input[name="metodo"]:checked').value;
+                    var metodo = document.querySelector('input[name="metodo"]:checked').value;//verifica o valor do do input 
                     var preenchido = true;
 
                     if (metodo === 'credito' || metodo === 'debito') {
@@ -177,6 +177,7 @@
                         var validadeCartao = document.getElementById('validadeCartao').value;
                         var cvv = document.getElementById('cvv').value;
 
+                       //verifica o tamanho do valor da input
                         if (nomeCartao.length < 25) {
                             alert('O nome do titular deve ter no mínimo 25 caracteres.');
                             preenchido = false;
@@ -194,21 +195,21 @@
                     }
 
                     if (!preenchido) {
-                        event.preventDefault();
+                        event.preventDefault()//impede de acontecer o evento o evento de acontecer se preenchido estiver diferente de true
 
                     }
-                    return preenchido;
+                    return preenchido;//retorna o valor true
                 }
 
 
 
                 function gerarCodigo(length) {
-                    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-                    var code = '';
-                    for (var i = 0; i < length; i++) {
-                        code += chars.charAt(Math.floor(Math.random() * chars.length));
+                    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';//caracteres para o sorteio
+                    var code = ''; //valor vazio para adicionar os valores
+                    for (var i = 0; i < length; i++) {//le o valor lenght para o sorteio para criar um limite de valores adicionados
+                        code += chars.charAt(Math.floor(Math.random() * chars.length));//multiplica um numero aleatorio pela comprimento da String e arredonda para que estaja valido dentra dos intervalos da string, apos isso, pega o valor da posiçao resultando na string e adiciona no codigo
                     }
-                    return code;
+                    return code;//retorna o valor
                 }
 
             </script>

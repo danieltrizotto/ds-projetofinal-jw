@@ -99,7 +99,7 @@ public class loginController extends HttpServlet {
                     }
 
                } 
-            } catch (Exception e) {
+            } catch (Exception e) {//caso o login nao entre
                 System.out.println("nao passou do if");
                 System.out.println("erro:"+e);
                 request.setAttribute("errorMessage", "problema no banco de dados  ou usuario & senha incorreta ");
