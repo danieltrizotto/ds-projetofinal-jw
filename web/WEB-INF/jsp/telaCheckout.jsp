@@ -120,7 +120,7 @@
                             <div class="pagarPix hidden">
                                 <div class="form-group">
                                     <label for="pixCode">Pix</label>
-                                    <input type="text" id="pixCode" name="pixCode" readonly> <!--valor nao aparece editavel-->
+                                    <input type="text" id="pixCode" name="pixCode" readonly>
                                 </div>
                             </div>
                         </div>
@@ -147,16 +147,16 @@
                     var metodoPix = document.querySelector('.pagarPix');
                     var codigoPix = document.getElementById('pixCode');
                     if (metodo === 'credito' || metodo === 'debito') {//para cartao    
-                        metodoCartao.classList.add('visible');//adiciona o visible comn display block  ficar visivel
-                        metodoCartao.classList.remove('hidden');//remove o  hidden display none que deixaq invisivel
+                        metodoCartao.classList.add('visible');
+                        metodoCartao.classList.remove('hidden');
                         metodoPix.classList.add('hidden');
                         metodoPix.classList.remove('visible');
                     } else if (metodo === 'pix') {//para pix
-                        metodoCartao.classList.add('hidden');//adiciona o visible comn display block  ficar visivel
-                        metodoCartao.classList.remove('visible');//remove o  hidden display none que deixaq invisivel
+                        metodoCartao.classList.add('hidden');
+                        metodoCartao.classList.remove('visible');
                         metodoPix.classList.add('visible');
                         metodoPix.classList.remove('hidden');
-                        codigoPix.value = gerarCodigo(12);//adiciona um valor de 12 numeros para o sorteio de numeros
+                        codigoPix.value = gerarCodigo(12);
                         //remover o required
                         document.getElementById('nomeCartao').removeAttribute('required');
                         document.getElementById('numeroCartao').removeAttribute('required');
@@ -168,7 +168,7 @@
                 }
 
                 function validarCampos() {
-                    var metodo = document.querySelector('input[name="metodo"]:checked').value;//verifica o valor do do input 
+                    var metodo = document.querySelector('input[name="metodo"]:checked').value;
                     var preenchido = true;
 
                     if (metodo === 'credito' || metodo === 'debito') {
@@ -177,7 +177,6 @@
                         var validadeCartao = document.getElementById('validadeCartao').value;
                         var cvv = document.getElementById('cvv').value;
 
-                       //verifica o tamanho do valor da input
                         if (nomeCartao.length < 25) {
                             alert('O nome do titular deve ter no mínimo 25 caracteres.');
                             preenchido = false;
@@ -195,10 +194,10 @@
                     }
 
                     if (!preenchido) {
-                        event.preventDefault()//impede de acontecer o evento o evento de acontecer se preenchido estiver diferente de true
+                        event.preventDefault();
 
                     }
-                    return preenchido;//retorna o valor true
+                    return preenchido;
                 }
 
 
@@ -210,6 +209,7 @@
                         code += chars.charAt(Math.floor(Math.random() * chars.length));//multiplica um numero aleatorio pela comprimento da String e arredonda para que estaja valido dentra dos intervalos da string, apos isso, pega o valor da posiçao resultando na string e adiciona no codigo
                     }
                     return code;//retorna o valor
+                
                 }
 
             </script>
