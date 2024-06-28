@@ -70,7 +70,7 @@ public class checkoutController extends HttpServlet {
         // recuperar o id do usuário da sessão
         c = produto.leitura(usuarioId);
         request.setAttribute("carrinho", c);
-
+           valorTotal = 0;
         for (int i = 0; i < c.size(); i++) {
             if (c.get(i).getImgBlob() != null) {//tratamento para imagem
                 String imagemBase64 = Base64.getEncoder().encodeToString(c.get(i).getImgBlob());
