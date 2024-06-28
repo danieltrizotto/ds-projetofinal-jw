@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Conexao {
     private static final String URL = "jdbc:mysql://localhost:3306/cybermercadoweb?useSSL=false";//nome do banco
      private static final String USUARIO = "root";//nome do usuario
-      private static final String SENHA = "";//senha
+      private static final String SENHA = "1234";//senha
       ///victor
       private static final String driver = "com.mysql.cj.jdbc.Driver";//driver
 
