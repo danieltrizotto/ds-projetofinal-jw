@@ -115,7 +115,11 @@ h1 {
     width: 67vw;
     border-radius: 5px;
 }
-
+.card-img-top {
+    width: 68%;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+}
 .areaProduto input {
     width: 170px;
     height: 20%;

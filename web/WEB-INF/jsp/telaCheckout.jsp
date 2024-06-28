@@ -141,22 +141,22 @@
                 <p>Daniel trizotto@2024</p>
             </footer>
             <script>
-                function mostrarDiv() {///mostra os div
+               function mostrarDiv() {///mostra os div
                     var metodo = document.querySelector('input[name="metodo"]:checked').value;
                     var metodoCartao = document.querySelector('.infoCartao');
                     var metodoPix = document.querySelector('.pagarPix');
                     var codigoPix = document.getElementById('pixCode');
                     if (metodo === 'credito' || metodo === 'debito') {//para cartao    
-                        metodoCartao.classList.add('visible');
-                        metodoCartao.classList.remove('hidden');
+                        metodoCartao.classList.add('visible');//adiciona o visible comn display block  ficar visivel
+                        metodoCartao.classList.remove('hidden');//remove o  hidden display none que deixaq invisivel
                         metodoPix.classList.add('hidden');
                         metodoPix.classList.remove('visible');
                     } else if (metodo === 'pix') {//para pix
-                        metodoCartao.classList.add('hidden');
-                        metodoCartao.classList.remove('visible');
+                        metodoCartao.classList.add('hidden');//adiciona o visible comn display block  ficar visivel
+                        metodoCartao.classList.remove('visible');//remove o  hidden display none que deixaq invisivel
                         metodoPix.classList.add('visible');
                         metodoPix.classList.remove('hidden');
-                        codigoPix.value = gerarCodigo(12);
+                        codigoPix.value = gerarCodigo(12);//adiciona um valor de 12 numeros para o sorteio de numeros
                         //remover o required
                         document.getElementById('nomeCartao').removeAttribute('required');
                         document.getElementById('numeroCartao').removeAttribute('required');
@@ -168,7 +168,7 @@
                 }
 
                 function validarCampos() {
-                    var metodo = document.querySelector('input[name="metodo"]:checked').value;
+                    var metodo = document.querySelector('input[name="metodo"]:checked').value;//verifica o valor do do input 
                     var preenchido = true;
 
                     if (metodo === 'credito' || metodo === 'debito') {
@@ -177,6 +177,7 @@
                         var validadeCartao = document.getElementById('validadeCartao').value;
                         var cvv = document.getElementById('cvv').value;
 
+                       //verifica o tamanho do valor da input
                         if (nomeCartao.length < 25) {
                             alert('O nome do titular deve ter no mínimo 25 caracteres.');
                             preenchido = false;
@@ -194,12 +195,11 @@
                     }
 
                     if (!preenchido) {
-                        event.preventDefault();
+                        event.preventDefault()//impede de acontecer o evento o evento de acontecer se preenchido estiver diferente de true
 
                     }
-                    return preenchido;
+                    return preenchido;//retorna o valor true
                 }
-
 
 
                 function gerarCodigo(length) {
