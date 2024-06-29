@@ -126,15 +126,15 @@ public class carrinhoController extends HttpServlet {
           
       
             if (ca != null) {
-                Iterator<Carrinho> iterator = carrinho.iterator();
-                while (iterator.hasNext()) {
+                Iterator<Carrinho> iterator = carrinho.iterator();//vai percorrer o carrinho
+                while (iterator.hasNext()) {///percorre o carrinho
                     Carrinho car = iterator.next();
-                    if (car.getIdCarrinho() == carrinhoId) {
-                        iterator.remove();
-                        break; // Saia do loop após encontrar e remover o item
+                    if (car.getIdCarrinho() == carrinhoId) {///verifica o id especifico que foi deletado
+                        iterator.remove();//remove
+                        break; //interrompe apos encontrar o item
                     }
                 }
-                session.setAttribute("carrinho", carrinho);
+                session.setAttribute("carrinho", carrinho);//atualiza  a sessao do carrinho
             }
 
             System.out.println("Produto de ID apagado: " + carrinhoId);
