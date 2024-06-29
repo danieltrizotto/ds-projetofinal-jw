@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Iterator;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -94,7 +95,7 @@ public class carrinhoController extends HttpServlet {
         Integer usuarioId = (Integer) session.getAttribute("usuarioId");
         List<Carrinho> c = produto.leitura(usuarioId);
         request.setAttribute("carrinho", c);
-        
+
     }
 
     /**
@@ -109,11 +110,10 @@ public class carrinhoController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
         CarrinhoDAO produto = new CarrinhoDAO();//model dao
         List<Carrinho> c = new ArrayList();
         HttpSession session = request.getSession();
-         List<Carrinho> ca = (List<Carrinho>) session.getAttribute("carrinho");
+        List<Carrinho> ca = (List<Carrinho>) session.getAttribute("carrinho");
         // recuperar o id do usuário da sessão
         Integer usuarioId = (Integer) session.getAttribute("usuarioId");
         c = produto.leitura(usuarioId);
@@ -123,13 +123,25 @@ public class carrinhoController extends HttpServlet {
         if (url.equals("/apagarProduto")) {
             int carrinhoId = Integer.parseInt(request.getParameter("id"));
             produto.excluirProduto(carrinhoId);//excluir produto especifico
-             session.removeAttribute("carrinho");
-            System.out.println("apagado produto de id:" + carrinhoId);
+          
+      
+            if (ca != null) {
+                Iterator<Carrinho> iterator = carrinho.iterator();
+                while (iterator.hasNext()) {
+                    Carrinho car = iterator.next();
+                    if (car.getIdCarrinho() == carrinhoId) {
+                        iterator.remove();
+                        break; // Saia do loop após encontrar e remover o item
+                    }
+                }
+                session.setAttribute("carrinho", carrinho);
+            }
+
+            System.out.println("Produto de ID apagado: " + carrinhoId);
             response.sendRedirect("./carrinho");
-            
         } else if (url.equals("/excluirCarrin")) {
             dao.deleteCarrinho(usuarioId);//excluir todo o carrinho
-             session.removeAttribute("carrinho");
+            session.removeAttribute("carrinho");
             System.out.println("apagado produto de id:" + usuarioId);
             response.sendRedirect("./carrinho");
         }
