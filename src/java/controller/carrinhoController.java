@@ -124,13 +124,13 @@ public class carrinhoController extends HttpServlet {
             int carrinhoId = Integer.parseInt(request.getParameter("id"));
             produto.excluirProduto(carrinhoId);//excluir produto especifico
           
-      
+      ///para nao dar erro no carrinho apos exclusao
             if (ca != null) {
                 Iterator<Carrinho> iterator = carrinho.iterator();//vai percorrer o carrinho
                 while (iterator.hasNext()) {///percorre o carrinho
                     Carrinho car = iterator.next();
                     if (car.getIdCarrinho() == carrinhoId) {///verifica o id especifico que foi deletado
-                        iterator.remove();//remove
+                        iterator.remove();//remove 
                         break; //interrompe apos encontrar o item
                     }
                 }
